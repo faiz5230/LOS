@@ -1,80 +1,82 @@
-@extends('layouts.master')
 
-{{-- Dynamic title and breadcrumb based on the resource type --}}
-@section('title')
-    Add @lang('translation.' . $resource)
-@endsection
 
-@section('css')
-    <link href="{{ URL::asset('css/select2.min.css') }}" rel="stylesheet" />
-@endsection
 
-@section('content')
-    @component('components.breadcrumb')
-        @slot('li_1')
-            @lang('translation.' . $resource)
-        @endslot
-        @slot('title')
-            Add @lang('translation.' . $resource)
-        @endslot
-    @endcomponent
+<?php $__env->startSection('title'); ?>
+    Add <?php echo app('translator')->get('translation.' . $resource); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('css'); ?>
+    <link href="<?php echo e(URL::asset('css/select2.min.css')); ?>" rel="stylesheet" />
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+    <?php $__env->startComponent('components.breadcrumb'); ?>
+        <?php $__env->slot('li_1'); ?>
+            <?php echo app('translator')->get('translation.' . $resource); ?>
+        <?php $__env->endSlot(); ?>
+        <?php $__env->slot('title'); ?>
+            Add <?php echo app('translator')->get('translation.' . $resource); ?>
+        <?php $__env->endSlot(); ?>
+    <?php echo $__env->renderComponent(); ?>
 
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
 
                 <div class="card-header align-items-center d-flex">
-                    <h4 class="card-title mb-0 flex-grow-1">Add @lang('translation.' . $resource)</h4>
+                    <h4 class="card-title mb-0 flex-grow-1">Add <?php echo app('translator')->get('translation.' . $resource); ?></h4>
                 </div><!-- end card header -->
 
                 <div class="card-body">
                     <div class="pull-right mb-2">
-                        <a class="btn btn-success" href="{{ route($route . '.index') }}"> <i data-feather="arrow-left"></i>
+                        <a class="btn btn-success" href="<?php echo e(route($route . '.index')); ?>"> <i data-feather="arrow-left"></i>
                             Kembali</a>
                     </div>
                     <div class="live-preview">
-                        @if (session('status'))
+                        <?php if(session('status')): ?>
                             <div class="alert alert-success mb-1 mt-1">
-                                {{ session('status') }}
+                                <?php echo e(session('status')); ?>
+
                             </div>
-                        @endif
-                        @if ($errors->any())
+                        <?php endif; ?>
+                        <?php if($errors->any()): ?>
                             <div class="alert alert-danger alert-dismissible fade show mb-xl-0" role="alert">
                                 <strong>Whoops!</strong> There were some problems with your input.<br><br>
                                 <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
+                                    <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <li><?php echo e($error); ?></li>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </ul>
                                 <button type="button" class="btn-close" data-bs-dismiss="alert"
                                     aria-label="Close"></button>
                             </div>
-                        @endif
-                        <form method="POST" action="{{ url('/analisa_kredit') }}">
-                            @csrf
-                            <input type="hidden" id="id_debitur" name="id_debitur" value="{{$master_debitur->id}}">
+                        <?php endif; ?>
+                        <form method="POST" action="<?php echo e(url('/analisa_kredit')); ?>">
+                            <?php echo csrf_field(); ?>
+                            <input type="hidden" id="id_debitur" name="id_debitur" value="<?php echo e($master_debitur->id); ?>">
                             <div class="row">
                                 <div class="col-6">
                                     <table class="table table-sm table-bordered table-hover align-middle table-wrap mb-0">
                                         <thead>
                                             <tr>
                                                 <th>Nama Debitur</th>
-                                                <td>{{ $master_debitur->nama }}</td>
+                                                <td><?php echo e($master_debitur->nama); ?></td>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <th>Plafond Pengajuan</th>
-                                                <td>{{ convertNumberFormat($master_debitur->jumlah_permohonan_kredit) }}
+                                                <td><?php echo e(convertNumberFormat($master_debitur->jumlah_permohonan_kredit)); ?>
+
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <th>Jangka Waktu Kredit</th>
-                                                <td>{{ $master_debitur->jangka_waktu }}</td>
+                                                <td><?php echo e($master_debitur->jangka_waktu); ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Angsuran</th>
-                                                <td>{{ convertNumberFormat($master_debitur->angsuran) }}</td>
+                                                <td><?php echo e(convertNumberFormat($master_debitur->angsuran)); ?></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -84,7 +86,7 @@
                                         <div class="col-5 p-1">
                                             <div class="input-group input-group-sm align-middle">
 
-                                                <label><b>Tanggal Pengajuan: {{ ubahFormatTanggal($master_debitur->tanggal) }}</b></label>
+                                                <label><b>Tanggal Pengajuan: <?php echo e(ubahFormatTanggal($master_debitur->tanggal)); ?></b></label>
                                             </div>
                                         </div>
                                     </div>
@@ -101,7 +103,7 @@
                                         <span class="input-group-text" id="inputGroup-sizing-sm">Berdasarkan Slik Pada
                                             Tanggal:</span>
                                         <input type="date" name="tanggal_slik" id="tanggal_slik"
-                                            value="{{ request('tanggal_slik') }}" class="form-control">
+                                            value="<?php echo e(request('tanggal_slik')); ?>" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -159,7 +161,7 @@
                                 <div class="row">
                                     <div class="col-lg-12 p-1">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">Keterangan Tambahan:</span>
-                                        <textarea name="keterangan" id="keterangan" class="form-control form-control-sm" required>{{ old('keterangan') }}</textarea>
+                                        <textarea name="keterangan" id="keterangan" class="form-control form-control-sm" required><?php echo e(old('keterangan')); ?></textarea>
 
                                     </div>
                                 </div>
@@ -178,7 +180,7 @@
                                                 <th></th>
                                                 <th>Rp</th>
                                                 <th> <input type="text"
-                                                        value="{{ old('gaji_pokok', number_format($master_debitur->besaran_gaji, 0, '.', '')) }}"
+                                                        value="<?php echo e(old('gaji_pokok', number_format($master_debitur->besaran_gaji, 0, '.', ''))); ?>"
                                                         name="gaji_pokok" id="gaji_pokok"
                                                         class="form-control form-control-sm"></th>
                                                 <th></th>
@@ -193,7 +195,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td>Rp</td>
-                                                <td><input type="text" value="{{ old('tunjangan_jabatan', '0') }}"
+                                                <td><input type="text" value="<?php echo e(old('tunjangan_jabatan', '0')); ?>"
                                                         name="tunjangan_jabatan" id="tunjangan_jabatan"
                                                         class="form-control form-control-sm"></td>
                                                 <td></td>
@@ -206,7 +208,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td>Rp</td>
-                                                <td><input type="text" value="{{ old('lembur', '0') }}" name="lembur"
+                                                <td><input type="text" value="<?php echo e(old('lembur', '0')); ?>" name="lembur"
                                                         id="lembur" class="form-control form-control-sm"></td>
                                                 <td></td>
                                                 <td></td>
@@ -218,7 +220,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td>Rp</td>
-                                                <td><input type="text" value="{{ old('tunjangan_lain', '0') }}"
+                                                <td><input type="text" value="<?php echo e(old('tunjangan_lain', '0')); ?>"
                                                         name="tunjangan_lain" id="tunjangan_lain"
                                                         class="form-control form-control-sm"></td>
                                                 <td></td>
@@ -233,7 +235,7 @@
                                                 <th></th>
                                                 <th></th>
                                                 <th>Rp</th>
-                                                <th><input type="text" value="{{ old('total_pendapatan_perbulan', number_format($master_debitur->besaran_gaji, 0, '.', '')) }}"
+                                                <th><input type="text" value="<?php echo e(old('total_pendapatan_perbulan', number_format($master_debitur->besaran_gaji, 0, '.', ''))); ?>"
                                                         name="total_pendapatan_perbulan" id="total_pendapatan_perbulan"
                                                         class="form-control form-control-sm" readonly></th>
                                             </tr>
@@ -255,7 +257,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td>Rp</td>
-                                                <td><input type="text" value="{{ old('gaji_pasangan', '0') }}"
+                                                <td><input type="text" value="<?php echo e(old('gaji_pasangan', '0')); ?>"
                                                         name="gaji_pasangan" id="gaji_pasangan"
                                                         class="form-control form-control-sm"></td>
                                                 <td></td>
@@ -268,7 +270,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td>Rp</td>
-                                                <td><input type="text" value="{{ old('pendapatan_lain', '0') }}"
+                                                <td><input type="text" value="<?php echo e(old('pendapatan_lain', '0')); ?>"
                                                         name="pendapatan_lain" id="pendapatan_lain"
                                                         class="form-control form-control-sm"></td>
                                                 <td></td>
@@ -281,7 +283,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <th>Rp</th>
-                                                <th><input type="text" value="{{ old('total_pendapatan_lain', '0') }}"
+                                                <th><input type="text" value="<?php echo e(old('total_pendapatan_lain', '0')); ?>"
                                                         name="total_pendapatan_lain" id="total_pendapatan_lain"
                                                         class="form-control form-control-sm" readonly></th>
                                                 <td></td>
@@ -296,7 +298,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <th>Rp</th>
-                                                <th><input type="text" value="{{ old('total_pendapatan', '0') }}"
+                                                <th><input type="text" value="<?php echo e(old('total_pendapatan', '0')); ?>"
                                                         name="total_pendapatan" id="total_pendapatan"
                                                         class="form-control form-control-sm" readonly></th>
                                             </tr>
@@ -316,7 +318,7 @@
                                                 <td>1) Angsuran Bank/Leasing</td>
                                                 <td></td>
                                                 <td>Rp</td>
-                                                <td><input type="text" value="{{ old('angsuran_bank','0') }}"
+                                                <td><input type="text" value="<?php echo e(old('angsuran_bank','0')); ?>"
                                                         name="angsuran_bank" id="angsuran_bank"
                                                         class="form-control form-control-sm"></td>
                                                 <td></td>
@@ -329,7 +331,7 @@
                                                 <td>2) Kewajiban kepada pihak ketiga lainnya</td>
                                                 <td></td>
                                                 <td>Rp</td>
-                                                <td><input type="text" value="{{ old('kewajiban_pihak_ketiga', '0') }}"
+                                                <td><input type="text" value="<?php echo e(old('kewajiban_pihak_ketiga', '0')); ?>"
                                                         name="kewajiban_pihak_ketiga" id="kewajiban_pihak_ketiga"
                                                         class="form-control form-control-sm"></td>
                                                 <td></td>
@@ -342,7 +344,7 @@
                                                 <td>3) Angsuran BPR Duta Pasundan jika disetujui</td>
                                                 <td></td>
                                                 <td>Rp</td>
-                                                <td><input type="text" value="{{ old('angsuran_bpr', number_format($master_debitur->angsuran, 0, '.', '')) }}"
+                                                <td><input type="text" value="<?php echo e(old('angsuran_bpr', number_format($master_debitur->angsuran, 0, '.', ''))); ?>"
                                                         name="angsuran_bpr" id="angsuran_bpr"
                                                         class="form-control form-control-sm"></td>
                                                 <td></td>
@@ -355,7 +357,7 @@
                                                 <th>Total Kewajiban perbulan</th>
                                                 <th>(B)</th>
                                                 <th>Rp</th>
-                                                <th><input type="text" value="{{ old('total_kewajiban', '0') }}"
+                                                <th><input type="text" value="<?php echo e(old('total_kewajiban', '0')); ?>"
                                                         name="total_kewajiban" id="total_kewajiban"
                                                         class="form-control form-control-sm" readonly></th>
                                                 <td></td>
@@ -372,7 +374,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <th>Rp</th>
-                                                <th><input type="text" value="{{ old('disposible_income', '0') }}"
+                                                <th><input type="text" value="<?php echo e(old('disposible_income', '0')); ?>"
                                                         name="disposible_income" id="disposible_income"
                                                         class="form-control form-control-sm"></th>
                                             </tr>
@@ -387,7 +389,7 @@
                                                 <th>*</th>
                                                 <th><div class="input-group input-group-sm">
                                                     <input type="text"
-                                                        value="{{ old('disposible_income_percent', '0') }}"
+                                                        value="<?php echo e(old('disposible_income_percent', '0')); ?>"
                                                         name="disposible_income_percent" id="disposible_income_percent"
                                                         class="form-control form-control-sm" readonly>
                                                     <div class="input-group-sm">
@@ -402,12 +404,12 @@
                                                 <td>=</td>
                                                 <td colspan="3">
                                                     <div class="input-group input-group-sm">
-                                                        <input type="text" value="{{ old('rp_kewajiban', '0') }}"
+                                                        <input type="text" value="<?php echo e(old('rp_kewajiban', '0')); ?>"
                                                     name="rp_kewajiban" id="rp_kewajiban"
                                                     class="form-control form-control-sm"><div class="input-group-sm">
                                                         <span class="input-group-text">:</span>
                                                     </div>
-                                                    <input type="text" value="{{ old('rp_pendapatan', '0') }}"
+                                                    <input type="text" value="<?php echo e(old('rp_pendapatan', '0')); ?>"
                                                     name="rp_pendapatan" id="rp_pendapatan"
                                                     class="form-control form-control-sm">
                                                     </div>
@@ -422,7 +424,7 @@
                                                 <td>=</td>
                                                 <td> </td>
                                                 <td><div class="input-group input-group-sm">
-                                                    <input type="text" value="{{ old('rumus_rc', '0') }}"
+                                                    <input type="text" value="<?php echo e(old('rumus_rc', '0')); ?>"
                                                 name="rumus_rc" id="rumus_rc"
                                                 class="form-control form-control-sm"><div class="input-group-sm">
                                                     <span class="input-group-text">%</span>
@@ -435,7 +437,7 @@
                                                 <td>Hasil</td>
                                                 <td>=</td>
                                                 <td></td>
-                                                <td><input type="text" value="{{ old('hasil', '') }}"
+                                                <td><input type="text" value="<?php echo e(old('hasil', '')); ?>"
                                                     name="hasil" id="hasil"
                                                     class="form-control form-control-sm"></td>
                                                 <td></td>
@@ -452,7 +454,7 @@
                             <div class="row p-1">
                                 <div class="col-lg-12 p-1">
                                     <span class="input-group-text" id="inputGroup-sizing-sm">Catatan:</span>
-                                    <textarea name="catatan" id="catatan" class="form-control form-control-sm" required>{{ old('catatan') }}</textarea>
+                                    <textarea name="catatan" id="catatan" class="form-control form-control-sm" required><?php echo e(old('catatan')); ?></textarea>
 
                                 </div>
                             </div>
@@ -461,7 +463,7 @@
 
 
                             <button type="submit" class="btn btn-primary">Simpan</button>
-                            <a href="{{ url('/analisa_kredit') }}" class="btn btn-secondary">Batal</a> 
+                            <a href="<?php echo e(url('/analisa_kredit')); ?>" class="btn btn-secondary">Batal</a> 
                         </form>
                     </div>
 
@@ -469,13 +471,13 @@
             </div><!-- end card -->
         </div><!-- end col -->
     </div><!-- end row -->
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('script')
-    <script src="{{ URL::asset('build/js/jquery-3.6.0.min.js') }}"></script>
+<?php $__env->startSection('script'); ?>
+    <script src="<?php echo e(URL::asset('build/js/jquery-3.6.0.min.js')); ?>"></script>
 
-    <script src="{{ URL::asset('build/libs/cleave.js/cleave.min.js') }}"></script>
-    <script src="{{ URL::asset('build/js/select2.min.js') }}"></script>
+    <script src="<?php echo e(URL::asset('build/libs/cleave.js/cleave.min.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('build/js/select2.min.js')); ?>"></script>
 
     <script>
         $(document).ready(function() {
@@ -773,5 +775,7 @@
         });
     </script>
 
-    <script src="{{ URL::asset('build/js/app.js') }}"></script>
-@endsection
+    <script src="<?php echo e(URL::asset('build/js/app.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BWS\Project\Los\LOS\resources\views/analisa_kredit/create.blade.php ENDPATH**/ ?>
