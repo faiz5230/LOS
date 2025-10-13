@@ -1049,6 +1049,33 @@ unset($__errorArgs, $__bag); ?>
         // Inisialisasi nilai maksimal_angsuran saat halaman dimuat
         hitungMaksimalAngsuran();
 
+        // Fungsi untuk menghitung Total Diterima
+        function hitungTotalDiterima() {
+            var plafond_input = plafond.getRawValue() || 0;
+            var biayaNotaris = biaya_notaris.getRawValue() || 0;
+            var biayaProvisi = biaya_provisi.getRawValue() || 0;
+            var biayaAdministrasi = biaya_administrasi.getRawValue() || 0;
+            var biayaAsuransi = biaya_asuransi.getRawValue() || 0;
+            var biayaMaterai = biaya_materai.getRawValue() || 0;
+            var retensiValue = retensi.getRawValue() || 0;
+            var tabunganWajibValue = tabungan_wajib.getRawValue() || 0;
+            var assKrdValue = ass_krd.getRawValue() || 0;
+            var bunga_input = bunga.getRawValue() || 0;
+            var denda_input = denda.getRawValue() || 0;
+            var pinalty_input = pinalty.getRawValue() || 0;
+
+            var totalDiterima = plafond_input - biayaNotaris - biayaProvisi - biayaAdministrasi -
+                biayaAsuransi - biayaMaterai - retensiValue - tabunganWajibValue - assKrdValue -
+                bunga_input - denda_input - pinalty_input;
+
+            total_diterima.setRawValue(Math.abs(totalDiterima).toFixed(2));
+        }
+
+        // Event listener untuk semua field biaya yang mempengaruhi Total Diterima
+        $('#biaya_notaris, #biaya_provisi, #biaya_administrasi, #biaya_asuransi, #biaya_materai, #retensi, #tabungan_wajib, #ass_krd, #bunga, #denda, #pinalty').on('input', function() {
+            hitungTotalDiterima();
+        });
+
         var rateAsuransi = 0;
         $('#plafond, #jangka_waktu, #bunga_flat, #bunga, #denda, #pinalty').on('change', function() {
             var besaranGaji = besaran_gaji.getRawValue() || 0;
