@@ -36,7 +36,60 @@ class HomeController extends Controller
 
     public function root()
     {
-        return view('index');
+        // Dashboard Statistics
+        $totalDebitur = \App\Models\MasterDebitur::count();
+        $totalSimulasi = \App\Models\Simulation::count();
+        $totalAnalisaKredit = \App\Models\AnalisaKredit::count();
+        $totalUsers = \App\Models\User::count();
+
+        // Monthly Statistics for Charts
+        $monthlyDebitur = \App\Models\MasterDebitur::selectRaw('MONTH(created_at) as month, COUNT(*) as count')
+            ->whereYear('created_at', date('Y'))
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+        $monthlySimulasi = \App\Models\Simulation::selectRaw('MONTH(created_at) as month, COUNT(*) as count')
+            ->whereYear('created_at', date('Y'))
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+        // Credit Type Distribution
+        $creditTypeDistribution = \App\Models\Simulation::selectRaw('jenis_kredit, COUNT(*) as count')
+            ->groupBy('jenis_kredit')
+            ->get();
+
+        // Recent Activities
+        $recentDebitur = \App\Models\MasterDebitur::with('simulation')
+            ->orderBy('created_at', 'desc')
+            ->limit(5)
+            ->get();
+
+        // Analysis Results Distribution
+        $analysisResults = \App\Models\AnalisaKredit::selectRaw('hasil, COUNT(*) as count')
+            ->groupBy('hasil')
+            ->get();
+
+        // Monthly Credit Amount
+        $monthlyAmount = \App\Models\Simulation::selectRaw('MONTH(created_at) as month, SUM(plafond) as total_amount')
+            ->whereYear('created_at', date('Y'))
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+        return view('index', compact(
+            'totalDebitur',
+            'totalSimulasi', 
+            'totalAnalisaKredit',
+            'totalUsers',
+            'monthlyDebitur',
+            'monthlySimulasi',
+            'creditTypeDistribution',
+            'recentDebitur',
+            'analysisResults',
+            'monthlyAmount'
+        ));
     }
 
     /*Language Translation*/
