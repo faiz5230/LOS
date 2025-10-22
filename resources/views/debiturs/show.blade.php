@@ -47,8 +47,6 @@
                                 Tanda Terima</a>
                             <a class="btn btn-primary mb-2" href="{{ route('debiturs_analisa_yuridis_export', $debitur->id) }}">
                                 Analisa Yuridis</a>
-                            <a class="btn btn-primary mb-2" href="{{ route('analisa_kredit.create', $debitur->id) }}">
-                                Analisa Kredit</a>
                         </div>
                         <div class="col-6 ">
                             

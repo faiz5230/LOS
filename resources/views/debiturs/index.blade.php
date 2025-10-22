@@ -2,7 +2,15 @@
 
 {{-- Dinamis title dan breadcrumb berdasarkan data yang diteruskan ke view --}}
 @section('title')
-    @lang('translation.' . $resource)
+    @if (!empty($jenis_kredit))
+        @if (!empty($view) && $view == 'yuridis')
+            @lang('translation.analisa_yuridis') - {{ $jenis_kredit }}
+        @else
+            @lang('translation.data_debitur') - {{ $jenis_kredit }}
+        @endif
+    @else
+        @lang('translation.' . $resource)
+    @endif
 @endsection
 
 @section('css')
@@ -22,7 +30,17 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-header align-items-center d-flex">
-                    <h4 class="card-title mb-0 flex-grow-1">@lang('translation.' . $resource)</h4>
+                    <h4 class="card-title mb-0 flex-grow-1">
+                        @if (!empty($jenis_kredit))
+                            @if (!empty($view) && $view == 'yuridis')
+                                @lang('translation.analisa_yuridis') - {{ $jenis_kredit }}
+                            @else
+                                @lang('translation.data_debitur') - {{ $jenis_kredit }}
+                            @endif
+                        @else
+                            @lang('translation.' . $resource)
+                        @endif
+                    </h4>
                 </div><!-- end card header -->
 
                 <div class="card-body">
@@ -60,7 +78,8 @@
                                     <option value="50" {{ $rows == 50 ? 'selected' : '' }}>50</option>
                                     <!-- Add more options as needed -->
                                 </select>
-                              
+                                <input type="hidden" name="jenis_kredit" value="{{ request('jenis_kredit') }}">
+                                <input type="hidden" name="view" value="{{ request('view') }}">
 
 
                             </form>
@@ -80,6 +99,8 @@
                                         <i class="ri-search-line search-icon"></i>
                                     </div>
                                     <input type="hidden" name="rows" value="{{ request('rows') }}">
+                                    <input type="hidden" name="jenis_kredit" value="{{ request('jenis_kredit') }}">
+                                    <input type="hidden" name="view" value="{{ request('view') }}">
                                 </form>
                             </div>
                         </div>
@@ -120,7 +141,7 @@
                                     <th>Plafond</th>
                                     <th>Jangka Waktu</th>
                                     <th>Angsuran</th>
-                                    <th width="160px">Action</th>
+                                    <th width="250px">Action</th>
                                 </tr>
 
                                 </form>
@@ -146,6 +167,26 @@
                                             <a href="{{ route($route . '.show', $item->id) }}" class="btn btn-info"
                                                 data-toggle="tooltip" data-placement="top"
                                                 title="View #{{ $item->id }}"><i class="ri-eye-line"></i></a>
+
+                                            @if($item->latestAnalisaKredit)
+                                                {{-- Jika sudah ada analisa kredit, tampilkan tombol Edit --}}
+                                                <a href="{{ route('analisa_kredit.edit', $item->latestAnalisaKredit->id) }}"
+                                                   class="btn btn-success"
+                                                   data-toggle="tooltip"
+                                                   data-placement="top"
+                                                   title="Edit Analisa Kredit #{{ $item->id }}">
+                                                   <i class="ri-file-edit-line"></i>
+                                                </a>
+                                            @else
+                                                {{-- Jika belum ada analisa kredit, tampilkan tombol Create --}}
+                                                <a href="{{ route('analisa_kredit.create', $item->id) }}"
+                                                   class="btn btn-primary"
+                                                   data-toggle="tooltip"
+                                                   data-placement="top"
+                                                   title="Buat Analisa Kredit #{{ $item->id }}">
+                                                   <i class="ri-file-add-line"></i>
+                                                </a>
+                                            @endif
 
                                             {{-- <a href="{{ route('debiturs_analisa_kredit_export', $item->id) }}"
                                                 class="btn btn-success" data-toggle="tooltip" data-placement="top"

@@ -50,7 +50,7 @@
                                     aria-label="Close"></button>
                             </div>
                         @endif
-                        <form method="POST" action="{{ url('/analisa_kredit') }}">
+                        <form method="POST" action="{{ url('/analisa_kredit') }}" id="analisaKreditForm">
                             @csrf
                             <input type="hidden" id="id_debitur" name="id_debitur" value="{{$master_debitur->id}}">
                             <div class="row">
@@ -115,9 +115,9 @@
                                                     <th>Atas Nama</th>
                                                     <th>Bank</th>
                                                     <th>Plafond Awal</th>
-                                                    <th>Bunga Flat</th>
+                                                    <th>Bunga Flat (%)</th>
                                                     <th>Outstanding</th>
-                                                    <th>Jangka Waktu</th>
+                                                    <th>Jangka Waktu (bln)</th>
                                                     <th>Angsuran</th>
                                                     <th>Kol</th>
                                                     <th>Aksi</th>
@@ -127,21 +127,21 @@
                                                 <tr data-id="1">
                                                     <td>1</td>
                                                     <td><input type="text" class="form-control form-control-sm" id="atas_nama[]"
-                                                            name="atas_nama[]"></td>
+                                                            name="atas_nama[]" required></td>
                                                     <td><input type="text" class="form-control form-control-sm" id="bank[]"
-                                                            name="bank[]"></td>
+                                                            name="bank[]" required></td>
                                                     <td><input type="text" class="form-control form-control-sm plafond_awal" id="plafond_awal[]"
-                                                            name="plafond_awal[]"></td>
-                                                    <td><input type="text" class="form-control form-control-sm bunga" id="bunga[]"
-                                                            name="bunga[]"></td>
+                                                            name="plafond_awal[]" placeholder="1.000.000" required></td>
+                                                    <td><input type="number" step="0.01" max="999.99" min="0" class="form-control form-control-sm bunga" id="bunga[]"
+                                                            name="bunga[]" placeholder="10.50" required></td>
                                                     <td><input type="text" class="form-control form-control-sm outstanding" id="outstanding[]"
-                                                            name="outstanding[]"></td>
-                                                    <td><input type="text" class="form-control form-control-sm jangka_waktu" id="jangka_waktu[]"
-                                                            name="jangka_waktu[]"></td>
+                                                            name="outstanding[]" placeholder="500.000" required></td>
+                                                    <td><input type="number" min="1" class="form-control form-control-sm jangka_waktu" id="jangka_waktu[]"
+                                                            name="jangka_waktu[]" placeholder="12" required></td>
                                                     <td><input type="text" class="form-control form-control-sm angsuran" id="angsuran[]"
-                                                            name="angsuran[]"></td>
+                                                            name="angsuran[]" placeholder="100.000" required></td>
                                                     <td><input type="text" class="form-control form-control-sm kolektibilitas" id="kolektibilitas[]"
-                                                            name="kolektibilitas[]"></td>
+                                                            name="kolektibilitas[]" placeholder="1" maxlength="1" required></td>
                                                     <td><button type="button" class="btn btn-sm btn-primary addRow"><i class="ri-add-line"></i></button>
                                                     </td>
                                                 </tr>
@@ -609,21 +609,54 @@
 
             let rowId = 2;
 
+            // Fungsi untuk apply Cleave.js pada field currency
+            function applyCleaveToRow($row) {
+                $row.find('.plafond_awal').each(function() {
+                    new Cleave(this, {
+                        numeral: true,
+                        delimiter: '.',
+                        numeralDecimalMark: ',',
+                        numeralThousandsGroupStyle: 'thousand'
+                    });
+                });
+                $row.find('.outstanding').each(function() {
+                    new Cleave(this, {
+                        numeral: true,
+                        delimiter: '.',
+                        numeralDecimalMark: ',',
+                        numeralThousandsGroupStyle: 'thousand'
+                    });
+                });
+                $row.find('.angsuran').each(function() {
+                    new Cleave(this, {
+                        numeral: true,
+                        delimiter: '.',
+                        numeralDecimalMark: ',',
+                        numeralThousandsGroupStyle: 'thousand'
+                    });
+                });
+            }
+
+            // Apply Cleave.js ke row pertama yang sudah ada
+            applyCleaveToRow($('#detailTable tbody tr:first'));
+
             // Fungsi untuk menambah baris
             $(document).on('click', '.addRow', function() {
                 let tr = '<tr data-id="' + rowId + '">' +
                     '<td>' + rowId + '</td>' +
-                    '<td><input type="text" class="form-control form-control-sm" name="atas_nama[]"></td>' +
-                    '<td><input type="text" class="form-control form-control-sm" name="bank[]"></td>' +
-                    '<td><input type="text" class="form-control form-control-sm" name="plafond_awal[]"></td>' +
-                    '<td><input type="text" class="form-control form-control-sm" name="bunga[]"></td>' +
-                    '<td><input type="text" class="form-control form-control-sm" name="outstanding[]"></td>' +
-                    '<td><input type="text" class="form-control form-control-sm" name="jangka_waktu[]"></td>' +
-                    '<td><input type="text" class="form-control form-control-sm" name="angsuran[]"></td>' +
-                    '<td><input type="text" class="form-control form-control-sm" name="kolektibilitas[]"></td>' +
+                    '<td><input type="text" class="form-control form-control-sm" name="atas_nama[]" required></td>' +
+                    '<td><input type="text" class="form-control form-control-sm" name="bank[]" required></td>' +
+                    '<td><input type="text" class="form-control form-control-sm plafond_awal" name="plafond_awal[]" placeholder="1.000.000" required></td>' +
+                    '<td><input type="number" step="0.01" max="999.99" min="0" class="form-control form-control-sm" name="bunga[]" placeholder="10.50" required></td>' +
+                    '<td><input type="text" class="form-control form-control-sm outstanding" name="outstanding[]" placeholder="500.000" required></td>' +
+                    '<td><input type="number" min="1" class="form-control form-control-sm" name="jangka_waktu[]" placeholder="12" required></td>' +
+                    '<td><input type="text" class="form-control form-control-sm angsuran" name="angsuran[]" placeholder="100.000" required></td>' +
+                    '<td><input type="text" class="form-control form-control-sm" name="kolektibilitas[]" placeholder="1" maxlength="1" required></td>' +
                     '<td><button type="button" class="btn btn-sm btn-danger removeRow"><i class="ri-subtract-line"></i></button></td>' +
                     '</tr>';
-                $('#detailTable tbody').append(tr);
+                let $newRow = $(tr);
+                $('#detailTable tbody').append($newRow);
+                applyCleaveToRow($newRow);
                 rowId++;
             });
 
@@ -636,9 +669,12 @@
             function calculateTotal() {
                 let total = 0;
                 $('input[name="angsuran[]"]').each(function() {
-                    total += parseFloat($(this).val()) || 0;
+                    // Convert Indonesian format to number (remove dots, replace comma with dot)
+                    let value = $(this).val().replace(/\./g, '').replace(',', '.');
+                    total += parseFloat(value) || 0;
                 });
-                $('#totalAngsuran').text(total);
+                // Format total dengan ribuan
+                $('#totalAngsuran').text(total.toLocaleString('id-ID'));
             }
 
             // Panggil calculateTotal ketika baris ditambahkan atau dihapus
@@ -767,6 +803,92 @@
                 calculateDisposible();
                 calculateDisposiblePercent();
                 calculateRepaymentCapacity();
+            });
+
+            // Form validation sebelum submit
+            $('#analisaKreditForm').on('submit', function(e) {
+                let isValid = true;
+                let errorMessages = [];
+
+                // Validasi Detail Analisa Kredit (tabel)
+                $('#detailTable tbody tr').each(function(index) {
+                    let rowNum = index + 1;
+                    let $row = $(this);
+
+                    // Check atas nama
+                    if (!$row.find('input[name="atas_nama[]"]').val()) {
+                        errorMessages.push('Baris ' + rowNum + ': Atas nama harus diisi');
+                        isValid = false;
+                    }
+
+                    // Check bank
+                    if (!$row.find('input[name="bank[]"]').val()) {
+                        errorMessages.push('Baris ' + rowNum + ': Bank harus diisi');
+                        isValid = false;
+                    }
+
+                    // Check plafond awal
+                    if (!$row.find('input[name="plafond_awal[]"]').val()) {
+                        errorMessages.push('Baris ' + rowNum + ': Plafond awal harus diisi');
+                        isValid = false;
+                    }
+
+                    // Check bunga
+                    let bunga = $row.find('input[name="bunga[]"]').val();
+                    if (!bunga) {
+                        errorMessages.push('Baris ' + rowNum + ': Bunga harus diisi');
+                        isValid = false;
+                    } else if (parseFloat(bunga) > 999.99) {
+                        errorMessages.push('Baris ' + rowNum + ': Bunga maksimal 999.99%');
+                        isValid = false;
+                    }
+
+                    // Check outstanding
+                    if (!$row.find('input[name="outstanding[]"]').val()) {
+                        errorMessages.push('Baris ' + rowNum + ': Outstanding harus diisi');
+                        isValid = false;
+                    }
+
+                    // Check jangka waktu
+                    let jangkaWaktu = $row.find('input[name="jangka_waktu[]"]').val();
+                    if (!jangkaWaktu) {
+                        errorMessages.push('Baris ' + rowNum + ': Jangka waktu harus diisi');
+                        isValid = false;
+                    } else if (parseInt(jangkaWaktu) < 1) {
+                        errorMessages.push('Baris ' + rowNum + ': Jangka waktu minimal 1 bulan');
+                        isValid = false;
+                    }
+
+                    // Check angsuran
+                    if (!$row.find('input[name="angsuran[]"]').val()) {
+                        errorMessages.push('Baris ' + rowNum + ': Angsuran harus diisi');
+                        isValid = false;
+                    }
+
+                    // Check kolektibilitas
+                    if (!$row.find('input[name="kolektibilitas[]"]').val()) {
+                        errorMessages.push('Baris ' + rowNum + ': Kolektibilitas harus diisi');
+                        isValid = false;
+                    }
+                });
+
+                // Check catatan
+                if (!$('#catatan').val()) {
+                    errorMessages.push('Catatan harus diisi');
+                    isValid = false;
+                }
+
+                if (!isValid) {
+                    e.preventDefault();
+                    alert('Mohon lengkapi data berikut:\n\n' + errorMessages.join('\n'));
+                    return false;
+                }
+
+                // Confirm sebelum submit
+                if (!confirm('Apakah Anda yakin data yang diinput sudah benar?')) {
+                    e.preventDefault();
+                    return false;
+                }
             });
 
 

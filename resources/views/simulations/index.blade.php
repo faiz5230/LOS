@@ -2,7 +2,11 @@
 
 {{-- Dinamis title dan breadcrumb berdasarkan data yang diteruskan ke view --}}
 @section('title')
-    @lang('translation.' . $resource)
+    @if (!empty($jenis_kredit))
+        @lang('translation.simulasi_kredit') - {{ $jenis_kredit }}
+    @else
+        @lang('translation.' . $resource)
+    @endif
 @endsection
 
 @section('css')
@@ -22,7 +26,13 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-header align-items-center d-flex">
-                    <h4 class="card-title mb-0 flex-grow-1">@lang('translation.' . $resource)</h4>
+                    <h4 class="card-title mb-0 flex-grow-1">
+                        @if (!empty($jenis_kredit))
+                            @lang('translation.simulasi_kredit') - {{ $jenis_kredit }}
+                        @else
+                            @lang('translation.' . $resource)
+                        @endif
+                    </h4>
                 </div><!-- end card header -->
 
                 <div class="card-body">
@@ -30,8 +40,8 @@
                         <div class="col-sm-auto">
                             <div>
                                 @if (request()->routeIs($route . '.index'))
-                                    
-                                        <a class="btn btn-success" href="{{ route($route . '.create') }}"> <i
+
+                                        <a class="btn btn-success" href="{{ route($route . '.create', ['jenis_kredit' => request('jenis_kredit')]) }}"> <i
                                                 data-feather="file-plus"></i> Create
                                             @lang('translation.' . $resource)</a>
                                     
@@ -61,15 +71,7 @@
                                         <option value="50" {{ $rows == 50 ? 'selected' : '' }}>50</option>
                                         <!-- Add more options as needed -->
                                     </select>
-                                    <input type="hidden" name="search_id" value="{{ request('search_id') }}">
-                                    <input type="hidden" name="search_vendor" value="{{ request('search_vendor') }}">
-                                    <input type="hidden" name="search_category" value="{{ request('search_category') }}">
-                                    <input type="hidden" name="search_sub_category"
-                                        value="{{ request('search_sub_category') }}">
-                                    <input type="hidden" name="search_scope_of_work"
-                                        value="{{ request('search_scope_of_work') }}">
-                                    <input type="hidden" name="search_memo" value="{{ request('search_memo') }}">
-                                    <input type="hidden" name="search_status" value="{{ request('search_status') }}">
+                                    <input type="hidden" name="jenis_kredit" value="{{ request('jenis_kredit') }}">
                                
                                
 
@@ -90,6 +92,7 @@
                                         <i class="ri-search-line search-icon"></i>
                                     </div>
                                     <input type="hidden" name="rows" value="{{ request('rows') }}">
+                                    <input type="hidden" name="jenis_kredit" value="{{ request('jenis_kredit') }}">
                                 </form>
                             </div>
                         </div>

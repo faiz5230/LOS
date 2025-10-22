@@ -68,5 +68,13 @@ class MasterDebitur extends Model
         return $this->belongsTo(Simulation::class, 'id_simulation', 'id');
     }
 
-    
+    public function analisaKredit()
+    {
+        return $this->hasMany(AnalisaKredit::class, 'id_debitur', 'id');
+    }
+
+    public function latestAnalisaKredit()
+    {
+        return $this->hasOne(AnalisaKredit::class, 'id_debitur', 'id')->latestOfMany();
+    }
 }

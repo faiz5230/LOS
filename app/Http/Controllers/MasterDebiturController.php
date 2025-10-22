@@ -83,9 +83,19 @@ class MasterDebiturController extends Controller
     public function index(Request $request)
     {
         $search = $request->query('search');
+        $jenis_kredit = $request->query('jenis_kredit');
+        $view = $request->query('view'); // for yuridis view
         $resource = 'debiturs';
         $route = 'debiturs';
-        $collection = MasterDebitur::query();
+        $collection = MasterDebitur::with(['simulation', 'latestAnalisaKredit']);
+
+        // Filter by jenis_kredit if provided
+        if (!empty($jenis_kredit)) {
+            $collection = $collection->whereHas('simulation', function ($query) use ($jenis_kredit) {
+                $query->where('jenis_kredit', $jenis_kredit);
+            });
+        }
+
         if (!empty($search)) {
             $collection = $collection->where(function ($query) use ($search) {
                 $query->where('tanggal', 'LIKE', '%' . $search . '%')
@@ -130,7 +140,7 @@ class MasterDebiturController extends Controller
         $rows = $request->query('rows', 10);
         $collection = $collection->orderBy('id', 'desc')->paginate($rows);
         $collection->appends(request()->query());
-        return view('debiturs.index', compact('collection', 'resource', 'route', 'rows'));
+        return view('debiturs.index', compact('collection', 'resource', 'route', 'rows', 'jenis_kredit', 'view'));
     }
 
     public function create($id)

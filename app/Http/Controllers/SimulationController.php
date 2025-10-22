@@ -30,10 +30,17 @@ class SimulationController extends Controller
     public function index(Request $request)
     {
         $search = $request->query('search');
+        $jenis_kredit = $request->query('jenis_kredit');
         $resource = 'simulations';
         $route = 'simulations';
 
         $collection = Simulation::query();
+
+        // Filter by jenis_kredit if provided
+        if (!empty($jenis_kredit)) {
+            $collection = $collection->where('jenis_kredit', $jenis_kredit);
+        }
+
         if (!empty($search)) {
             $collection = $collection->where(function ($query) use ($search) {
                 $query->where('tanggal_realisasi', 'LIKE', '%' . $search . '%')
@@ -68,7 +75,7 @@ class SimulationController extends Controller
         $rows = $request->query('rows', 10);
         $collection = $collection->orderBy('id', 'desc')->paginate($rows);
         $collection->appends(request()->query());
-        return view('simulations.index', compact('collection', 'search', 'resource', 'route', 'rows'));
+        return view('simulations.index', compact('collection', 'search', 'resource', 'route', 'rows', 'jenis_kredit'));
     }
 
     /**
@@ -76,10 +83,11 @@ class SimulationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         $resource = 'simulations';
         $route = 'simulations';
+        $jenis_kredit = $request->query('jenis_kredit'); // Get jenis_kredit from query parameter
         $params = SettingParam::all();
         $dsrValue = $params->where('name', 'dsr')->pluck('value')->first();
         $biaya_provisiValue = $params->where('name', 'biaya_provisi')->pluck('value')->first();
@@ -90,7 +98,7 @@ class SimulationController extends Controller
         $ass_krdValue = $params->where('name', 'ass_krd')->pluck('value')->first();
 
 
-        return view('simulations.create', compact('resource', 'route', 'dsrValue', 'biaya_provisiValue','biaya_notarisValue','biaya_administrasiValue', 'biaya_materaiValue', 'tabungan_wajibValue', 'ass_krdValue'));
+        return view('simulations.create', compact('resource', 'route', 'dsrValue', 'biaya_provisiValue','biaya_notarisValue','biaya_administrasiValue', 'biaya_materaiValue', 'tabungan_wajibValue', 'ass_krdValue', 'jenis_kredit'));
     }
 
     /**

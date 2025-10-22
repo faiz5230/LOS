@@ -64,6 +64,10 @@ Route::get('/analisa_kredit', [AnalisaKreditController::class, 'index'])->name('
 
 Route::get('/analisa_kredit/create/{id}', [AnalisaKreditController::class, 'create'])->name('analisa_kredit.create');
 Route::post('/analisa_kredit', [AnalisaKreditController::class, 'store'])->name('analisa_kredit.store');
+Route::get('/analisa_kredit/{id}/edit', [AnalisaKreditController::class, 'edit'])->name('analisa_kredit.edit');
+Route::put('/analisa_kredit/{id}', [AnalisaKreditController::class, 'update'])->name('analisa_kredit.update');
+Route::get('/analisa_kredit/{id}', [AnalisaKreditController::class, 'show'])->name('analisa_kredit.show');
+Route::delete('/analisa_kredit/{id}', [AnalisaKreditController::class, 'destroy'])->name('analisa_kredit.destroy');
 Route::get('analisa_kredit/export-data/{id}', [AnalisaKreditController::class, 'export'])->name('analisa_kredit.export');
 
 //Route::resource('analisa_kredit', AnalisaKreditController::class);

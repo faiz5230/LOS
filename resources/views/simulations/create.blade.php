@@ -95,40 +95,27 @@
                                                         <div class="form-group">
                                                             <label for="jenis_kredit" class="form-label">Jenis Kredit <span
                                                                     style="color:red">*</span></label>
-                                                            <!--<input type="text" value="{{ old('jenis_kredit') }}" name="jenis_kredit"-->
-                                                            <select  id="jenis_kredit" name="jenis_kredit" class="form-control">
-                                                                @if (old('jenis_kredit') == 'UMKM')
-                                                                <option value="">-- Pilih Jenis Produk --</option>
-                                                                <option value="UMKM" selected> UMKM </option>
-                                                                <option value="KTA Pegawai">KTA Pegawai</option>
-                                                                <option value="Modal kerja">Modal Kerja</option>
-                                                                <option value="Pensiun">Pensiun</option>
-                                                                @elseif (old('jenis_kredit') == 'KTA Pegawai')
-                                                                <option value="">-- Pilih Jenis Produk --</option>
-                                                                <option value="UMKM"> UMKM</option>
-                                                                <option value="KTA Pegawai" selected>KTA Pegawai</option>
-                                                                <option value="Modal Kerja">Modal Kerja</option>
-                                                                <option value="Pensiun">Pensiun</option>
-                                                                @elseif (old('jenis_kredit') == 'Modal Kerja')
-                                                                <option value="">-- Pilih Jenis Produk --</option>
-                                                                <option value="UMKM"> UMKM</option>
-                                                                <option value="KTA Pegawai">KTA Pegawai</option>
-                                                                <option value="Modal Kerja" selected>Modal Kerja</option>
-                                                                <option value="Pensiun">Pensiun</option>
-                                                                @elseif (old('jenis_kredit') == 'Pensiun')
-                                                                <option value="">-- Pilih Jenis Produk --</option>
-                                                                <option value="UMKM"> UMKM</option>
-                                                                <option value="KTA Pegawai">KTA Pegawai</option>
-                                                                <option value="Modal Kerja">Modal Kerja</option>
-                                                                <option value="Pensiun" selected>Pensiun</option>
+                                                            @php
+                                                                $selected_jenis_kredit = old('jenis_kredit', $jenis_kredit ?? '');
+                                                            @endphp
+                                                            <select id="jenis_kredit" name="{{ !empty($jenis_kredit) ? 'jenis_kredit_display' : 'jenis_kredit' }}" class="form-control" {{ !empty($jenis_kredit) ? 'disabled' : '' }}>
+                                                                @if (!empty($jenis_kredit))
+                                                                    {{-- When jenis_kredit is pre-selected from menu, show only that option --}}
+                                                                    <option value="{{ $jenis_kredit }}" selected>{{ $jenis_kredit }}</option>
                                                                 @else
-                                                                <option value="">-- Pilih Jenis Produk --</option>
-                                                                <option value="UMKM"> UMKM </option>
-                                                                <option value="KTA Pegawai">KTA Pegawai</option>
-                                                                <option value="Modal Kerja">Modal Kerja</option>
-                                                                <option value="Pensiun">Pensiun</option>
+                                                                    {{-- Show all options when creating from general menu --}}
+                                                                    <option value="">-- Pilih Jenis Produk --</option>
+                                                                    <option value="Modal Kerja" {{ $selected_jenis_kredit == 'Modal Kerja' ? 'selected' : '' }}>Modal Kerja</option>
+                                                                    <option value="Pensiun" {{ $selected_jenis_kredit == 'Pensiun' ? 'selected' : '' }}>Pensiun</option>
+                                                                    <option value="Pasar" {{ $selected_jenis_kredit == 'Pasar' ? 'selected' : '' }}>Pasar</option>
+                                                                    <option value="UMKM" {{ $selected_jenis_kredit == 'UMKM' ? 'selected' : '' }}>UMKM</option>
                                                                 @endif
                                                             </select>
+                                                            @if (!empty($jenis_kredit))
+                                                                {{-- Hidden input to submit the value since disabled fields don't submit --}}
+                                                                <input type="hidden" name="jenis_kredit" value="{{ $jenis_kredit }}">
+                                                                <small class="text-muted">Jenis kredit sudah ditentukan berdasarkan menu yang dipilih</small>
+                                                            @endif
                                                             @error('jenis_kredit')
                                                                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}
                                                                 </div>

@@ -2,7 +2,11 @@
 
 {{-- Dinamis title dan breadcrumb berdasarkan data yang diteruskan ke view --}}
 @section('title')
-    @lang('translation.' . $resource)
+    @if (!empty($jenis_kredit))
+        @lang('translation.analisa_kredit') - {{ $jenis_kredit }}
+    @else
+        @lang('translation.' . $resource)
+    @endif
 @endsection
 
 @section('css')
@@ -22,7 +26,13 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-header align-items-center d-flex">
-                    <h4 class="card-title mb-0 flex-grow-1">@lang('translation.' . $resource)</h4>
+                    <h4 class="card-title mb-0 flex-grow-1">
+                        @if (!empty($jenis_kredit))
+                            @lang('translation.analisa_kredit') - {{ $jenis_kredit }}
+                        @else
+                            @lang('translation.' . $resource)
+                        @endif
+                    </h4>
                 </div><!-- end card header -->
 
                 <div class="card-body">
@@ -61,9 +71,9 @@
                                         <option value="50" {{ $rows == 50 ? 'selected' : '' }}>50</option>
                                         <!-- Add more options as needed -->
                                     </select>
-                                  
-                               
-                               
+                                    <input type="hidden" name="jenis_kredit" value="{{ request('jenis_kredit') }}">
+
+
 
                             </form>
 
@@ -82,6 +92,7 @@
                                         <i class="ri-search-line search-icon"></i>
                                     </div>
                                     <input type="hidden" name="rows" value="{{ request('rows') }}">
+                                    <input type="hidden" name="jenis_kredit" value="{{ request('jenis_kredit') }}">
                                 </form>
                             </div>
                         </div>
@@ -136,7 +147,8 @@
                                         <td>
                                             <a class="btn btn-primary mb-2" href="{{ route('analisa_kredit.export', $item->id) }}">
                                              Download Analisa Kredit</a>
-                                           
+                                            <a class="btn btn-warning mb-2" href="{{ route('analisa_kredit.edit', $item->id) }}">
+                                             Edit Analisa Kredit</a>                                           
                                             {{-- <a href="{{ route($route . '.show', $item->id) }}" class="btn btn-info"
                                                 data-toggle="tooltip" data-placement="top"
                                                 title="View #{{ $item->name }}"><i class="ri-eye-line"></i></a>

@@ -96,14 +96,11 @@
                                                         <div class="form-group">
                                                             <label for="jenis_kredit" class="form-label">Jenis Kredit <span
                                                                     style="color:red">*</span></label>
-                                                            <!--<input type="text" value="{{ old('jenis_kredit') }}" name="jenis_kredit" -->
-                                                            <select  id="jenis_kredit" name="jenis_kredit" class="form-control">
-                                                            <option value="">-- Pilih Jenis Produk --</option>
-                                                            <option value="UMKM" @selected($simulation->jenis_kredit == 'UMKM') >UMKM</option>
-                                                            <option value="KTA Pegawai" @selected($simulation->jenis_kredit == 'KTA Pegawai') >KTA Pegawai</option>
-                                                            <option value="Modal Kerja" @selected($simulation->jenis_kredit == 'Modal Kerja') >Modal Kerja</option>
-                                                            <option value="Pensiun" @selected($simulation->jenis_kredit == 'Pensiun') >Pensiun</option>
+                                                            <select id="jenis_kredit" name="jenis_kredit_display" class="form-control" disabled>
+                                                                <option value="{{ $simulation->jenis_kredit }}" selected>{{ $simulation->jenis_kredit }}</option>
                                                             </select>
+                                                            <input type="hidden" name="jenis_kredit" value="{{ $simulation->jenis_kredit }}">
+                                                            <small class="text-muted">Jenis kredit tidak dapat diubah setelah dibuat</small>
                                                             @error('jenis_kredit')
                                                                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}
                                                                 </div>
