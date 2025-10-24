@@ -2,7 +2,12 @@
 
 
 <?php $__env->startSection('title'); ?>
-    <?php echo app('translator')->get('translation.' . $resource); ?>
+    <?php if(!empty($jenis_kredit)): ?>
+        <?php echo app('translator')->get('translation.analisa_kredit'); ?> - <?php echo e($jenis_kredit); ?>
+
+    <?php else: ?>
+        <?php echo app('translator')->get('translation.' . $resource); ?>
+    <?php endif; ?>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('css'); ?>
@@ -22,7 +27,14 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-header align-items-center d-flex">
-                    <h4 class="card-title mb-0 flex-grow-1"><?php echo app('translator')->get('translation.' . $resource); ?></h4>
+                    <h4 class="card-title mb-0 flex-grow-1">
+                        <?php if(!empty($jenis_kredit)): ?>
+                            <?php echo app('translator')->get('translation.analisa_kredit'); ?> - <?php echo e($jenis_kredit); ?>
+
+                        <?php else: ?>
+                            <?php echo app('translator')->get('translation.' . $resource); ?>
+                        <?php endif; ?>
+                    </h4>
                 </div><!-- end card header -->
 
                 <div class="card-body">
@@ -57,9 +69,9 @@
                                         <option value="50" <?php echo e($rows == 50 ? 'selected' : ''); ?>>50</option>
                                         <!-- Add more options as needed -->
                                     </select>
-                                  
-                               
-                               
+                                    <input type="hidden" name="jenis_kredit" value="<?php echo e(request('jenis_kredit')); ?>">
+
+
 
                             </form>
 
@@ -78,6 +90,7 @@
                                         <i class="ri-search-line search-icon"></i>
                                     </div>
                                     <input type="hidden" name="rows" value="<?php echo e(request('rows')); ?>">
+                                    <input type="hidden" name="jenis_kredit" value="<?php echo e(request('jenis_kredit')); ?>">
                                 </form>
                             </div>
                         </div>
@@ -132,7 +145,8 @@
                                         <td>
                                             <a class="btn btn-primary mb-2" href="<?php echo e(route('analisa_kredit.export', $item->id)); ?>">
                                              Download Analisa Kredit</a>
-                                           
+                                            <a class="btn btn-warning mb-2" href="<?php echo e(route('analisa_kredit.edit', $item->id)); ?>">
+                                             Edit Analisa Kredit</a>                                           
                                             
                                           
                                        

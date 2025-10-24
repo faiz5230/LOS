@@ -24,7 +24,7 @@
             <div class="card">
 
                 <div class="card-header align-items-center d-flex">
-                    <h4 class="card-title mb-0 flex-grow-1">Add <?php echo app('translator')->get('translation.' . $resource); ?></h4>
+                    <h4 class="card-title mb-0 flex-grow-1">Edit <?php echo app('translator')->get('translation.' . $resource); ?></h4>
                 </div><!-- end card header -->
 
                 <div class="card-body">
@@ -51,32 +51,33 @@
                                     aria-label="Close"></button>
                             </div>
                         <?php endif; ?>
-                        <form method="POST" action="<?php echo e(url('/analisa_kredit')); ?>" id="analisaKreditForm">
+                        <form method="POST" action="<?php echo e(route('analisa_kredit.update', $analisaKredit->id)); ?>" id="analisaKreditForm">
                             <?php echo csrf_field(); ?>
-                            <input type="hidden" id="id_debitur" name="id_debitur" value="<?php echo e($master_debitur->id); ?>">
+                            <?php echo method_field('PUT'); ?>
+                            <input type="hidden" id="id_debitur" name="id_debitur" value="<?php echo e($analisaKredit->id_debitur); ?>">
                             <div class="row">
                                 <div class="col-6">
                                     <table class="table table-sm table-bordered table-hover align-middle table-wrap mb-0">
                                         <thead>
                                             <tr>
                                                 <th>Nama Debitur</th>
-                                                <td><?php echo e($master_debitur->nama); ?></td>
+                                                <td><?php echo e($analisaKredit->debitur->nama); ?></td>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <th>Plafond Pengajuan</th>
-                                                <td><?php echo e(convertNumberFormat($master_debitur->jumlah_permohonan_kredit)); ?>
+                                                <td><?php echo e(convertNumberFormat($analisaKredit->debitur->jumlah_permohonan_kredit)); ?>
 
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <th>Jangka Waktu Kredit</th>
-                                                <td><?php echo e($master_debitur->jangka_waktu); ?></td>
+                                                <td><?php echo e($analisaKredit->debitur->jangka_waktu); ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Angsuran</th>
-                                                <td><?php echo e(convertNumberFormat($master_debitur->angsuran)); ?></td>
+                                                <td><?php echo e(convertNumberFormat($analisaKredit->debitur->angsuran)); ?></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -86,7 +87,7 @@
                                         <div class="col-5 p-1">
                                             <div class="input-group input-group-sm align-middle">
 
-                                                <label><b>Tanggal Pengajuan: <?php echo e(ubahFormatTanggal($master_debitur->tanggal)); ?></b></label>
+                                                <label><b>Tanggal Pengajuan: <?php echo e(ubahFormatTanggal($analisaKredit->debitur->tanggal)); ?></b></label>
                                             </div>
                                         </div>
                                     </div>
@@ -103,7 +104,7 @@
                                         <span class="input-group-text" id="inputGroup-sizing-sm">Berdasarkan Slik Pada
                                             Tanggal:</span>
                                         <input type="date" name="tanggal_slik" id="tanggal_slik"
-                                            value="<?php echo e(request('tanggal_slik')); ?>" class="form-control">
+                                            value="<?php echo e(old('tanggal_slik', $analisaKredit->tanggal_slik)); ?>" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -126,27 +127,26 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr data-id="1">
-                                                    <td>1</td>
-                                                    <td><input type="text" class="form-control form-control-sm" id="atas_nama[]"
-                                                            name="atas_nama[]" required></td>
-                                                    <td><input type="text" class="form-control form-control-sm" id="bank[]"
-                                                            name="bank[]" required></td>
-                                                    <td><input type="text" class="form-control form-control-sm plafond_awal" id="plafond_awal[]"
-                                                            name="plafond_awal[]" placeholder="1.000.000" required></td>
-                                                    <td><input type="number" step="0.01" max="999.99" min="0" class="form-control form-control-sm bunga" id="bunga[]"
-                                                            name="bunga[]" placeholder="10.50" required></td>
-                                                    <td><input type="text" class="form-control form-control-sm outstanding" id="outstanding[]"
-                                                            name="outstanding[]" placeholder="500.000" required></td>
-                                                    <td><input type="number" min="1" class="form-control form-control-sm jangka_waktu" id="jangka_waktu[]"
-                                                            name="jangka_waktu[]" placeholder="12" required></td>
-                                                    <td><input type="text" class="form-control form-control-sm angsuran" id="angsuran[]"
-                                                            name="angsuran[]" placeholder="100.000" required></td>
-                                                    <td><input type="text" class="form-control form-control-sm kolektibilitas" id="kolektibilitas[]"
-                                                            name="kolektibilitas[]" placeholder="1" maxlength="1" required></td>
-                                                    <td><button type="button" class="btn btn-sm btn-primary addRow"><i class="ri-add-line"></i></button>
+                                                <?php $__currentLoopData = $analisaKredit->detailAnalisaKredit; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $detail): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <tr data-id="<?php echo e($index + 1); ?>">
+                                                    <td><?php echo e($index + 1); ?></td>
+                                                    <td><input type="text" class="form-control form-control-sm" name="atas_nama[]" value="<?php echo e($detail->atas_nama); ?>" required></td>
+                                                    <td><input type="text" class="form-control form-control-sm" name="bank[]" value="<?php echo e($detail->bank); ?>" required></td>
+                                                    <td><input type="text" class="form-control form-control-sm plafond_awal" name="plafond_awal[]" value="<?php echo e(number_format($detail->plafond_awal, 0, ',', '.')); ?>" required></td>
+                                                    <td><input type="number" step="0.01" max="999.99" min="0" class="form-control form-control-sm" name="bunga[]" value="<?php echo e($detail->bunga); ?>" required></td>
+                                                    <td><input type="text" class="form-control form-control-sm outstanding" name="outstanding[]" value="<?php echo e(number_format($detail->outstanding, 0, ',', '.')); ?>" required></td>
+                                                    <td><input type="number" min="1" class="form-control form-control-sm" name="jangka_waktu[]" value="<?php echo e($detail->jangka_waktu); ?>" required></td>
+                                                    <td><input type="text" class="form-control form-control-sm angsuran" name="angsuran[]" value="<?php echo e(number_format($detail->angsuran, 0, ',', '.')); ?>" required></td>
+                                                    <td><input type="text" class="form-control form-control-sm" name="kolektibilitas[]" value="<?php echo e($detail->kolektibilitas); ?>" maxlength="1" required></td>
+                                                    <td>
+                                                        <?php if($loop->first): ?>
+                                                            <button type="button" class="btn btn-sm btn-primary addRow"><i class="ri-add-line"></i></button>
+                                                        <?php else: ?>
+                                                            <button type="button" class="btn btn-sm btn-danger removeRow"><i class="ri-subtract-line"></i></button>
+                                                        <?php endif; ?>
                                                     </td>
                                                 </tr>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </tbody>
                                             <tfoot>
                                                 <tr>
@@ -161,7 +161,7 @@
                                 <div class="row">
                                     <div class="col-lg-12 p-1">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">Keterangan Tambahan:</span>
-                                        <textarea name="keterangan" id="keterangan" class="form-control form-control-sm" required><?php echo e(old('keterangan')); ?></textarea>
+                                        <textarea name="keterangan" id="keterangan" class="form-control form-control-sm" required><?php echo e(old('keterangan', $analisaKredit->keterangan)); ?></textarea>
 
                                     </div>
                                 </div>
@@ -180,7 +180,7 @@
                                                 <th></th>
                                                 <th>Rp</th>
                                                 <th> <input type="text"
-                                                        value="<?php echo e(old('gaji_pokok', number_format($master_debitur->besaran_gaji, 0, '.', ''))); ?>"
+                                                        value="<?php echo e(old('gaji_pokok', number_format($analisaKredit->gaji_pokok, 0, ',', '.'))); ?>"
                                                         name="gaji_pokok" id="gaji_pokok"
                                                         class="form-control form-control-sm"></th>
                                                 <th></th>
@@ -195,7 +195,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td>Rp</td>
-                                                <td><input type="text" value="<?php echo e(old('tunjangan_jabatan', '0')); ?>"
+                                                <td><input type="text" value="<?php echo e(old('tunjangan_jabatan', number_format($analisaKredit->tunjangan_jabatan, 0, ',', '.'))); ?>"
                                                         name="tunjangan_jabatan" id="tunjangan_jabatan"
                                                         class="form-control form-control-sm"></td>
                                                 <td></td>
@@ -208,7 +208,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td>Rp</td>
-                                                <td><input type="text" value="<?php echo e(old('lembur', '0')); ?>" name="lembur"
+                                                <td><input type="text" value="<?php echo e(old('lembur', number_format($analisaKredit->lembur, 0, ',', '.'))); ?>" name="lembur"
                                                         id="lembur" class="form-control form-control-sm"></td>
                                                 <td></td>
                                                 <td></td>
@@ -220,7 +220,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td>Rp</td>
-                                                <td><input type="text" value="<?php echo e(old('tunjangan_lain', '0')); ?>"
+                                                <td><input type="text" value="<?php echo e(old('tunjangan_lain', number_format($analisaKredit->tunjangan_lain, 0, ',', '.'))); ?>"
                                                         name="tunjangan_lain" id="tunjangan_lain"
                                                         class="form-control form-control-sm"></td>
                                                 <td></td>
@@ -235,7 +235,7 @@
                                                 <th></th>
                                                 <th></th>
                                                 <th>Rp</th>
-                                                <th><input type="text" value="<?php echo e(old('total_pendapatan_perbulan', number_format($master_debitur->besaran_gaji, 0, '.', ''))); ?>"
+                                                <th><input type="text" value="<?php echo e(old('total_pendapatan_perbulan', number_format($analisaKredit->total_pendapatan_perbulan, 0, ',', '.'))); ?>"
                                                         name="total_pendapatan_perbulan" id="total_pendapatan_perbulan"
                                                         class="form-control form-control-sm" readonly></th>
                                             </tr>
@@ -257,7 +257,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td>Rp</td>
-                                                <td><input type="text" value="<?php echo e(old('gaji_pasangan', '0')); ?>"
+                                                <td><input type="text" value="<?php echo e(old('gaji_pasangan', number_format($analisaKredit->gaji_pasangan, 0, ',', '.'))); ?>"
                                                         name="gaji_pasangan" id="gaji_pasangan"
                                                         class="form-control form-control-sm"></td>
                                                 <td></td>
@@ -270,7 +270,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td>Rp</td>
-                                                <td><input type="text" value="<?php echo e(old('pendapatan_lain', '0')); ?>"
+                                                <td><input type="text" value="<?php echo e(old('pendapatan_lain', number_format($analisaKredit->pendapatan_lain, 0, ',', '.'))); ?>"
                                                         name="pendapatan_lain" id="pendapatan_lain"
                                                         class="form-control form-control-sm"></td>
                                                 <td></td>
@@ -283,7 +283,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <th>Rp</th>
-                                                <th><input type="text" value="<?php echo e(old('total_pendapatan_lain', '0')); ?>"
+                                                <th><input type="text" value="<?php echo e(old('total_pendapatan_lain', number_format($analisaKredit->total_pendapatan_lain, 0, ',', '.'))); ?>"
                                                         name="total_pendapatan_lain" id="total_pendapatan_lain"
                                                         class="form-control form-control-sm" readonly></th>
                                                 <td></td>
@@ -298,7 +298,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <th>Rp</th>
-                                                <th><input type="text" value="<?php echo e(old('total_pendapatan', '0')); ?>"
+                                                <th><input type="text" value="<?php echo e(old('total_pendapatan', number_format($analisaKredit->total_pendapatan, 0, ',', '.'))); ?>"
                                                         name="total_pendapatan" id="total_pendapatan"
                                                         class="form-control form-control-sm" readonly></th>
                                             </tr>
@@ -331,7 +331,7 @@
                                                 <td>2) Kewajiban kepada pihak ketiga lainnya</td>
                                                 <td></td>
                                                 <td>Rp</td>
-                                                <td><input type="text" value="<?php echo e(old('kewajiban_pihak_ketiga', '0')); ?>"
+                                                <td><input type="text" value="<?php echo e(old('kewajiban_pihak_ketiga', number_format($analisaKredit->kewajiban_pihak_ketiga, 0, ',', '.'))); ?>"
                                                         name="kewajiban_pihak_ketiga" id="kewajiban_pihak_ketiga"
                                                         class="form-control form-control-sm"></td>
                                                 <td></td>
@@ -344,7 +344,7 @@
                                                 <td>3) Angsuran BPR Duta Pasundan jika disetujui</td>
                                                 <td></td>
                                                 <td>Rp</td>
-                                                <td><input type="text" value="<?php echo e(old('angsuran_bpr', number_format($master_debitur->angsuran, 0, '.', ''))); ?>"
+                                                <td><input type="text" value="<?php echo e(old('angsuran_bpr', number_format($analisaKredit->angsuran_bpr, 0, ',', '.'))); ?>"
                                                         name="angsuran_bpr" id="angsuran_bpr"
                                                         class="form-control form-control-sm"></td>
                                                 <td></td>
@@ -357,7 +357,7 @@
                                                 <th>Total Kewajiban perbulan</th>
                                                 <th>(B)</th>
                                                 <th>Rp</th>
-                                                <th><input type="text" value="<?php echo e(old('total_kewajiban', '0')); ?>"
+                                                <th><input type="text" value="<?php echo e(old('total_kewajiban', number_format($analisaKredit->total_kewajiban, 0, ',', '.'))); ?>"
                                                         name="total_kewajiban" id="total_kewajiban"
                                                         class="form-control form-control-sm" readonly></th>
                                                 <td></td>
@@ -374,7 +374,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <th>Rp</th>
-                                                <th><input type="text" value="<?php echo e(old('disposible_income', '0')); ?>"
+                                                <th><input type="text" value="<?php echo e(old('disposible_income', number_format($analisaKredit->disposible_income, 0, ',', '.'))); ?>"
                                                         name="disposible_income" id="disposible_income"
                                                         class="form-control form-control-sm"></th>
                                             </tr>
@@ -389,7 +389,7 @@
                                                 <th>*</th>
                                                 <th><div class="input-group input-group-sm">
                                                     <input type="text"
-                                                        value="<?php echo e(old('disposible_income_percent', '0')); ?>"
+                                                        value="<?php echo e(old('disposible_income_percent', number_format($analisaKredit->disposible_income_percent, 2, ',', '.'))); ?>"
                                                         name="disposible_income_percent" id="disposible_income_percent"
                                                         class="form-control form-control-sm" readonly>
                                                     <div class="input-group-sm">
@@ -404,12 +404,12 @@
                                                 <td>=</td>
                                                 <td colspan="3">
                                                     <div class="input-group input-group-sm">
-                                                        <input type="text" value="<?php echo e(old('rp_kewajiban', '0')); ?>"
+                                                        <input type="text" value="<?php echo e(old('rp_kewajiban', number_format($analisaKredit->rp_kewajiban, 0, ',', '.'))); ?>"
                                                     name="rp_kewajiban" id="rp_kewajiban"
                                                     class="form-control form-control-sm"><div class="input-group-sm">
                                                         <span class="input-group-text">:</span>
                                                     </div>
-                                                    <input type="text" value="<?php echo e(old('rp_pendapatan', '0')); ?>"
+                                                    <input type="text" value="<?php echo e(old('rp_pendapatan', number_format($analisaKredit->rp_pendapatan, 0, ',', '.'))); ?>"
                                                     name="rp_pendapatan" id="rp_pendapatan"
                                                     class="form-control form-control-sm">
                                                     </div>
@@ -424,7 +424,7 @@
                                                 <td>=</td>
                                                 <td> </td>
                                                 <td><div class="input-group input-group-sm">
-                                                    <input type="text" value="<?php echo e(old('rumus_rc', '0')); ?>"
+                                                    <input type="text" value="<?php echo e(old('rumus_rc', number_format($analisaKredit->rumus_rc, 2, ',', '.'))); ?>"
                                                 name="rumus_rc" id="rumus_rc"
                                                 class="form-control form-control-sm"><div class="input-group-sm">
                                                     <span class="input-group-text">%</span>
@@ -437,7 +437,7 @@
                                                 <td>Hasil</td>
                                                 <td>=</td>
                                                 <td></td>
-                                                <td><input type="text" value="<?php echo e(old('hasil', '')); ?>"
+                                                <td><input type="text" value="<?php echo e(old('hasil', $analisaKredit->hasil)); ?>"
                                                     name="hasil" id="hasil"
                                                     class="form-control form-control-sm"></td>
                                                 <td></td>
@@ -454,7 +454,7 @@
                             <div class="row p-1">
                                 <div class="col-lg-12 p-1">
                                     <span class="input-group-text" id="inputGroup-sizing-sm">Catatan:</span>
-                                    <textarea name="catatan" id="catatan" class="form-control form-control-sm" required><?php echo e(old('catatan')); ?></textarea>
+                                    <textarea name="catatan" id="catatan" class="form-control form-control-sm" required><?php echo e(old('catatan', $analisaKredit->catatan)); ?></textarea>
 
                                 </div>
                             </div>
@@ -462,8 +462,8 @@
 
 
 
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                            <a href="<?php echo e(url('/analisa_kredit')); ?>" class="btn btn-secondary">Batal</a> 
+                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                            <a href="<?php echo e(route('analisa_kredit.index')); ?>" class="btn btn-secondary">Batal</a> 
                         </form>
                     </div>
 
@@ -609,7 +609,7 @@
 
 
 
-            let rowId = 2;
+            let rowId = <?php echo e($analisaKredit->detailAnalisaKredit->count() + 1); ?>;
 
             // Fungsi untuk apply Cleave.js pada field currency
             function applyCleaveToRow($row) {
@@ -639,8 +639,10 @@
                 });
             }
 
-            // Apply Cleave.js ke row pertama yang sudah ada
-            applyCleaveToRow($('#detailTable tbody tr:first'));
+            // Apply Cleave.js ke semua row yang sudah ada
+            $('#detailTable tbody tr').each(function() {
+                applyCleaveToRow($(this));
+            });
 
             // Fungsi untuk menambah baris
             $(document).on('click', '.addRow', function() {
@@ -688,6 +690,9 @@
             $(document).on('keyup change', 'input[name="angsuran[]"]', function() {
                 calculateTotal();
             });
+
+            // Initialize calculateTotal on page load
+            calculateTotal();
 
 
             function calculateTotalPendapatanPerbulan() {
@@ -900,4 +905,4 @@
     <script src="<?php echo e(URL::asset('build/js/app.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BWS\Project\Los\LOS\resources\views/analisa_kredit/create.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BWS\Project\Los\LOS\resources\views/analisa_kredit/edit.blade.php ENDPATH**/ ?>

@@ -2,7 +2,17 @@
 
 
 <?php $__env->startSection('title'); ?>
-    <?php echo app('translator')->get('translation.' . $resource); ?>
+    <?php if(!empty($jenis_kredit)): ?>
+        <?php if(!empty($view) && $view == 'yuridis'): ?>
+            <?php echo app('translator')->get('translation.analisa_yuridis'); ?> - <?php echo e($jenis_kredit); ?>
+
+        <?php else: ?>
+            <?php echo app('translator')->get('translation.data_debitur'); ?> - <?php echo e($jenis_kredit); ?>
+
+        <?php endif; ?>
+    <?php else: ?>
+        <?php echo app('translator')->get('translation.' . $resource); ?>
+    <?php endif; ?>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('css'); ?>
@@ -22,7 +32,19 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-header align-items-center d-flex">
-                    <h4 class="card-title mb-0 flex-grow-1"><?php echo app('translator')->get('translation.' . $resource); ?></h4>
+                    <h4 class="card-title mb-0 flex-grow-1">
+                        <?php if(!empty($jenis_kredit)): ?>
+                            <?php if(!empty($view) && $view == 'yuridis'): ?>
+                                <?php echo app('translator')->get('translation.analisa_yuridis'); ?> - <?php echo e($jenis_kredit); ?>
+
+                            <?php else: ?>
+                                <?php echo app('translator')->get('translation.data_debitur'); ?> - <?php echo e($jenis_kredit); ?>
+
+                            <?php endif; ?>
+                        <?php else: ?>
+                            <?php echo app('translator')->get('translation.' . $resource); ?>
+                        <?php endif; ?>
+                    </h4>
                 </div><!-- end card header -->
 
                 <div class="card-body">
@@ -56,7 +78,8 @@
                                     <option value="50" <?php echo e($rows == 50 ? 'selected' : ''); ?>>50</option>
                                     <!-- Add more options as needed -->
                                 </select>
-                              
+                                <input type="hidden" name="jenis_kredit" value="<?php echo e(request('jenis_kredit')); ?>">
+                                <input type="hidden" name="view" value="<?php echo e(request('view')); ?>">
 
 
                             </form>
@@ -76,6 +99,8 @@
                                         <i class="ri-search-line search-icon"></i>
                                     </div>
                                     <input type="hidden" name="rows" value="<?php echo e(request('rows')); ?>">
+                                    <input type="hidden" name="jenis_kredit" value="<?php echo e(request('jenis_kredit')); ?>">
+                                    <input type="hidden" name="view" value="<?php echo e(request('view')); ?>">
                                 </form>
                             </div>
                         </div>
@@ -116,7 +141,7 @@
                                     <th>Plafond</th>
                                     <th>Jangka Waktu</th>
                                     <th>Angsuran</th>
-                                    <th width="160px">Action</th>
+                                    <th width="250px">Action</th>
                                 </tr>
 
                                 </form>
@@ -142,6 +167,26 @@
                                             <a href="<?php echo e(route($route . '.show', $item->id)); ?>" class="btn btn-info"
                                                 data-toggle="tooltip" data-placement="top"
                                                 title="View #<?php echo e($item->id); ?>"><i class="ri-eye-line"></i></a>
+
+                                            <?php if($item->latestAnalisaKredit): ?>
+                                                
+                                                <a href="<?php echo e(route('analisa_kredit.edit', $item->latestAnalisaKredit->id)); ?>"
+                                                   class="btn btn-success"
+                                                   data-toggle="tooltip"
+                                                   data-placement="top"
+                                                   title="Edit Analisa Kredit #<?php echo e($item->id); ?>">
+                                                   <i class="ri-file-edit-line"></i>
+                                                </a>
+                                            <?php else: ?>
+                                                
+                                                <a href="<?php echo e(route('analisa_kredit.create', $item->id)); ?>"
+                                                   class="btn btn-primary"
+                                                   data-toggle="tooltip"
+                                                   data-placement="top"
+                                                   title="Buat Analisa Kredit #<?php echo e($item->id); ?>">
+                                                   <i class="ri-file-add-line"></i>
+                                                </a>
+                                            <?php endif; ?>
 
                                             
 
