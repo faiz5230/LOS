@@ -1,0 +1,32 @@
+Dashboard
+Persiapan Kredit
+	- Modal Kerja
+		- Simulasi Modal Kerja
+		- Data Debitur Modal Kerja
+	- Pensiun
+		- Simulasi Pensiun
+		- Data Debitur Pensiun
+	- Pasar
+		- Simulasi Pasar
+		- Data Debitur Pasar
+	- UMKM
+		- Simulasi UMKM
+		- Data Debitur UMKM
+Analis Kredit
+	- Modal Kerja
+		- Analis Kredit
+		- Analis Yuridis
+	- Pensiun
+		- Analis Kredit
+		- Analis Yuridis
+	- Pasar
+		- Analis Kredit
+		- Analis Yuridis
+	- UMKM
+		- Analis Kredit
+		- Analis Yuridis
+Data Master
+	- Users
+	- Account Manager
+
+

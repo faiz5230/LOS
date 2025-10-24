@@ -1,58 +1,56 @@
-@extends('layouts.master')
+<?php $__env->startSection('title'); ?>
+    Add <?php echo app('translator')->get('translation.' . $resource); ?>
+<?php $__env->stopSection(); ?>
 
-{{-- Dynamic title and breadcrumb based on the resource type --}}
-@section('title')
-    Add @lang('translation.' . $resource)
-@endsection
+<?php $__env->startSection('css'); ?>
+    <link href="<?php echo e(URL::asset('css/select2.min.css')); ?>" rel="stylesheet" />
+<?php $__env->stopSection(); ?>
 
-@section('css')
-    <link href="{{ URL::asset('css/select2.min.css') }}" rel="stylesheet" />
-@endsection
-
-@section('content')
-    @component('components.breadcrumb')
-        @slot('li_1')
-            @lang('translation.' . $resource)
-        @endslot
-        @slot('title')
-            Add @lang('translation.' . $resource)
-        @endslot
-    @endcomponent
+<?php $__env->startSection('content'); ?>
+    <?php $__env->startComponent('components.breadcrumb'); ?>
+        <?php $__env->slot('li_1'); ?>
+            <?php echo app('translator')->get('translation.' . $resource); ?>
+        <?php $__env->endSlot(); ?>
+        <?php $__env->slot('title'); ?>
+            Add <?php echo app('translator')->get('translation.' . $resource); ?>
+        <?php $__env->endSlot(); ?>
+    <?php echo $__env->renderComponent(); ?>
 
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
 
                 <div class="card-header align-items-center d-flex">
-                    <h4 class="card-title mb-0 flex-grow-1">Add @lang('translation.' . $resource)</h4>
+                    <h4 class="card-title mb-0 flex-grow-1">Add <?php echo app('translator')->get('translation.' . $resource); ?></h4>
                 </div><!-- end card header -->
 
                 <div class="card-body">
                     <div class="pull-right mb-2">
-                        <a class="btn btn-success" href="{{ route($route . '.index') }}"> <i data-feather="arrow-left"></i>
+                        <a class="btn btn-success" href="<?php echo e(route($route . '.index')); ?>"> <i data-feather="arrow-left"></i>
                             Kembali</a>
                     </div>
                     <div class="live-preview">
-                        @if (session('status'))
+                        <?php if(session('status')): ?>
                             <div class="alert alert-success mb-1 mt-1">
-                                {{ session('status') }}
+                                <?php echo e(session('status')); ?>
+
                             </div>
-                        @endif
-                        @if ($errors->any())
+                        <?php endif; ?>
+                        <?php if($errors->any()): ?>
                             <div class="alert alert-danger alert-dismissible fade show mb-xl-0" role="alert">
                                 <strong>Whoops!</strong> There were some problems with your input.<br><br>
                                 <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
+                                    <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <li><?php echo e($error); ?></li>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </ul>
                                 <button type="button" class="btn-close" data-bs-dismiss="alert"
                                     aria-label="Close"></button>
                             </div>
-                        @endif
-                        <form action="{{ route($route . '.update',$simulation->id) }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            @method('PUT')
+                        <?php endif; ?>
+                        <form action="<?php echo e(route($route . '.update',$simulation->id)); ?>" method="POST" enctype="multipart/form-data">
+                            <?php echo csrf_field(); ?>
+                            <?php echo method_field('PUT'); ?>
                             <div class="row">
                                 <div class="col-xl-6">
                                     <div class="card">
@@ -70,26 +68,42 @@
                                                         <div class="form-group">
                                                             <label for="tanggal_realisasi" class="form-label">Tanggal
                                                                 Realisasi <span style="color:red">*</span></label>
-                                                            <input type="date" value="{{ old('tanggal_realisasi',$simulation->tanggal_realisasi) }}"
+                                                            <input type="date" value="<?php echo e(old('tanggal_realisasi',$simulation->tanggal_realisasi)); ?>"
                                                                 name="tanggal_realisasi" id="tanggal_realisasi"
                                                                 class="form-control form-control-sm">
-                                                            @error('tanggal_realisasi')
-                                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}
+                                                            <?php $__errorArgs = ['tanggal_realisasi'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                <div class="alert alert-danger mt-1 mb-1"><?php echo e($message); ?>
+
                                                                 </div>
-                                                            @enderror
+                                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                         </div>
                                                     </div>
                                                     <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
                                                         <div class="form-group">
                                                             <label for="nama" class="form-label">Nama <span
                                                                     style="color:red">*</span></label>
-                                                            <input type="text" value="{{ old('nama',$simulation->nama) }}" name="nama"
+                                                            <input type="text" value="<?php echo e(old('nama',$simulation->nama)); ?>" name="nama"
                                                                 id="nama" class="form-control form-control-sm"
                                                                 placeholder="Nama">
-                                                            @error('nama')
-                                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}
+                                                            <?php $__errorArgs = ['nama'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                <div class="alert alert-danger mt-1 mb-1"><?php echo e($message); ?>
+
                                                                 </div>
-                                                            @enderror
+                                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                         </div>
                                                     </div>
                                                     <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
@@ -97,53 +111,85 @@
                                                             <label for="jenis_kredit" class="form-label">Jenis Kredit <span
                                                                     style="color:red">*</span></label>
                                                             <select id="jenis_kredit" name="jenis_kredit_display" class="form-control" disabled>
-                                                                <option value="{{ $simulation->jenis_kredit }}" selected>{{ $simulation->jenis_kredit }}</option>
+                                                                <option value="<?php echo e($simulation->jenis_kredit); ?>" selected><?php echo e($simulation->jenis_kredit); ?></option>
                                                             </select>
-                                                            <input type="hidden" name="jenis_kredit" value="{{ $simulation->jenis_kredit }}">
+                                                            <input type="hidden" name="jenis_kredit" value="<?php echo e($simulation->jenis_kredit); ?>">
                                                             <small class="text-muted">Jenis kredit tidak dapat diubah setelah dibuat</small>
-                                                            @error('jenis_kredit')
-                                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}
+                                                            <?php $__errorArgs = ['jenis_kredit'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                <div class="alert alert-danger mt-1 mb-1"><?php echo e($message); ?>
+
                                                                 </div>
-                                                            @enderror
+                                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                         </div>
                                                     </div>
                                                     <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
                                                         <div class="form-group">
                                                             <label for="tanggal_lahir" class="form-label">Tanggal Bulan
                                                                 Tahun Lahir <span style="color:red">*</span></label>
-                                                            <input type="date" value="{{ old('tanggal_lahir',$simulation->tanggal_lahir) }}"
+                                                            <input type="date" value="<?php echo e(old('tanggal_lahir',$simulation->tanggal_lahir)); ?>"
                                                                 name="tanggal_lahir" id="tanggal_lahir"
                                                                 class="form-control form-control-sm">
-                                                            @error('tanggal_lahir')
-                                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}
+                                                            <?php $__errorArgs = ['tanggal_lahir'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                <div class="alert alert-danger mt-1 mb-1"><?php echo e($message); ?>
+
                                                                 </div>
-                                                            @enderror
+                                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                         </div>
                                                     </div>
                                                     <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
                                                         <div class="form-group">
                                                             <label for="usia" class="form-label">Usia <span
                                                                     style="color:red">*</span></label>
-                                                            <input type="text" value="{{ old('usia',$simulation->usia) }}"
+                                                            <input type="text" value="<?php echo e(old('usia',$simulation->usia)); ?>"
                                                                 name="usia" id="usia"
                                                                 class="form-control form-control-sm">
-                                                            @error('usia')
-                                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}
+                                                            <?php $__errorArgs = ['usia'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                <div class="alert alert-danger mt-1 mb-1"><?php echo e($message); ?>
+
                                                                 </div>
-                                                            @enderror
+                                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                         </div>
                                                     </div>
                                                     <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
                                                         <div class="form-group">
                                                             <label for="besaran_gaji" class="form-label">Besaran Gaji <span
                                                                     style="color:red">*</span></label>
-                                                            <input type="text" value="{{ old('besaran_gaji',number_format($simulation->besaran_gaji, 0, '.', '')) }}"
+                                                            <input type="text" value="<?php echo e(old('besaran_gaji',number_format($simulation->besaran_gaji, 0, '.', ''))); ?>"
                                                                 name="besaran_gaji" id="besaran_gaji"
                                                                 class="form-control form-control-sm">
-                                                            @error('besaran_gaji')
-                                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}
+                                                            <?php $__errorArgs = ['besaran_gaji'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                <div class="alert alert-danger mt-1 mb-1"><?php echo e($message); ?>
+
                                                                 </div>
-                                                            @enderror
+                                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                         </div>
                                                     </div>
 
@@ -152,7 +198,7 @@
                                                             <label for="dsr" class="form-label">DSR (%)<span
                                                                     style="color:red">*</span></label>
                                                             <div class="input-group input-group-sm">
-                                                                <input type="text" value="{{ old('dsr', $simulation->dsr) }}"
+                                                                <input type="text" value="<?php echo e(old('dsr', $simulation->dsr)); ?>"
                                                                     name="dsr" id="dsr"
                                                                     class="form-control form-control-sm">
                                                                 <div class="input-group-sm">
@@ -161,10 +207,18 @@
                                                             </div>
 
 
-                                                            @error('dsr')
-                                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}
+                                                            <?php $__errorArgs = ['dsr'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                <div class="alert alert-danger mt-1 mb-1"><?php echo e($message); ?>
+
                                                                 </div>
-                                                            @enderror
+                                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                         </div>
                                                     </div>
 
@@ -172,13 +226,21 @@
                                                         <div class="form-group">
                                                             <label for="maksimal_angsuran" class="form-label">Maksimal
                                                                 Angsuran <span style="color:red">*</span></label>
-                                                            <input type="text" value="{{ old('maksimal_angsuran',number_format($simulation->maksimal_angsuran, 0, '.', '')) }}"
+                                                            <input type="text" value="<?php echo e(old('maksimal_angsuran',number_format($simulation->maksimal_angsuran, 0, '.', ''))); ?>"
                                                                 name="maksimal_angsuran" id="maksimal_angsuran"
                                                                 class="form-control form-control-sm">
-                                                            @error('maksimal_angsuran')
-                                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}
+                                                            <?php $__errorArgs = ['maksimal_angsuran'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                <div class="alert alert-danger mt-1 mb-1"><?php echo e($message); ?>
+
                                                                 </div>
-                                                            @enderror
+                                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                         </div>
                                                     </div>
 
@@ -186,13 +248,21 @@
                                                         <div class="form-group">
                                                             <label for="plafond" class="form-label">Plafond <span
                                                                     style="color:red">*</span></label>
-                                                            <input type="text" value="{{ old('plafond',number_format($simulation->plafond, 0, '.', '')) }}"
+                                                            <input type="text" value="<?php echo e(old('plafond',number_format($simulation->plafond, 0, '.', ''))); ?>"
                                                                 name="plafond" id="plafond"
                                                                 class="form-control form-control-sm">
-                                                            @error('plafond')
-                                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}
+                                                            <?php $__errorArgs = ['plafond'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                <div class="alert alert-danger mt-1 mb-1"><?php echo e($message); ?>
+
                                                                 </div>
-                                                            @enderror
+                                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                         </div>
                                                     </div>
 
@@ -203,28 +273,44 @@
                                                                 <span style="color:red">*</span></label>
                                                             <select name="jangka_waktu" id="jangka_waktu"
                                                                 class="form-control form-control-sm select2">
-                                                                @for ($i = 1; $i <= 240; $i++)
-                                                                    <option value="{{ $i }}"
-                                                                        {{ $simulation->jangka_waktu == $i ? 'selected' : '' }}>
-                                                                        {{ $i }} Bulan</option>
-                                                                @endfor
+                                                                <?php for($i = 1; $i <= 240; $i++): ?>
+                                                                    <option value="<?php echo e($i); ?>"
+                                                                        <?php echo e($simulation->jangka_waktu == $i ? 'selected' : ''); ?>>
+                                                                        <?php echo e($i); ?> Bulan</option>
+                                                                <?php endfor; ?>
                                                             </select>
-                                                            @error('jangka_waktu')
-                                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}
+                                                            <?php $__errorArgs = ['jangka_waktu'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                <div class="alert alert-danger mt-1 mb-1"><?php echo e($message); ?>
+
                                                                 </div>
-                                                            @enderror
+                                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                         </div>
                                                     </div>
                                                     <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
                                                         <div class="form-group">
                                                             <label for="jatuh_tempo" class="form-label">Jatuh Tempo <span style="color:red">*</span></label>
-                                                            <input type="date" value="{{ old('jatuh_tempo',$simulation->jatuh_tempo) }}"
+                                                            <input type="date" value="<?php echo e(old('jatuh_tempo',$simulation->jatuh_tempo)); ?>"
                                                                 name="jatuh_tempo" id="jatuh_tempo"
                                                                 class="form-control form-control-sm">
-                                                            @error('jatuh_tempo')
-                                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}
+                                                            <?php $__errorArgs = ['jatuh_tempo'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                <div class="alert alert-danger mt-1 mb-1"><?php echo e($message); ?>
+
                                                                 </div>
-                                                            @enderror
+                                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                         </div>
                                                     </div>
 
@@ -235,7 +321,7 @@
 
 
                                                             <div class="input-group input-group-sm">
-                                                                <input type="text" value="{{ old('bunga_flat',$simulation->bunga_flat) }}"
+                                                                <input type="text" value="<?php echo e(old('bunga_flat',$simulation->bunga_flat)); ?>"
                                                                     name="bunga_flat" id="bunga_flat"
                                                                     class="form-control form-control-sm">
                                                                 <div class="input-group-sm">
@@ -243,10 +329,18 @@
                                                                 </div>
                                                             </div>
 
-                                                            @error('bunga_flat')
-                                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}
+                                                            <?php $__errorArgs = ['bunga_flat'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                <div class="alert alert-danger mt-1 mb-1"><?php echo e($message); ?>
+
                                                                 </div>
-                                                            @enderror
+                                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                         </div>
                                                     </div>
 
@@ -258,17 +352,25 @@
                                                            
 
                                                                 <div class="input-group input-group-sm">
-                                                                    <input type="text" value="{{ old('bunga_effektif',$simulation->bunga_effektif) }}"
+                                                                    <input type="text" value="<?php echo e(old('bunga_effektif',$simulation->bunga_effektif)); ?>"
                                                                     name="bunga_effektif" id="bunga_effektif"
                                                                     class="form-control form-control-sm">
                                                                     <div class="input-group-sm">
                                                                         <span class="input-group-text">%</span>
                                                                     </div>
                                                                 </div>
-                                                            @error('bunga_effektif')
-                                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}
+                                                            <?php $__errorArgs = ['bunga_effektif'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                <div class="alert alert-danger mt-1 mb-1"><?php echo e($message); ?>
+
                                                                 </div>
-                                                            @enderror
+                                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                         </div>
                                                     </div>
 
@@ -276,13 +378,21 @@
                                                         <div class="form-group">
                                                             <label for="angsuran" class="form-label">Angsuran <span
                                                                     style="color:red">*</span></label>
-                                                            <input type="text" value="{{ old('angsuran',number_format($simulation->angsuran, 0, '.', '')) }}"
+                                                            <input type="text" value="<?php echo e(old('angsuran',number_format($simulation->angsuran, 0, '.', ''))); ?>"
                                                                 name="angsuran" id="angsuran"
                                                                 class="form-control form-control-sm">
-                                                            @error('angsuran')
-                                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}
+                                                            <?php $__errorArgs = ['angsuran'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                <div class="alert alert-danger mt-1 mb-1"><?php echo e($message); ?>
+
                                                                 </div>
-                                                            @enderror
+                                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                         </div>
                                                     </div>
 
@@ -290,13 +400,21 @@
                                                         <div class="form-group">
                                                             <label for="sisa_gaji" class="form-label">Sisa Gaji <span
                                                                     style="color:red">*</span></label>
-                                                            <input type="text" value="{{ old('sisa_gaji',number_format($simulation->sisa_gaji, 0, '.', '')) }}"
+                                                            <input type="text" value="<?php echo e(old('sisa_gaji',number_format($simulation->sisa_gaji, 0, '.', ''))); ?>"
                                                                 name="sisa_gaji" id="sisa_gaji"
                                                                 class="form-control form-control-sm">
-                                                            @error('sisa_gaji')
-                                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}
+                                                            <?php $__errorArgs = ['sisa_gaji'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                <div class="alert alert-danger mt-1 mb-1"><?php echo e($message); ?>
+
                                                                 </div>
-                                                            @enderror
+                                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -305,26 +423,42 @@
                                                         <div class="form-group">
                                                             <label for="biaya_notaris" class="form-label">Biaya Notaris
                                                                 <span style="color:red">*</span></label>
-                                                            <input type="text" value="{{ old('biaya_notaris',number_format($simulation->biaya_notaris, 0, '.', '')) }}"
+                                                            <input type="text" value="<?php echo e(old('biaya_notaris',number_format($simulation->biaya_notaris, 0, '.', ''))); ?>"
                                                                 name="biaya_notaris" id="biaya_notaris"
                                                                 class="form-control form-control-sm">
-                                                            @error('biaya_notaris')
-                                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}
+                                                            <?php $__errorArgs = ['biaya_notaris'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                <div class="alert alert-danger mt-1 mb-1"><?php echo e($message); ?>
+
                                                                 </div>
-                                                            @enderror
+                                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                         </div>
                                                     </div>
                                                     <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
                                                         <div class="form-group">
                                                             <label for="biaya_provisi" class="form-label">Biaya Provisi
                                                                 <span style="color:red">*</span></label>
-                                                            <input type="text" value="{{ old('biaya_provisi',number_format($simulation->biaya_provisi, 0, '.', '')) }}"
+                                                            <input type="text" value="<?php echo e(old('biaya_provisi',number_format($simulation->biaya_provisi, 0, '.', ''))); ?>"
                                                                 name="biaya_provisi" id="biaya_provisi"
                                                                 class="form-control form-control-sm">
-                                                            @error('biaya_provisi')
-                                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}
+                                                            <?php $__errorArgs = ['biaya_provisi'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                <div class="alert alert-danger mt-1 mb-1"><?php echo e($message); ?>
+
                                                                 </div>
-                                                            @enderror
+                                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                         </div>
                                                     </div>
 
@@ -332,13 +466,21 @@
                                                         <div class="form-group">
                                                             <label for="biaya_administrasi" class="form-label">Biaya
                                                                 Administrasi <span style="color:red">*</span></label>
-                                                            <input type="text" value="{{ old('biaya_administrasi',number_format($simulation->biaya_administrasi, 0, '.', '')) }}"
+                                                            <input type="text" value="<?php echo e(old('biaya_administrasi',number_format($simulation->biaya_administrasi, 0, '.', ''))); ?>"
                                                                 name="biaya_administrasi" id="biaya_administrasi"
                                                                 class="form-control form-control-sm">
-                                                            @error('biaya_administrasi')
-                                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}
+                                                            <?php $__errorArgs = ['biaya_administrasi'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                <div class="alert alert-danger mt-1 mb-1"><?php echo e($message); ?>
+
                                                                 </div>
-                                                            @enderror
+                                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                         </div>
                                                     </div>
 
@@ -346,13 +488,21 @@
                                                         <div class="form-group">
                                                             <label for="biaya_asuransi" class="form-label">Biaya Asuransi
                                                                 <span style="color:red">*</span></label>
-                                                            <input type="text" value="{{ old('biaya_asuransi',number_format($simulation->biaya_asuransi, 0, '.', '')) }}"
+                                                            <input type="text" value="<?php echo e(old('biaya_asuransi',number_format($simulation->biaya_asuransi, 0, '.', ''))); ?>"
                                                                 name="biaya_asuransi" id="biaya_asuransi"
                                                                 class="form-control form-control-sm">
-                                                            @error('biaya_asuransi')
-                                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}
+                                                            <?php $__errorArgs = ['biaya_asuransi'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                <div class="alert alert-danger mt-1 mb-1"><?php echo e($message); ?>
+
                                                                 </div>
-                                                            @enderror
+                                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                         </div>
                                                     </div>
 
@@ -360,13 +510,21 @@
                                                         <div class="form-group">
                                                             <label for="biaya_materai" class="form-label">Biaya Materai
                                                                 <span style="color:red">*</span></label>
-                                                            <input type="text" value="{{ old('biaya_materai',number_format($simulation->biaya_materai, 0, '.', '')) }}"
+                                                            <input type="text" value="<?php echo e(old('biaya_materai',number_format($simulation->biaya_materai, 0, '.', ''))); ?>"
                                                                 name="biaya_materai" id="biaya_materai"
                                                                 class="form-control form-control-sm">
-                                                            @error('biaya_materai')
-                                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}
+                                                            <?php $__errorArgs = ['biaya_materai'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                <div class="alert alert-danger mt-1 mb-1"><?php echo e($message); ?>
+
                                                                 </div>
-                                                            @enderror
+                                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                         </div>
                                                     </div>
 
@@ -374,26 +532,42 @@
                                                         <div class="form-group">
                                                             <label for="retensi" class="form-label">Retensi 1X <span
                                                                     style="color:red">*</span></label>
-                                                            <input type="text" value="{{ old('retensi',number_format($simulation->retensi, 0, '.', '')) }}"
+                                                            <input type="text" value="<?php echo e(old('retensi',number_format($simulation->retensi, 0, '.', ''))); ?>"
                                                                 name="retensi" id="retensi"
                                                                 class="form-control form-control-sm">
-                                                            @error('retensi')
-                                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}
+                                                            <?php $__errorArgs = ['retensi'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                <div class="alert alert-danger mt-1 mb-1"><?php echo e($message); ?>
+
                                                                 </div>
-                                                            @enderror
+                                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                         </div>
                                                     </div>
                                                     <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
                                                         <div class="form-group">
                                                             <label for="tabungan_wajib" class="form-label">Tabungan Wajib
                                                                 <span style="color:red">*</span></label>
-                                                            <input type="text" value="{{ old('tabungan_wajib',number_format($simulation->tabungan_wajib, 0, '.', '')) }}"
+                                                            <input type="text" value="<?php echo e(old('tabungan_wajib',number_format($simulation->tabungan_wajib, 0, '.', ''))); ?>"
                                                                 name="tabungan_wajib" id="tabungan_wajib"
                                                                 class="form-control form-control-sm">
-                                                            @error('tabungan_wajib')
-                                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}
+                                                            <?php $__errorArgs = ['tabungan_wajib'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                <div class="alert alert-danger mt-1 mb-1"><?php echo e($message); ?>
+
                                                                 </div>
-                                                            @enderror
+                                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                         </div>
                                                     </div>
 
@@ -403,52 +577,84 @@
                                                         <div class="form-group">
                                                             <label for="ass_krd" class="form-label">Asuransi Kredit <span
                                                                     style="color:red">*</span></label>
-                                                            <input type="text" value="{{ old('ass_krd',number_format($simulation->ass_krd, 0, '.', '')) }}"
+                                                            <input type="text" value="<?php echo e(old('ass_krd',number_format($simulation->ass_krd, 0, '.', ''))); ?>"
                                                                 name="ass_krd" id="ass_krd"
                                                                 class="form-control form-control-sm">
-                                                            @error('ass_krd')
-                                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}
+                                                            <?php $__errorArgs = ['ass_krd'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                <div class="alert alert-danger mt-1 mb-1"><?php echo e($message); ?>
+
                                                                 </div>
-                                                            @enderror
+                                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
                                                         <div class="form-group">
                                                             <label for="bunga" class="form-label">Bunga </label>
-                                                            <input type="text" value="{{ old('bunga',number_format($simulation->bunga, 0, '.', '')) }}"
+                                                            <input type="text" value="<?php echo e(old('bunga',number_format($simulation->bunga, 0, '.', ''))); ?>"
                                                                 name="bunga" id="bunga"
                                                                 class="form-control form-control-sm">
-                                                            @error('bunga')
-                                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}
+                                                            <?php $__errorArgs = ['bunga'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                <div class="alert alert-danger mt-1 mb-1"><?php echo e($message); ?>
+
                                                                 </div>
-                                                            @enderror
+                                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
                                                         <div class="form-group">
                                                             <label for="denda" class="form-label">Denda </label>
-                                                            <input type="text" value="{{ old('denda',number_format($simulation->denda, 0, '.', '')) }}"
+                                                            <input type="text" value="<?php echo e(old('denda',number_format($simulation->denda, 0, '.', ''))); ?>"
                                                                 name="denda" id="denda"
                                                                 class="form-control form-control-sm">
-                                                            @error('denda')
-                                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}
+                                                            <?php $__errorArgs = ['denda'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                <div class="alert alert-danger mt-1 mb-1"><?php echo e($message); ?>
+
                                                                 </div>
-                                                            @enderror
+                                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
                                                         <div class="form-group">
                                                             <label for="pinalty" class="form-label">Pinalty</label>
-                                                            <input type="text" value="{{ old('pinalty',number_format($simulation->pinalty, 0, '.', '')) }}"
+                                                            <input type="text" value="<?php echo e(old('pinalty',number_format($simulation->pinalty, 0, '.', ''))); ?>"
                                                                 name="pinalty" id="pinalty"
                                                                 class="form-control form-control-sm">
-                                                            @error('pinalty')
-                                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}
+                                                            <?php $__errorArgs = ['pinalty'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                <div class="alert alert-danger mt-1 mb-1"><?php echo e($message); ?>
+
                                                                 </div>
-                                                            @enderror
+                                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                         </div>
                                                     </div>
 
@@ -456,13 +662,21 @@
                                                         <div class="form-group">
                                                             <label for="total_diterima" class="form-label">Total Diterima
                                                                 <span style="color:red">*</span></label>
-                                                            <input type="text" value="{{ old('total_diterima',number_format($simulation->total_diterima, 0, '.', '')) }}"
+                                                            <input type="text" value="<?php echo e(old('total_diterima',number_format($simulation->total_diterima, 0, '.', ''))); ?>"
                                                                 name="total_diterima" id="total_diterima"
                                                                 class="form-control form-control-sm">
-                                                            @error('total_diterima')
-                                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}
+                                                            <?php $__errorArgs = ['total_diterima'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                <div class="alert alert-danger mt-1 mb-1"><?php echo e($message); ?>
+
                                                                 </div>
-                                                            @enderror
+                                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                         </div>
                                                     </div>
 
@@ -500,7 +714,7 @@
                                                                     <span style="color:red">*</span></label>
                                                                 
                                                                     <div class="input-group input-group-sm">
-                                                                        <input type="text" value="{{ old('rate_asuransi',$simulation->rate_asuransi) }}"
+                                                                        <input type="text" value="<?php echo e(old('rate_asuransi',$simulation->rate_asuransi)); ?>"
                                                                     name="rate_asuransi" id="rate_asuransi"
                                                                     class="form-control form-control-sm">
                                                                         <div class="input-group-sm">
@@ -508,11 +722,19 @@
                                                                         </div>
                                                                     </div>
                                                                     
-                                                                @error('rate_asuransi')
+                                                                <?php $__errorArgs = ['rate_asuransi'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                                                                     <div class="alert alert-danger mt-1 mb-1">
-                                                                        {{ $message }}
+                                                                        <?php echo e($message); ?>
+
                                                                     </div>
-                                                                @enderror
+                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                             </div>
                                                         </div>
 
@@ -539,13 +761,13 @@
             </div><!-- end card -->
         </div><!-- end col -->
     </div><!-- end row -->
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('script')
-    <script src="{{ URL::asset('build/js/jquery-3.6.0.min.js') }}"></script>
+<?php $__env->startSection('script'); ?>
+    <script src="<?php echo e(URL::asset('build/js/jquery-3.6.0.min.js')); ?>"></script>
 
-    <script src="{{ URL::asset('build/libs/cleave.js/cleave.min.js') }}"></script>
-    <script src="{{ URL::asset('build/js/select2.min.js') }}"></script>
+    <script src="<?php echo e(URL::asset('build/libs/cleave.js/cleave.min.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('build/js/select2.min.js')); ?>"></script>
     <script>
         $(document).ready(function() {
             $('.select2').select2();
@@ -835,8 +1057,8 @@
 
                 var sisaGaji = besaranGaji - monthlyPayment;
                 var biayanotaris = biaya_notaris.getRawValue() || 0;
-                var biayaProvisi = plafond_input * parseFloat('{{ $simulation->biaya_provisi }}') / plafond_input;
-                var biayaAdministrasi = plafond_input * parseFloat('{{ $simulation->biaya_administrasi }}') / plafond_input;
+                var biayaProvisi = plafond_input * parseFloat('<?php echo e($simulation->biaya_provisi); ?>') / plafond_input;
+                var biayaAdministrasi = plafond_input * parseFloat('<?php echo e($simulation->biaya_administrasi); ?>') / plafond_input;
 
 
 
@@ -849,9 +1071,9 @@
 
                 var biayaAsuransi = plafond_input / 1000 * rateAsuransi;
                 //var biayaAsuransi = biaya_asuransi.getRawValue() || 0;
-                var biayaMaterai = parseFloat('{{ $simulation->biaya_materai }}');
-                var tabunganWajib = parseFloat('{{ $simulation->tabungan_wajib }}');
-                var assKdr = parseFloat('{{ $simulation->ass_krd }}');
+                var biayaMaterai = parseFloat('<?php echo e($simulation->biaya_materai); ?>');
+                var tabunganWajib = parseFloat('<?php echo e($simulation->tabungan_wajib); ?>');
+                var assKdr = parseFloat('<?php echo e($simulation->ass_krd); ?>');
                 var bunga_input = bunga.getRawValue() || 0;
                 var denda_input = denda.getRawValue() || 0;
                 var pinalty_input = pinalty.getRawValue() || 0;
@@ -976,5 +1198,7 @@
 
         });
     </script>
-    <script src="{{ URL::asset('build/js/app.js') }}"></script>
-@endsection
+    <script src="<?php echo e(URL::asset('build/js/app.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\BWS\Project\LOS\LOS\resources\views/simulations/edit.blade.php ENDPATH**/ ?>

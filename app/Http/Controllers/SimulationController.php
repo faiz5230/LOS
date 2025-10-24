@@ -241,19 +241,8 @@ class SimulationController extends Controller
     {
         $resource = 'simulations';
         $route = 'simulations';
-        $params = SettingParam::all();
-        $dsrValue = $params->where('name', 'dsr')->pluck('value')->first();
-        $biaya_provisiValue = $params->where('name', 'biaya_provisi')->pluck('value')->first();
-        $biaya_notarisValue = $params->where('name', 'biaya_notaris')->pluck('value')->first();
-        $biaya_administrasiValue = $params->where('name', 'biaya_administrasi')->pluck('value')->first();
-        $biaya_materaiValue = $params->where('name', 'biaya_materai')->pluck('value')->first();
-        $tabungan_wajibValue = $params->where('name', 'tabungan_wajib')->pluck('value')->first();
-        $ass_krdValue = $params->where('name', 'ass_krd')->pluck('value')->first();
 
-
-        //return view('simulations.create', compact('resource', 'route', 'dsrValue', 'biaya_provisiValue', 'biaya_administrasiValue', 'biaya_materaiValue', 'tabungan_wajibValue', 'ass_krdValue'));
-
-        return view('simulations.edit', compact('simulation','resource', 'route', 'dsrValue', 'biaya_provisiValue','biaya_notarisValue','biaya_administrasiValue', 'biaya_materaiValue', 'tabungan_wajibValue', 'ass_krdValue'));
+        return view('simulations.edit', compact('simulation','resource', 'route'));
     }
 
     /**
