@@ -12,7 +12,11 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use Maatwebsite\Excel\Concerns\WithDrawings;
 use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
 
+use App\Exports\Traits\HasDynamicViewPath;
+
 class AnalisaYuridis implements FromView,WithStyles,WithDrawings 
+    use HasDynamicViewPath;
+
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -36,7 +40,9 @@ class AnalisaYuridis implements FromView,WithStyles,WithDrawings
             $nama = null;
             $jabatan = null;
         }
-        return view('debiturs.analisa_yuridis_export', [
+        $viewPath = $this->getViewPath($debitur, 'analisa_yuridis_export');
+        
+        return view($viewPath, [
             'debitur'=>$debitur,'nama'=>$nama,'jabatan'=>$jabatan
         ]);
     }

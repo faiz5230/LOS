@@ -12,7 +12,11 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use Maatwebsite\Excel\Concerns\WithDrawings;
 use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
 
+use App\Exports\Traits\HasDynamicViewPath;
+
 class PerjanjianKreditNonMouPasangan implements FromView,WithStyles,WithDrawings 
+    use HasDynamicViewPath;
+
 {
     /**
     * @return \Illuminate\Support\Collection

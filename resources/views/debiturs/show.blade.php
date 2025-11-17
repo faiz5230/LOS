@@ -31,6 +31,13 @@
                             Kembali</a>
                     </div>
                     <div class="row mb-2">
+                        <div class="col-12 mb-3">
+                            @if($debitur->simulation)
+                                <h5>Dokumen Export - {{ $debitur->simulation->jenis_kredit }}</h5>
+                            @else
+                                <h5>Dokumen Export</h5>
+                            @endif
+                        </div>
                         
                         <div class="col-6">
                             <a class="btn btn-primary mb-2" href="{{ route('debiturs_data_calon_debitur_export', $debitur->id) }}">
@@ -45,25 +52,21 @@
                                 STTU</a>
                             <a class="btn btn-primary mb-2" href="{{ route('debiturs_tanda_terima_export', $debitur->id) }}">
                                 Tanda Terima</a>
+                        </div>
+                        <div class="col-6">
                             <a class="btn btn-primary mb-2" href="{{ route('debiturs_analisa_yuridis_export', $debitur->id) }}">
                                 Analisa Yuridis</a>
-                        </div>
-                        <div class="col-6 ">
-                            
                             <a class="btn btn-primary mb-2" href="{{ route('debiturs_pk_kredit_pasangan_export', $debitur->id) }}">
                                 PK Kredit Pasangan</a>
                             <a class="btn btn-primary mb-2" href="{{ route('debiturs_pk_kredit_sendiri_export', $debitur->id) }}">
                                 PK Kredit Sendiri</a>
-                            <a class="btn btn-primary mb-2"
-                                href="{{ route('debiturs_pk_kredit_non_mou_pasangan_export', $debitur->id) }}">
+                            <a class="btn btn-primary mb-2" href="{{ route('debiturs_pk_kredit_non_mou_pasangan_export', $debitur->id) }}">
                                 PK Kredit Non MOU Pasangan</a>
-                            <a class="btn btn-primary mb-2"
-                                href="{{ route('debiturs_pk_kredit_non_mou_sendiri_export', $debitur->id) }}">
+                            <a class="btn btn-primary mb-2" href="{{ route('debiturs_pk_kredit_non_mou_sendiri_export', $debitur->id) }}">
                                 PK Kredit Non MOU Sendiri</a>
                             <a class="btn btn-primary mb-2" href="{{ route('debiturs_pk_kredit_reguler_export', $debitur->id) }}">
                                 PK Kredit Reguler</a>
                         </div>
-                       
                     </div>
                     <div class="live-preview">
                         @if (session('status'))

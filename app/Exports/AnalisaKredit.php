@@ -11,7 +11,11 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use Maatwebsite\Excel\Concerns\WithDrawings;
 use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
 
+use App\Exports\Traits\HasDynamicViewPath;
+
 class AnalisaKredit implements FromView,WithStyles,WithDrawings 
+    use HasDynamicViewPath;
+
 {
     protected $id;
 
@@ -34,7 +38,9 @@ class AnalisaKredit implements FromView,WithStyles,WithDrawings
             $nama = null;
             $alamat = null;
         }
-        return view('debiturs.analisa_kredit_export', [
+        $viewPath = $this->getViewPath($debitur, 'analisa_kredit_export');
+        
+        return view($viewPath, [
             'debitur'=>$debitur,'nama'=>$nama,'alamat'=>$alamat
         ]);
     }

@@ -12,7 +12,11 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use Maatwebsite\Excel\Concerns\WithDrawings;
 use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
 
+use App\Exports\Traits\HasDynamicViewPath;
+
 class PerjanjianKreditSendiri implements FromView,WithStyles,WithDrawings 
+    use HasDynamicViewPath;
+
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -41,7 +45,9 @@ class PerjanjianKreditSendiri implements FromView,WithStyles,WithDrawings
             $jabatan = null;
             $nik = null;
         }
-        return view('debiturs.pk_kredit_sendiri_export', [
+        $viewPath = $this->getViewPath($debitur, 'pk_kredit_sendiri_export');
+        
+        return view($viewPath, [
             'debitur'=>$debitur,'nama'=>$nama,'alamat'=>$alamat,'jabatan'=>$jabatan,'nik'=>$nik
         ]);
     }

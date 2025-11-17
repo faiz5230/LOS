@@ -2,6 +2,7 @@
 
 namespace App\Exports;
 
+use App\Exports\Traits\HasDynamicViewPath;
 use App\Models\AccountOfficer;
 use App\Models\MasterDebitur;
 use Maatwebsite\Excel\Concerns\FromCollection;
@@ -14,6 +15,8 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
 
 class DataCalonDebitur implements FromView,WithStyles,WithDrawings 
 {
+    use HasDynamicViewPath;
+    
     /**
     * @return \Illuminate\Support\Collection
     */
@@ -35,13 +38,15 @@ class DataCalonDebitur implements FromView,WithStyles,WithDrawings
             $jabatan = $officer->jabatan;
             $nik = $officer->nik;
         } else {
-            // Handle jika tidak ada baris yang sesuai dengan kriteria
             $nama = null;
             $alamat = null;
             $jabatan = null;
             $nik = null;
         }
-        return view('debiturs.data_calon_debitur_export', [
+        
+        $viewPath = $this->getViewPath($debitur, 'data_calon_debitur_export');
+        
+        return view($viewPath, [
             'debitur'=>$debitur,'nama'=>$nama,'alamat'=>$alamat,'jabatan'=>$jabatan,'nik'=>$nik
         ]);
     }

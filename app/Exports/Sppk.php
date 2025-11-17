@@ -11,7 +11,11 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use Maatwebsite\Excel\Concerns\WithDrawings;
 use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
 
+use App\Exports\Traits\HasDynamicViewPath;
+
 class Sppk implements FromView,WithStyles,WithDrawings 
+    use HasDynamicViewPath;
+
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -27,7 +31,9 @@ class Sppk implements FromView,WithStyles,WithDrawings
     {
         $debitur = MasterDebitur::with('simulation')->findOrFail($this->id);
 
-        return view('debiturs.sppk_export', [
+        $viewPath = $this->getViewPath($debitur, 'sppk_export');
+        
+        return view($viewPath, [
             'debitur'=>$debitur
         ]);
     }
