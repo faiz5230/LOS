@@ -77,6 +77,9 @@ Route::resource('debiturs', MasterDebiturController::class);
 Route::resource('simulations', SimulationController::class);
 Route::get('/get_rate_asuransi', [SimulationController::class, 'get_rate_asuransi']);
 
+Route::resource('debitur-modal-kerja', App\Http\Controllers\DebiturModalKerjaController::class);
+Route::get('debitur-modal-kerja/{id}/export', [App\Http\Controllers\DebiturModalKerjaController::class, 'export'])->name('debitur-modal-kerja.export');
+
 //Update User Details
 Route::post('/update-profile/{id}', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('updateProfile');
 Route::post('/update-password/{id}', [App\Http\Controllers\HomeController::class, 'updatePassword'])->name('updatePassword');

@@ -212,9 +212,9 @@ class SimulationController extends Controller
 
        // dd($requestData);
 
-        Simulation::create($requestData);
+        $simulation = Simulation::create($requestData);
 
-        return redirect()->route('simulations.index')
+        return redirect()->route('simulations.index', ['jenis_kredit' => $simulation->jenis_kredit])
             ->with('success', 'Simulation created successfully.');
     }
 

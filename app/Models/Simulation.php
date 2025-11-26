@@ -42,5 +42,12 @@ class Simulation extends Model
 
     protected $dates = ['deleted_at'];
 
+
+    public function debiturModalKerja()
+    {
+        return $this->hasOne(DebiturModalKerja::class);
+    }
+
+    // Your model code here
     // Your model code here
 }

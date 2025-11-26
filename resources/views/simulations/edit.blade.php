@@ -100,6 +100,8 @@
                                 @enderror
                             </div>
 
+                            <input type="hidden" name="jatuh_tempo" id="jatuh_tempo" value="{{ old('jatuh_tempo', $simulation->jatuh_tempo) }}">
+
                             <div class="col-md-12 mb-3">
                                 <label for="nama" class="form-label">Nama Lengkap<span class="required-mark">*</span></label>
                                 <input type="text" name="nama" id="nama" 
@@ -378,6 +380,12 @@
 
                             <div class="col-md-6 mb-3">
                                 <label for="ass_krd" class="form-label">Ass KRD<span class="required-mark">*</span></label>
+                                <div class="form-check mb-2" id="auto_ass_krd_wrapper" style="display: none;">
+                                    <input class="form-check-input" type="checkbox" id="auto_ass_krd">
+                                    <label class="form-check-label" for="auto_ass_krd">
+                                        Hitung Otomatis (0.8% × Plafond × Tenure)
+                                    </label>
+                                </div>
                                 <div class="input-group">
                                     <span class="input-group-text">Rp</span>
                                     <input type="text" name="ass_krd" id="ass_krd" 
@@ -704,7 +712,51 @@
                     bunga_input - denda_input - pinalty_input;
 
                 total_diterima.setRawValue(Math.abs(totalDiterima).toFixed(2));
+
+            // Toggle checkbox visibility based on jenis_kredit
+            function toggleAssKrdCheckbox() {
+                const jenisKredit = $('#jenis_kredit').val();
+                if (jenisKredit === 'Modal Kerja') {
+                    $('#auto_ass_krd_wrapper').show();
+                } else {
+                    $('#auto_ass_krd_wrapper').hide();
+                    $('#auto_ass_krd').prop('checked', false);
+                }
             }
+
+            // Calculate ass_krd for Modal Kerja
+            function hitungAssKrdModalKerja() {
+                const jenisKredit = $('#jenis_kredit').val();
+                const isAutoChecked = $('#auto_ass_krd').is(':checked');
+                
+                if (jenisKredit === 'Modal Kerja' && isAutoChecked) {
+                    const plafond_val = plafond.getRawValue() || 0;
+                    const jangkaWaktu = $('#jangka_waktu').val() || 0;
+                    const tenureYears = jangkaWaktu / 12;
+                    const assKrdValue = plafond_val * 0.008 * tenureYears;
+                    ass_krd.setRawValue(Math.abs(assKrdValue).toFixed(2));
+                    hitungTotalDiterima();
+                }
+            }
+
+            // Event listeners for ass_krd auto-calculation
+            $('#jenis_kredit').on('change', toggleAssKrdCheckbox);
+            $('#auto_ass_krd').on('change', function() {
+                if ($(this).is(':checked')) {
+                    hitungAssKrdModalKerja();
+                } else {
+                    ass_krd.setRawValue('0.00');
+                    hitungTotalDiterima();
+                }
+            });
+            $('#plafond, #jangka_waktu').on('input change', function() {
+                if ($('#auto_ass_krd').is(':checked')) {
+                    hitungAssKrdModalKerja();
+                }
+            });
+
+            // Initialize on page load
+            toggleAssKrdCheckbox();
 
             // Event listener untuk semua field biaya yang mempengaruhi Total Diterima
             $('#biaya_notaris, #biaya_provisi, #biaya_administrasi, #biaya_asuransi, #biaya_materai, #retensi, #tabungan_wajib, #ass_krd, #bunga, #denda, #pinalty').on('input', function() {
