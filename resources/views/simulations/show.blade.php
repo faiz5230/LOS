@@ -24,7 +24,9 @@
                 <div class="pull-right mb-2">
                     <a class="btn btn-success" href="{{ route($route . '.index') }}"> <i data-feather="arrow-left"></i> Kembali</a>
                     @if($simulation->jenis_kredit == 'Modal Kerja')
-                        <a class="btn btn-primary" href="{{ route('debitur-modal-kerja.create', ['simulation_id' => $simulation->id]) }}"> <i data-feather="plus-square"></i> Buat Data Debitur</a>
+                        <a class="btn btn-primary" href="{{ route('debitur-modal-kerja.create', ['simulation_id' => $simulation->id]) }}"> <i data-feather="plus-square"></i> Buat Data Debitur Modal Kerja</a>
+                    @elseif($simulation->jenis_kredit == 'Pensiun')
+                        <a class="btn btn-primary" href="{{ route('debitur-pensiun.create', ['simulation_id' => $simulation->id]) }}"><i data-feather="plus-square"></i> Buat Data Debitur Pensiun</a>
                     @else
                         <a class="btn btn-primary" href="{{ route('debiturs_simulation',[$simulation->id]) }}"> <i data-feather="plus-square"></i> Buat Data Debitur</a>
                     @endif

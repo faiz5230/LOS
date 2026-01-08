@@ -55,4 +55,9 @@ class DebiturModalKerja extends Model
     {
         return $this->belongsTo(Simulation::class);
     }
+    public function accountOfficer()
+    {
+        return $this->belongsTo(AccountOfficer::class, 'account_officer_id');
+
+    }
 }

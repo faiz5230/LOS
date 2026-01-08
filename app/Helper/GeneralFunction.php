@@ -10,10 +10,10 @@ function getNomorUrut($idDebitur, $jenisDokumen) {
     // Mencari entri terakhir berdasarkan id_debitur dan jenis_dokumen
     $nomorUrut = NomorUrut::where('id_debitur', $idDebitur)
                            ->where('jenis_dokumen', $jenisDokumen)
-                           ->orderBy('created_at', 'desc')
+                           ->orderBy('id', 'desc')
                            ->first();
-    $nomorUrut = $nomorUrut->nomor_full;
-    return $nomorUrut;
+    //$nomorUrut = $nomorUrut->nomor_full;
+    return $nomorUrut?->nomor_full ?? '-';
     
 }
 
@@ -111,8 +111,32 @@ function formatRupiah($nilai) {
 }
 function convertCurrencyFormat($value)
 {
-    // Menghilangkan titik dan mengganti koma dengan titik
-    return str_replace(',', '.', str_replace('.', '', $value));
+    if ($value === null || $value === '') {
+        return 0;
+    }
+
+    // Bersihkan Rp dan spasi
+    $value = trim($value);
+    $value = str_replace(['Rp', ' '], '', $value);
+
+    /**
+     * ✅ CASE 1: Kalau sudah format raw numeric dari Cleave
+     * Contoh: "30000000.00" atau "30000000"
+     * Ini jangan dihapus titiknya karena titik = desimal
+     */
+    if (preg_match('/^\d+(\.\d+)?$/', $value)) {
+        return (float) $value;
+    }
+
+    /**
+     * ✅ CASE 2: Format Indonesia
+     * Contoh: "30.000.000,00"
+     * Titik = ribuan, koma = desimal
+     */
+    $value = str_replace('.', '', $value);
+    $value = str_replace(',', '.', $value);
+
+    return is_numeric($value) ? (float) $value : 0;
 }
 
 function convertNumberFormat($value)

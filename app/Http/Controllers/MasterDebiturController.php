@@ -45,10 +45,7 @@ class MasterDebiturController extends Controller
     {
         return Excel::download(new Sttu($id), 'sttu.xlsx');
     }
-    public function sppk_export($id)
-    {
-        return Excel::download(new Sppk($id), 'sppk.xlsx');
-    }
+    
     public function pk_kredit_reguler_export($id)
     {
         return Excel::download(new PerjanjianKreditReguler($id), 'pk_kredit_reguler.xlsx');
@@ -76,9 +73,43 @@ class MasterDebiturController extends Controller
     }
 
     public function memo_kredit_export($id)
-    {
-        return Excel::download(new MemoKredit($id), 'memo_kredit.xlsx');
+{
+    // coba cari sesuai id
+    $debitur = MasterDebitur::find($id);
+
+    // kalau tidak ada, pakai debitur pertama yang tersedia
+    if (!$debitur) {
+        $debitur = MasterDebitur::orderBy('id', 'asc')->first();
     }
+
+    // kalau database kosong
+    if (!$debitur) {
+        abort(404, 'Tidak ada data debitur.');
+    }
+
+    return Excel::download(
+        new MemoKredit($debitur->id),
+        'memo_kredit_' . $debitur->id . '.xlsx'
+    );
+}
+
+    public function sppk_export($id)
+{
+    $debitur = MasterDebitur::find($id);
+
+    if (!$debitur) {
+        $debitur = MasterDebitur::orderBy('id', 'asc')->first();
+    }
+
+    if (!$debitur) {
+        abort(404, 'Tidak ada data debitur.');
+    }
+
+    return Excel::download(
+        new Sppk($debitur->id),
+        'sppk_' . $debitur->id . '.xlsx'
+    );
+}
 
     public function index(Request $request)
     {

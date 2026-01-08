@@ -15,7 +15,7 @@
     <tr>
         <td colspan="2">Permohonan kredit</td>
         <td>:</td>
-        <td colspan="5"></td>
+        <td colspan="5">{{ $debitur->permohonan_kredit ?? ($debitur->simulation->jenis_kredit ?? 'Kredit Modal Kerja') }}</td>
         <td colspan="2">Tanggal</td>
         <td>:</td>
         <td colspan="3">{{ $debitur->tanggal ? \Carbon\Carbon::parse($debitur->tanggal)->format('d/m/Y') : '' }}</td>

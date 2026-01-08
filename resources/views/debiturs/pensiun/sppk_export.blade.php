@@ -228,6 +228,7 @@
         <tr>
             <td style="border: none;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word"
                 colspan="3">Kepada&nbsp;&nbsp;&nbsp;Yth.</td>
+                <td>{{ $debitur->nama_pensiun }}</td>
             <td
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
             </td>
@@ -501,7 +502,7 @@
                 :</td>
             <td
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
-                Installment</td>
+                {{ $debitur->permohonan_kredit ?? ($debitur->simulation->jenis_kredit ?? 'Kredit Installment Pensiunan') }}</td>
             <td
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
             </td>
@@ -622,7 +623,7 @@
                 :</td>
             <td
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
-                {{ $debitur->simulation->bunga_flat }} %</td>
+                {{ number_format($debitur->simulation->bunga_effektif ?? 0,2,',','.') }} %</td>
             <td
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
             </td>
@@ -653,7 +654,7 @@
                 :</td>
             <td
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
-                Rp. {{ convertNumberFormat($debitur->angsuran) }}</td>
+                Rp. {{ number_format($debitur->simulation->angsuran ?? 0,0,',','.') }},-</td>
             <td
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
             </td>
@@ -1035,7 +1036,7 @@
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
             </td>
             <td style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word"
-                colspan="3">NO. IJASAH TERAKHIR</td>
+                colspan="3">NO. SK</td>
             <td
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
             </td>
@@ -1044,7 +1045,7 @@
                 :</td>
             <td
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
-                {{ $debitur->no_ijasah }}</td>
+                {{ $debitur->no_sk ?? '' }}</td>
             <td
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
             </td>
@@ -1075,7 +1076,7 @@
                 :</td>
             <td
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
-                {{ ucwords($debitur->nama) }}</td>
+                {{ $debitur->nama_pensiun }}</td>
             <td
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
             </td>
@@ -1710,7 +1711,7 @@
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
             </td>
             <td style="border: none;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-wrap:break-word"
-                colspan="3">Debitur</td>
+                colspan="3"></td>
         </tr>
         <tr>
             <td
@@ -1860,7 +1861,7 @@
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
             </td>
             <td style="border: none;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-wrap:break-word"
-                colspan="3">Fitra Ramdani, ST</td>
+                colspan="3">Dwi Gustin Caturani</td>
             <td
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
             </td>
@@ -1874,33 +1875,22 @@
                 colspan="3">{{ ucwords($debitur->nama) }}</td>
         </tr>
         <tr>
-            <td
-                style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
-            </td>
-            <td
-                style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
-            </td>
+            <td style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word"></td>
+            <td style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word"></td>
+
+            <!-- Kolom kiri (Pihak BPR) -->
             <td style="border: none;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-wrap:break-word"
-                colspan="3">Pejabat Eksekutif Kredit</td>
-            <td
-                style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
-            </td>
-            <td
-                style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
-            </td>
-            <td
-                style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
-            </td>
-            <td
-                style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
-            </td>
-            <td
-                style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
-            </td>
-            <td
-                style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
-            </td>
+            colspan="3">Kepala Divisi Bisnis</td>
+
+            <td style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word"></td>
+            <td style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word"></td>
+            <td style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word"></td>
+
+            <!-- Kolom kanan (Debitur) -->
+            <td style="border: none;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-wrap:break-word"
+            colspan="3">Debitur</td>
         </tr>
+
     </tbody>
 </table>
 

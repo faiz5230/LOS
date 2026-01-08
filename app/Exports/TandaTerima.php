@@ -2,7 +2,9 @@
 
 namespace App\Exports;
 
+use App\Models\AccountOfficer;
 use App\Models\MasterDebitur;
+use App\Models\DebiturModalKerja;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
@@ -14,8 +16,6 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
 use App\Exports\Traits\HasDynamicViewPath;
 
 class TandaTerima implements FromView,WithStyles,WithDrawings 
-    use HasDynamicViewPath;
-
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -29,11 +29,9 @@ class TandaTerima implements FromView,WithStyles,WithDrawings
 
     public function view(): View
     {
-        $debitur = MasterDebitur::with('simulation')->findOrFail($this->id);
+        $debitur = DebiturModalKerja::with('simulation')->findOrFail($this->id);
 
-        $viewPath = $this->getViewPath($debitur, 'tanda_terima_export');
-        
-        return view($viewPath, [
+        return view('debiturs.modal_kerja.tanda_terima_export', [
             'debitur'=>$debitur
         ]);
     }
@@ -50,18 +48,9 @@ class TandaTerima implements FromView,WithStyles,WithDrawings
         $drawing->setName('Logo');
         $drawing->setDescription('This is my logo');
         $drawing->setPath(public_path('/build/images/logo.png'));
-        $drawing->setHeight(50);
+        $drawing->setHeight(40);
         $drawing->setCoordinates('A1');
 
-        $drawing2 = new Drawing();
-        $drawing2->setName('Logo BPR');
-        $drawing2->setDescription('This is another image');
-        $drawing2->setPath(public_path('/build/images/logo_bpr.png'));
-        $drawing2->setHeight(70);
-        $drawing2->setCoordinates('I1'); 
-        
-
-       
-        return [$drawing, $drawing2];
+        return $drawing;
     }
 }

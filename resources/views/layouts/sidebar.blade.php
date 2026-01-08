@@ -72,7 +72,7 @@
                                             <a href="{{ route('simulations.index', ['jenis_kredit' => 'Pensiun']) }}" class="nav-link">@lang('translation.simulasi_pensiun')</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="{{ route('debiturs.index', ['jenis_kredit' => 'Pensiun']) }}" class="nav-link">@lang('translation.data_debitur_pensiun')</a>
+                                            <a href="{{ route('debitur-pensiun.index') }}" class="nav-link">@lang('translation.data_debitur_pensiun')</a>
                                         </li>
                                     </ul>
                                 </div>

@@ -224,7 +224,7 @@
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
                 :</td>
             <td style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
-                colspan="5">{{ ucwords($debitur->nama) }}</td>
+                colspan="5">{{ ucwords($debitur->nama_direktur) }}</td>
             <td
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
             </td>
@@ -316,7 +316,7 @@
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
                 :</td>
             <td style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
-                colspan="5">{{ ucwords($debitur->nama) }}</td>
+                colspan="5">{{ $sim->nama ?? $debitur->nama_direktur ?? '' }}</td>
             <td
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
             </td>

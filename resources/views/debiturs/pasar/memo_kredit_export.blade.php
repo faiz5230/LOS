@@ -370,7 +370,7 @@
                 &nbsp;&nbsp;<br> &nbsp;&nbsp; <br> &nbsp;&nbsp; <br> &nbsp;&nbsp; <br> &nbsp;&nbsp; <br> &nbsp;&nbsp; <br> &nbsp;&nbsp; <br> &nbsp;&nbsp; <br>
             </td>
             <td style="border:1px solid #000;border-style:solid;font-family:Calibri;font-size:15px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:middle;word-break:normal"
-                colspan="2" rowspan="11">TAB. DUTA</td>
+                colspan="2" rowspan="11">TAB. HALDEN</td>
             <td style="border:none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
                 colspan="3"> &nbsp;&nbsp; </td>
             <td style="border-right:1px solid #000;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
@@ -378,7 +378,7 @@
         </tr>
         <tr>
             <td style="border:none;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
-                colspan="3">TAB. DUTA</td>
+                colspan="3">TAB. HALDEN</td>
             <td style="border-right:1px solid #000;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
                 colspan="2">Rp.</td>
         </tr>

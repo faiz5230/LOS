@@ -164,9 +164,11 @@
                                         <td>
 
 
-                                            <a href="{{ route($route . '.show', $item->id) }}" class="btn btn-info"
-                                                data-toggle="tooltip" data-placement="top"
-                                                title="View #{{ $item->id }}"><i class="ri-eye-line"></i></a>
+                                            <a href="{{ route('debitur-pensiun.open', $item->id) }}" class="btn btn-info"
+                                            data-toggle="tooltip" data-placement="top"
+                                            title="Detail Debitur Pensiun #{{ $item->id }}">
+                                            <i class="ri-eye-line"></i>
+                                            </a>
 
                                             @if($item->latestAnalisaKredit)
                                                 {{-- Jika sudah ada analisa kredit, tampilkan tombol Edit --}}
@@ -198,9 +200,9 @@
                                                 title="Memo Kredit #{{ $item->id }}"><i
                                                     class="ri-folder-chart-line"></i></a> --}}
 
-                                            <a href="{{ route($route . '.edit', $item->id) }}" class="btn btn-warning"
-                                                data-toggle="tooltip" data-placement="top"
-                                                title="Edit #{{ $item->id }}"><i class="ri-pencil-line"></i></a>
+                                            <a href="{{ route('debitur-pensiun.edit', $item->id) }}" class="btn btn-warning"
+                                                title="Edit Debitur Pensiun #{{ $item->id }}">
+                                                <i class="ri-pencil-line"></i></a>
 
                                             <!-- Tombol Delete -->
                                             <form action="{{ route($route . '.destroy', $item->id) }}" method="POST"

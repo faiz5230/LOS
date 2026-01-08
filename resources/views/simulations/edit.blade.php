@@ -138,7 +138,8 @@
                                     <span class="input-group-text">Rp</span>
                                     <input type="text" name="besaran_gaji" id="besaran_gaji" 
                                         class="form-control @error('besaran_gaji') is-invalid @enderror" 
-                                        value="{{ old('besaran_gaji', $simulation->besaran_gaji) }}" placeholder="0">
+                                        value="{{ old('besaran_gaji', (int)$simulation->besaran_gaji) }}"placeholder="0">
+
                                     @error('besaran_gaji')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -188,7 +189,7 @@
                                     <span class="input-group-text">Rp</span>
                                     <input type="text" name="plafond" id="plafond" 
                                         class="form-control @error('plafond') is-invalid @enderror" 
-                                        value="{{ old('plafond', $simulation->plafond) }}" placeholder="0">
+                                        value="{{ old('plafond', (int) $simulation->plafond) }}" placeholder="0">
                                     @error('plafond')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -309,7 +310,7 @@
                                     <span class="input-group-text">Rp</span>
                                     <input type="text" name="biaya_administrasi" id="biaya_administrasi" 
                                         class="form-control @error('biaya_administrasi') is-invalid @enderror" 
-                                        value="{{ old('biaya_administrasi', $simulation->biaya_administrasi) }}" readonly>
+                                        value="{{ old('biaya_administrasi', (int) $simulation->biaya_administrasi) }}" readonly>  
                                     @error('biaya_administrasi')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -322,7 +323,7 @@
                                     <span class="input-group-text">Rp</span>
                                     <input type="text" name="biaya_asuransi" id="biaya_asuransi" 
                                         class="form-control @error('biaya_asuransi') is-invalid @enderror" 
-                                        value="{{ old('biaya_asuransi', $simulation->biaya_asuransi) }}" readonly>
+                                        value="{{ old('biaya_asuransi', (int) $simulation->biaya_asuransi) }}" readonly>
                                     @error('biaya_asuransi')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -474,443 +475,381 @@
 @endsection
 
 @section('script')
-    <script src="{{ URL::asset('build/js/jquery-3.6.0.min.js') }}"></script>
-    <script src="{{ URL::asset('build/js/select2.min.js') }}"></script>
-    <script src="{{ URL::asset('build/libs/cleave.js/cleave.min.js') }}"></script>
-    <script>
-        $(document).ready(function() {
-            $('.select2').select2();
+<script src="{{ URL::asset('build/js/jquery-3.6.0.min.js') }}"></script>
+<script src="{{ URL::asset('build/js/select2.min.js') }}"></script>
+<script src="{{ URL::asset('build/libs/cleave.js/cleave.min.js') }}"></script>
 
-            // Currency formatting with Cleave.js instances
-            var besaran_gaji = new Cleave('#besaran_gaji', {
-                numeral: true,
-                delimiter: '.',
-                numeralDecimalMark: ',',
-                numeralThousandsGroupStyle: 'thousand'
-            });
+<script>
+$(document).ready(function () {
+    $('.select2').select2();
 
-            var maksimal_angsuran = new Cleave('#maksimal_angsuran', {
-                numeral: true,
-                delimiter: '.',
-                numeralDecimalMark: ',',
-                numeralThousandsGroupStyle: 'thousand'
-            });
+    // =========================
+    // HELPER CLEAVE
+    // =========================
+    function cleaveCurrency(selector) {
+        return new Cleave(selector, {
+            numeral: true,
+            delimiter: '.',
+            numeralDecimalMark: ',',
+            numeralThousandsGroupStyle: 'thousand',
+            numeralPositiveOnly: true
+        });
+    }
 
-            var plafond = new Cleave('#plafond', {
-                numeral: true,
-                delimiter: '.',
-                numeralDecimalMark: ',',
-                numeralThousandsGroupStyle: 'thousand'
-            });
+    function cleavePercent(selector) {
+        return new Cleave(selector, {
+            numeral: true,
+            numeralDecimalMark: '.',
+            numeralPositiveOnly: true,
+            numeralDecimalScale: 2,
+        });
+    }
 
-            var angsuran = new Cleave('#angsuran', {
-                numeral: true,
-                delimiter: '.',
-                numeralDecimalMark: ',',
-                numeralPositiveOnly: true,
-                numeralDecimalScale: 2,
-                prefix: '',
-            });
+    // =========================
+    // CLEAVE INSTANCES
+    // =========================
+    var besaran_gaji        = cleaveCurrency('#besaran_gaji');
+    var maksimal_angsuran   = cleaveCurrency('#maksimal_angsuran');
+    var plafond             = cleaveCurrency('#plafond');
+    var angsuran            = cleaveCurrency('#angsuran');
+    var sisa_gaji           = cleaveCurrency('#sisa_gaji');
+    var biaya_provisi       = cleaveCurrency('#biaya_provisi');
+    var biaya_notaris       = cleaveCurrency('#biaya_notaris');
+    var biaya_administrasi  = cleaveCurrency('#biaya_administrasi');
+    var biaya_asuransi      = cleaveCurrency('#biaya_asuransi');
+    var biaya_materai       = cleaveCurrency('#biaya_materai');
+    var retensi             = cleaveCurrency('#retensi');
+    var tabungan_wajib      = cleaveCurrency('#tabungan_wajib');
+    var ass_krd             = cleaveCurrency('#ass_krd');
+    var bunga               = cleaveCurrency('#bunga');
+    var denda               = cleaveCurrency('#denda');
+    var pinalty             = cleaveCurrency('#pinalty');
+    var total_diterima      = cleaveCurrency('#total_diterima');
 
-            var sisa_gaji = new Cleave('#sisa_gaji', {
-                numeral: true,
-                delimiter: '.',
-                numeralDecimalMark: ',',
-                numeralPositiveOnly: true,
-                numeralDecimalScale: 2,
-                prefix: '',
-            });
+    var bunga_flat          = cleavePercent('#bunga_flat');
+    var dsr_input           = cleavePercent('#dsr');
+    var rate_asuransi       = cleavePercent('#rate_asuransi');
+    const SETTING_MATERAI = parseFloat('{{ $biaya_materaiValue }}') || 0;
+    const SETTING_TABUNGAN_WAJIB = parseFloat('{{ $tabungan_wajibValue }}') || 0;
 
-            var biaya_provisi = new Cleave('#biaya_provisi', {
-                numeral: true,
-                delimiter: '.',
-                numeralDecimalMark: ',',
-                numeralPositiveOnly: true,
-                numeralDecimalScale: 2,
-                prefix: '',
-            });
+    // =========================
+    // GET JENIS KREDIT (AMAN WALAU DISABLED)
+    // =========================
+    function getJenisKredit() {
+        return $('#jenis_kredit').val() || $('input[name="jenis_kredit"]').val() || '';
+    }
 
-            var biaya_notaris = new Cleave('#biaya_notaris', {
-                numeral: true,
-                delimiter: '.',
-                numeralDecimalMark: ',',
-                numeralPositiveOnly: true,
-                numeralDecimalScale: 2,
-                prefix: '',
-            });
+    // =========================
+    // JATUH TEMPO DARI REALISASI
+    // =========================
+    $('#tanggal_realisasi').change(function () {
+        var tanggalRealisasi = new Date($(this).val());
+        tanggalRealisasi.setMonth(tanggalRealisasi.getMonth() + 1);
 
-            var biaya_administrasi = new Cleave('#biaya_administrasi', {
-                numeral: true,
-                delimiter: '.',
-                numeralDecimalMark: ',',
-                numeralPositiveOnly: true,
-                numeralDecimalScale: 2,
-                prefix: '',
-            });
+        var tahun = tanggalRealisasi.getFullYear();
+        var bulan = ('0' + (tanggalRealisasi.getMonth() + 1)).slice(-2);
+        var hari  = ('0' + tanggalRealisasi.getDate()).slice(-2);
 
-            var biaya_asuransi = new Cleave('#biaya_asuransi', {
-                numeral: true,
-                delimiter: '.',
-                numeralDecimalMark: ',',
-                numeralPositiveOnly: true,
-                numeralDecimalScale: 2,
-                prefix: '',
-            });
+        $('#jatuh_tempo').val(tahun + '-' + bulan + '-' + hari);
+    });
 
-            var biaya_materai = new Cleave('#biaya_materai', {
-                numeral: true,
-                delimiter: '.',
-                numeralDecimalMark: ',',
-                numeralPositiveOnly: true,
-                numeralDecimalScale: 2,
-                prefix: '',
-            });
+    // =========================
+    // HITUNG USIA
+    // =========================
+    $('#tanggal_lahir').on('change', function () {
+        const birthDate = new Date($(this).val());
+        const today = new Date();
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const monthDiff = today.getMonth() - birthDate.getMonth();
 
-            var retensi = new Cleave('#retensi', {
-                numeral: true,
-                delimiter: '.',
-                numeralDecimalMark: ',',
-                numeralPositiveOnly: true,
-                numeralDecimalScale: 2,
-                prefix: '',
-            });
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
 
-            var tabungan_wajib = new Cleave('#tabungan_wajib', {
-                numeral: true,
-                delimiter: '.',
-                numeralDecimalMark: ',',
-                numeralPositiveOnly: true,
-                numeralDecimalScale: 2,
-                prefix: '',
-            });
+        $('#usia').val(age);
+        hitungSimulasi();
+    });
 
-            var ass_krd = new Cleave('#ass_krd', {
-                numeral: true,
-                delimiter: '.',
-                numeralDecimalMark: ',',
-                numeralPositiveOnly: true,
-                numeralDecimalScale: 2,
-                prefix: '',
-            });
+    // =========================
+    // HITUNG MAKSIMAL ANGSURAN
+    // =========================
+    function hitungMaksimalAngsuran() {
+        const gaji = parseFloat($('#besaran_gaji').val().replace(/\./g, '').replace(',', '.')) || 0;
+        const dsr  = parseFloat($('#dsr').val().replace(',', '.')) || 0;
 
-            var bunga = new Cleave('#bunga', {
-                numeral: true,
-                delimiter: '.',
-                numeralDecimalMark: ',',
-                numeralPositiveOnly: true,
-                numeralDecimalScale: 2,
-                prefix: '',
-            });
+        const maksAngsuran = gaji * (dsr / 100);
+        maksimal_angsuran.setRawValue(maksAngsuran.toFixed(0));
+    }
 
-            var denda = new Cleave('#denda', {
-                numeral: true,
-                delimiter: '.',
-                numeralDecimalMark: ',',
-                numeralPositiveOnly: true,
-                numeralDecimalScale: 2,
-                prefix: '',
-            });
+    $('#besaran_gaji, #dsr').on('input', function () {
+        hitungMaksimalAngsuran();
+        hitungSimulasi();
+    });
 
-            var pinalty = new Cleave('#pinalty', {
-                numeral: true,
-                delimiter: '.',
-                numeralDecimalMark: ',',
-                numeralPositiveOnly: true,
-                numeralDecimalScale: 2,
-                prefix: '',
-            });
-
-            var total_diterima = new Cleave('#total_diterima', {
-                numeral: true,
-                delimiter: '.',
-                numeralDecimalMark: ',',
-                numeralPositiveOnly: true,
-                numeralDecimalScale: 2,
-                prefix: '',
-            });
-
-            // Percentage fields formatting
-            var bunga_flat = new Cleave('#bunga_flat', {
-                numeral: true,
-                numeralDecimalMark: '.',
-                numeralPositiveOnly: true,
-                numeralDecimalScale: 2,
-                prefix: '',
-            });
-
-            var dsr_input = new Cleave('#dsr', {
-                numeral: true,
-                numeralDecimalMark: '.',
-                numeralPositiveOnly: true,
-                numeralDecimalScale: 2,
-                prefix: '',
-            });
-
-            var rate_asuransi = new Cleave('#rate_asuransi', {
-                numeral: true,
-                numeralDecimalMark: '.',
-                numeralPositiveOnly: true,
-                numeralDecimalScale: 2,
-                prefix: '',
-            });
-
-            // Tanggal realisasi auto-set jatuh tempo
-            $('#tanggal_realisasi').change(function() {
-                var tanggalRealisasi = new Date($(this).val());
-                tanggalRealisasi.setMonth(tanggalRealisasi.getMonth() + 1);
-
-                var tahun = tanggalRealisasi.getFullYear();
-                var bulan = ('0' + (tanggalRealisasi.getMonth() + 1)).slice(-2);
-                var hari = ('0' + tanggalRealisasi.getDate()).slice(-2);
-                var tanggalJatuhTempoFormatted = tahun + '-' + bulan + '-' + hari;
-
-                $('#jatuh_tempo').val(tanggalJatuhTempoFormatted);
-            });
-
-            // Calculate age from birth date
-            $('#tanggal_lahir').on('change', function() {
-                const birthDate = new Date($(this).val());
-                const today = new Date();
-                let age = today.getFullYear() - birthDate.getFullYear();
-                const monthDiff = today.getMonth() - birthDate.getMonth();
-                
-                if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-                    age--;
-                }
-                
-                $('#usia').val(age);
-            });
-
-            // Calculate maksimal angsuran
-            function hitungMaksimalAngsuran() {
-                const gaji = parseFloat($('#besaran_gaji').val().replace(/\./g, '').replace(',', '.')) || 0;
-                const dsr = parseFloat($('#dsr').val().replace(',', '.')) || 0;
-                const maksAngsuran = gaji * (dsr / 100);
-                
-                $('#maksimal_angsuran').val(maksAngsuran.toFixed(0));
-            }
-
-            $('#besaran_gaji, #dsr').on('input', hitungMaksimalAngsuran);
-
-            // Fungsi untuk menghitung Total Diterima
-            function hitungTotalDiterima() {
-                var plafond_input = plafond.getRawValue() || 0;
-                var biayaNotaris = biaya_notaris.getRawValue() || 0;
-                var biayaProvisi = biaya_provisi.getRawValue() || 0;
-                var biayaAdministrasi = biaya_administrasi.getRawValue() || 0;
-                var biayaAsuransi = biaya_asuransi.getRawValue() || 0;
-                var biayaMaterai = biaya_materai.getRawValue() || 0;
-                var retensiValue = retensi.getRawValue() || 0;
-                var tabunganWajibValue = tabungan_wajib.getRawValue() || 0;
-                var assKrdValue = ass_krd.getRawValue() || 0;
-                var bunga_input = bunga.getRawValue() || 0;
-                var denda_input = denda.getRawValue() || 0;
-                var pinalty_input = pinalty.getRawValue() || 0;
-
-                var totalDiterima = plafond_input - biayaNotaris - biayaProvisi - biayaAdministrasi -
-                    biayaAsuransi - biayaMaterai - retensiValue - tabunganWajibValue - assKrdValue -
-                    bunga_input - denda_input - pinalty_input;
-
-                total_diterima.setRawValue(Math.abs(totalDiterima).toFixed(2));
-
-            // Toggle checkbox visibility based on jenis_kredit
-            function toggleAssKrdCheckbox() {
-                const jenisKredit = $('#jenis_kredit').val();
-                if (jenisKredit === 'Modal Kerja') {
-                    $('#auto_ass_krd_wrapper').show();
-                } else {
-                    $('#auto_ass_krd_wrapper').hide();
-                    $('#auto_ass_krd').prop('checked', false);
-                }
-            }
-
-            // Calculate ass_krd for Modal Kerja
-            function hitungAssKrdModalKerja() {
-                const jenisKredit = $('#jenis_kredit').val();
-                const isAutoChecked = $('#auto_ass_krd').is(':checked');
-                
-                if (jenisKredit === 'Modal Kerja' && isAutoChecked) {
-                    const plafond_val = plafond.getRawValue() || 0;
-                    const jangkaWaktu = $('#jangka_waktu').val() || 0;
-                    const tenureYears = jangkaWaktu / 12;
-                    const assKrdValue = plafond_val * 0.008 * tenureYears;
-                    ass_krd.setRawValue(Math.abs(assKrdValue).toFixed(2));
-                    hitungTotalDiterima();
-                }
-            }
-
-            // Event listeners for ass_krd auto-calculation
-            $('#jenis_kredit').on('change', toggleAssKrdCheckbox);
-            $('#auto_ass_krd').on('change', function() {
-                if ($(this).is(':checked')) {
-                    hitungAssKrdModalKerja();
-                } else {
-                    ass_krd.setRawValue('0.00');
-                    hitungTotalDiterima();
-                }
-            });
-            $('#plafond, #jangka_waktu').on('input change', function() {
-                if ($('#auto_ass_krd').is(':checked')) {
-                    hitungAssKrdModalKerja();
-                }
-            });
-
-            // Initialize on page load
-            toggleAssKrdCheckbox();
-
-            // Event listener untuk semua field biaya yang mempengaruhi Total Diterima
-            $('#biaya_notaris, #biaya_provisi, #biaya_administrasi, #biaya_asuransi, #biaya_materai, #retensi, #tabungan_wajib, #ass_krd, #bunga, #denda, #pinalty').on('input', function() {
-                hitungTotalDiterima();
-            });
-
-            var rateAsuransi = 0;
-            $('#plafond, #jangka_waktu, #bunga_flat, #bunga, #denda, #pinalty').on('change', function() {
-                var besaranGaji = besaran_gaji.getRawValue() || 0;
-                var plafond_input = plafond.getRawValue() || 0;
-                var jangkaWaktu = $('#jangka_waktu').val() || 0;
-                var usia = $('#usia').val() || 0;
-                var bungaFlat = bunga_flat.getRawValue() / 100 || 0;
-
-                var bungaEffektif = calculateRate(plafond_input, jangkaWaktu, bungaFlat);
-                var interestRate = parseFloat(bungaEffektif / 12 / 100);
-                var numberOfPeriods = parseFloat(jangkaWaktu);
-                var loanAmount = plafond_input * -1;
-                var futureValue = 0;
-                var paymentType = 0;
-
-                var monthlyPayment = PMT(interestRate, numberOfPeriods, loanAmount, futureValue,
-                    paymentType);
-
-                var sisaGaji = besaranGaji - monthlyPayment;
-                var biayaNotaris = biaya_notaris.getRawValue() || 0;
-                var biayaProvisi = plafond_input * parseFloat('{{ $biaya_provisiValue }}');
-                var biayaAdministrasi = plafond_input * parseFloat('{{ $biaya_administrasiValue }}');
-
-                var rateAsuransiPromise = get_asuransi_rate(parseFloat(jangkaWaktu), parseFloat(usia));
-
-                rateAsuransiPromise.then(function(rate) {
-                    rateAsuransi = rate;
-                    console.log("rateAsuransi:" + rate);
-                });
-
-                var biayaAsuransi = plafond_input / 1000 * rateAsuransi;
-                var biayaMaterai = parseFloat('{{ $biaya_materaiValue }}');
-                var tabunganWajib = parseFloat('{{ $tabungan_wajibValue }}');
-                var assKdr = parseFloat('{{ $ass_krdValue }}');
-                var bunga_input = bunga.getRawValue() || 0;
-                var denda_input = denda.getRawValue() || 0;
-                var pinalty_input = pinalty.getRawValue() || 0;
-                var totalDiterima = plafond_input - biayaProvisi - biayaNotaris - biayaAdministrasi - biayaAsuransi -
-                    biayaMaterai - monthlyPayment - tabunganWajib - assKdr - bunga_input - denda_input -
-                    pinalty_input;
-
-                if (!isNaN(bungaEffektif)) {
-                    $('#bunga_effektif').val(Math.abs(bungaEffektif).toFixed(2));
-                    angsuran.setRawValue(Math.abs(monthlyPayment).toFixed(2));
-                    sisa_gaji.setRawValue(Math.abs(sisaGaji).toFixed(2));
-                    biaya_notaris.setRawValue(Math.abs(biayaNotaris).toFixed(2));
-                    biaya_provisi.setRawValue(Math.abs(biayaProvisi).toFixed(2));
-                    biaya_administrasi.setRawValue(Math.abs(biayaAdministrasi).toFixed(2));
-                    rate_asuransi.setRawValue(Math.abs(rateAsuransi).toFixed(2));
-                    biaya_asuransi.setRawValue(Math.abs(biayaAsuransi).toFixed(2));
-                    biaya_materai.setRawValue(Math.abs(biayaMaterai).toFixed(2));
-                    retensi.setRawValue(Math.abs(monthlyPayment).toFixed(2));
-                    tabungan_wajib.setRawValue(Math.abs(tabunganWajib).toFixed(2));
-                    ass_krd.setRawValue(Math.abs(assKdr).toFixed(2));
-                    total_diterima.setRawValue(Math.abs(totalDiterima).toFixed(2));
-                } else {
-                    console.error('Hasil bungaEffektif bukan angka:', bungaEffektif);
-                }
-            });
-
-            function calculateRate(plafond, jangkaWaktu, bungaFlat) {
-                var plafond = parseFloat(plafond);
-                var jangkaWaktu = parseFloat(jangkaWaktu);
-                var bungaFlat = parseFloat(bungaFlat);
-                var payment = ((plafond * (bungaFlat / 12) * jangkaWaktu) + plafond) / jangkaWaktu;
-
-                return Math.abs(parseFloat((RATE(jangkaWaktu, payment, -plafond, 0, 0)) * 12) * 100);
-            }
-
-            function RATE(periods, payment, present, future, type, guess) {
-                guess = (guess === undefined) ? 0.01 : guess;
-                future = (future === undefined) ? 0 : future;
-                type = (type === undefined) ? 0 : type;
-
-                var epsMax = 1e-10;
-                var iterMax = 10;
-
-                var y, y0, y1, x0, x1 = 0,
-                    f = 0,
-                    i = 0;
-                var rate = guess;
-                if (Math.abs(rate) < epsMax) {
-                    y = present * (1 + periods * rate) + payment * (1 + rate * type) * periods + future;
-                } else {
-                    f = Math.exp(periods * Math.log(1 + rate));
-                    y = present * f + payment * (1 / rate + type) * (f - 1) + future;
-                }
-                y0 = present + payment * periods + future;
-                y1 = present * f + payment * (1 / rate + type) * (f - 1) + future;
-                i = x0 = 0;
-                x1 = rate;
-                while ((Math.abs(y0 - y1) > epsMax) && (i < iterMax)) {
-                    rate = (y1 * x0 - y0 * x1) / (y1 - y0);
-                    x0 = x1;
-                    x1 = rate;
-                    if (Math.abs(rate) < epsMax) {
-                        y = present * (1 + periods * rate) + payment * (1 + rate * type) * periods + future;
-                    } else {
-                        f = Math.exp(periods * Math.log(1 + rate));
-                        y = present * f + payment * (1 / rate + type) * (f - 1) + future;
-                    }
-                    y0 = y1;
-                    y1 = y;
-                    ++i;
-                }
-                return rate;
-            }
-
-            function PMT(rate, nper, pv, fv, type) {
-                let pmt, pvif;
-
-                fv || (fv = 0);
-                type || (type = 0);
-
-                if (rate === 0)
-                    return -(pv + fv) / nper;
-
-                pvif = Math.pow(1 + rate, nper);
-                pmt = -rate * (pv * pvif + fv) / (pvif - 1);
-
-                if (type === 1)
-                    pmt /= (1 + rate);
-                return pmt;
-            }
-
-            function get_asuransi_rate(jangka_waktu, usia) {
-                return new Promise((resolve, reject) => {
-                    if (usia < 20 || usia > 64 || jangka_waktu > 240 || usia + jangka_waktu / 12 > 65) {
+    // =========================
+    // GET RATE ASURANSI (AJAX)
+    // =========================
+    function get_asuransi_rate(jangka_waktu, usia) {
+        return new Promise((resolve) => {
+            if (usia < 20 || usia > 64 || jangka_waktu > 240 || (usia + jangka_waktu / 12) > 65) {
+                resolve(0);
+            } else {
+                $.ajax({
+                    url: '/get_rate_asuransi',
+                    method: 'GET',
+                    data: {
+                        jangka_waktu: jangka_waktu,
+                        usia: usia
+                    },
+                    success: function (response) {
+                        resolve(parseFloat(response));
+                    },
+                    error: function () {
                         resolve(0);
-                    } else {
-                        $.ajax({
-                            url: '/get_rate_asuransi',
-                            method: 'GET',
-                            data: {
-                                jangka_waktu: jangka_waktu,
-                                usia: usia
-                            },
-                            success: function(response) {
-                                console.log(response);
-                                resolve(parseFloat(response));
-                            },
-                            error: function() {
-                                resolve(0);
-                            }
-                        });
                     }
                 });
             }
         });
-    </script>
+    }
+
+    // =========================
+    // BUNGA EFEKTIF
+    // =========================
+    function calculateRate(plafond, jangkaWaktu, bungaFlat) {
+        plafond = parseFloat(plafond);
+        jangkaWaktu = parseFloat(jangkaWaktu);
+        bungaFlat = parseFloat(bungaFlat);
+
+        var payment = ((plafond * (bungaFlat / 12) * jangkaWaktu) + plafond) / jangkaWaktu;
+        return Math.abs(parseFloat((RATE(jangkaWaktu, payment, -plafond, 0, 0)) * 12) * 100);
+    }
+
+    function RATE(periods, payment, present, future, type, guess) {
+        guess = (guess === undefined) ? 0.01 : guess;
+        future = (future === undefined) ? 0 : future;
+        type = (type === undefined) ? 0 : type;
+
+        var epsMax = 1e-10;
+        var iterMax = 10;
+
+        var y, y0, y1, x0, x1 = 0, f = 0, i = 0;
+        var rate = guess;
+
+        if (Math.abs(rate) < epsMax) {
+            y = present * (1 + periods * rate) + payment * (1 + rate * type) * periods + future;
+        } else {
+            f = Math.exp(periods * Math.log(1 + rate));
+            y = present * f + payment * (1 / rate + type) * (f - 1) + future;
+        }
+
+        y0 = present + payment * periods + future;
+        y1 = y;
+
+        i = x0 = 0;
+        x1 = rate;
+
+        while ((Math.abs(y0 - y1) > epsMax) && (i < iterMax)) {
+            rate = (y1 * x0 - y0 * x1) / (y1 - y0);
+            x0 = x1;
+            x1 = rate;
+
+            if (Math.abs(rate) < epsMax) {
+                y = present * (1 + periods * rate) + payment * (1 + rate * type) * periods + future;
+            } else {
+                f = Math.exp(periods * Math.log(1 + rate));
+                y = present * f + payment * (1 / rate + type) * (f - 1) + future;
+            }
+
+            y0 = y1;
+            y1 = y;
+            ++i;
+        }
+        return rate;
+    }
+
+    function PMT(rate, nper, pv, fv, type) {
+        let pmt, pvif;
+
+        fv || (fv = 0);
+        type || (type = 0);
+
+        if (rate === 0) return -(pv + fv) / nper;
+
+        pvif = Math.pow(1 + rate, nper);
+        pmt = -rate * (pv * pvif + fv) / (pvif - 1);
+
+        if (type === 1) pmt /= (1 + rate);
+        return pmt;
+    }
+
+    // =========================
+    // AUTO ASS KRD MODAL KERJA (0.8% x plafond x tenure)
+    // =========================
+    function toggleAssKrdCheckbox() {
+        const jenisKredit = getJenisKredit();
+
+        if (jenisKredit === 'Modal Kerja') {
+            $('#auto_ass_krd_wrapper').show();
+        } else {
+            $('#auto_ass_krd_wrapper').hide();
+            $('#auto_ass_krd').prop('checked', false);
+            ass_krd.setRawValue('0.00'); // reset otomatis bila bukan modal kerja
+        }
+
+        // PENSIUN: asuransi kredit tidak dihitung
+        if (jenisKredit === 'Pensiun') {
+            ass_krd.setRawValue('0.00');
+        }
+    }
+
+    function hitungAssKrdModalKerja() {
+        const jenisKredit = getJenisKredit();
+        const isAutoChecked = $('#auto_ass_krd').is(':checked');
+
+        if (jenisKredit === 'Modal Kerja' && isAutoChecked) {
+            const plafond_val = parseFloat(plafond.getRawValue() || 0);
+            const jangkaWaktu = parseFloat($('#jangka_waktu').val() || 0);
+            const tenureYears = jangkaWaktu / 12;
+
+            const assKrdValue = plafond_val * 0.008 * tenureYears;
+            ass_krd.setRawValue(Math.abs(assKrdValue).toFixed(2));
+        }
+    }
+
+    $('#auto_ass_krd').on('change', function () {
+        hitungAssKrdModalKerja();
+        hitungTotalDiterima();
+    });
+
+    // =========================
+    // TOTAL DITERIMA
+    // =========================
+    function hitungTotalDiterima() {
+        var plafond_input        = parseFloat(plafond.getRawValue() || 0);
+        var biayaNotaris         = parseFloat(biaya_notaris.getRawValue() || 0);
+        var biayaProvisi         = parseFloat(biaya_provisi.getRawValue() || 0);
+        var biayaAdministrasi    = parseFloat(biaya_administrasi.getRawValue() || 0);
+        var biayaAsuransi        = parseFloat(biaya_asuransi.getRawValue() || 0);
+        var biayaMaterai         = parseFloat(biaya_materai.getRawValue() || 0);
+        var retensiValue         = parseFloat(retensi.getRawValue() || 0);
+        var tabunganWajibValue   = parseFloat(tabungan_wajib.getRawValue() || 0);
+        var assKrdValue          = parseFloat(ass_krd.getRawValue() || 0);
+        var bunga_input          = parseFloat(bunga.getRawValue() || 0);
+        var denda_input          = parseFloat(denda.getRawValue() || 0);
+        var pinalty_input        = parseFloat(pinalty.getRawValue() || 0);
+
+        var totalDiterima = plafond_input - biayaNotaris - biayaProvisi - biayaAdministrasi -
+            biayaAsuransi - biayaMaterai - retensiValue - tabunganWajibValue - assKrdValue -
+            bunga_input - denda_input - pinalty_input;
+
+        total_diterima.setRawValue(Math.abs(totalDiterima).toFixed(2));
+    }
+
+    // =========================
+    // FUNGSI UTAMA SIMULASI (INI KUNCI!)
+    // =========================
+    async function hitungSimulasi() {
+        toggleAssKrdCheckbox(); // pastikan aturan pensiun/modal kerja kepanggil
+
+        let jenisKredit = getJenisKredit();
+        let besaranGaji = parseFloat(besaran_gaji.getRawValue() || 0);
+        let plafond_input = parseFloat(plafond.getRawValue() || 0);
+        let jangkaWaktu = parseFloat($('#jangka_waktu').val() || 0);
+        let usia = parseFloat($('#usia').val() || 0);
+        let bungaFlat = parseFloat(bunga_flat.getRawValue() || 0) / 100;
+        // Materai & Tabungan Wajib harus NOMINAL sesuai setting_params
+        biaya_materai.setRawValue(SETTING_MATERAI.toFixed(2));
+        tabungan_wajib.setRawValue(SETTING_TABUNGAN_WAJIB.toFixed(2));
+        // Stop jika belum lengkap data utama
+        if (!plafond_input || !jangkaWaktu || !usia || !bungaFlat) return;
+
+        // =========================
+        // 1) HITUNG BUNGA EFEKTIF
+        // =========================
+        let bungaEffektif = calculateRate(plafond_input, jangkaWaktu, bungaFlat);
+        if (isNaN(bungaEffektif)) return;
+
+        $('#bunga_effektif').val(Math.abs(bungaEffektif).toFixed(2));
+
+        // =========================
+        // 2) HITUNG ANGSURAN (PMT)
+        // =========================
+        let interestRate = (bungaEffektif / 12 / 100);
+        let monthlyPayment = PMT(interestRate, jangkaWaktu, -plafond_input, 0, 0);
+
+        angsuran.setRawValue(Math.abs(monthlyPayment).toFixed(2));
+
+        // =========================
+        // 3) RETENSI = ANGSURAN (aturanmu)
+        // =========================
+        retensi.setRawValue(Math.abs(monthlyPayment).toFixed(2));
+
+        // =========================
+        // 4) SISA GAJI
+        // =========================
+        let sisaGaji = besaranGaji - Math.abs(monthlyPayment);
+        sisa_gaji.setRawValue(Math.abs(sisaGaji).toFixed(2));
+
+        // =========================
+        // 5) PROVISI & ADMIN
+        // =========================
+        let biayaProvisi = plafond_input * parseFloat('{{ $biaya_provisiValue }}');
+        let biayaAdministrasi = plafond_input * parseFloat('{{ $biaya_administrasiValue }}');
+
+        biaya_provisi.setRawValue(Math.abs(biayaProvisi).toFixed(2));
+        biaya_administrasi.setRawValue(Math.abs(biayaAdministrasi).toFixed(2));
+
+        // =========================
+        // 6) RATE ASURANSI + BIAYA ASURANSI (SEMUA JENIS TERMASUK PENSIUN)
+        // =========================
+        let rate = await get_asuransi_rate(jangkaWaktu, usia);
+        rate_asuransi.setRawValue(Math.abs(rate).toFixed(2));
+
+        let biayaAsuransi = (plafond_input / 1000) * rate;
+        biaya_asuransi.setRawValue(Math.abs(biayaAsuransi).toFixed(2)); // FIX
+
+        // =========================
+        // 7) ASURANSI KREDIT (ass_krd)
+        // =========================
+        if (jenisKredit === 'Pensiun') {
+            // pensiun tidak menghitung asuransi kredit
+            ass_krd.setRawValue('0.00');
+        } else if (jenisKredit === 'Modal Kerja') {
+            // kalau modal kerja dan checkbox auto dicentang
+            hitungAssKrdModalKerja();
+        } else {
+            // jenis lain default 0 (sesuaikan jika punya aturan lain)
+            ass_krd.setRawValue(ass_krd.getRawValue() || '0.00');
+        }
+
+        // =========================
+        // 8) TOTAL DITERIMA
+        // =========================
+        hitungTotalDiterima();
+    }
+
+    // =========================
+    // TRIGGER HITUNG OTOMATIS
+    // =========================
+    $('#plafond, #jangka_waktu, #bunga_flat, #besaran_gaji, #dsr, #biaya_notaris, #bunga, #denda, #pinalty, #usia, #jenis_kredit')
+        .on('change input', function () {
+            hitungMaksimalAngsuran();
+            hitungSimulasi();
+        });
+
+    // Event biaya manual tetap update total
+    $('#biaya_notaris, #bunga, #denda, #pinalty, #tabungan_wajib').on('input', function () {
+        hitungTotalDiterima();
+    });
+
+    // INIT
+    toggleAssKrdCheckbox();
+    setTimeout(function () {
+        hitungMaksimalAngsuran();
+        hitungSimulasi();
+    }, 300);
+});
+</script>
 @endsection
+
+

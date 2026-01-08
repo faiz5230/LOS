@@ -911,6 +911,50 @@
                     }
                 });
             }
+            // =========================
+            // TAMBAHAN: HITUNG RATE ASURANSI UNTUK SEMUA JENIS KREDIT (Modal Kerja & Pensiun)
+            // =========================
+
+            // get jenis kredit aman walaupun dropdown disabled
+            function getJenisKredit() {
+                return $('#jenis_kredit').val() || $('input[name="jenis_kredit"]').val();
+                }
+
+            // Recalculate rate + biaya asuransi dari sumber yang sama
+            function hitungRateAsuransi() {
+            var plafond_input = plafond.getRawValue() || 0;
+            var jangkaWaktu = $('#jangka_waktu').val() || 0;
+            var usia = $('#usia').val() || 0;
+
+            // stop jika data belum lengkap
+            if (!plafond_input || !jangkaWaktu || !usia) {
+            return;
+            }
+
+            get_asuransi_rate(parseFloat(jangkaWaktu), parseFloat(usia)).then(function(rate) {
+            rateAsuransi = rate;
+
+            var biayaAsuransi = plafond_input / 1000 * rateAsuransi;
+
+            // set ke field rate_asuransi & biaya_asuransi
+            rate_asuransi.setRawValue(rateAsuransi.toFixed(2));
+            iaya_asuransi.setRawValue(biayaAsuransi.toFixed(2));
+
+            // total diterima ikut update
+            hitungTotalDiterima();
+        });
+    }
+
+        // Trigger rate ketika field berubah (khusus untuk asuransi)
+        $('#plafond, #jangka_waktu, #tanggal_lahir, #usia, #jenis_kredit').on('change input', function () {
+        hitungRateAsuransi();
+    });
+
+        // supaya pas pertama kali load juga langsung jalan
+        setTimeout(function(){
+        hitungRateAsuransi();
+    }, 200);
+
         });
     </script>
 @endsection
