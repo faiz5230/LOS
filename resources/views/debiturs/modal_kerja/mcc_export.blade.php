@@ -10,6 +10,7 @@
     }
   }
   $sim = $simulation ?? ($debitur->simulation ?? null);
+  $totalAsuransi = ($debitur->simulation->biaya_asuransi ?? 0) + ($debitur->simulation->ass_krd ?? 0);
 @endphp
 
 <table cellspacing="0" cellpadding="0" style="border-collapse:collapse;table-layout:fixed;width:1268px;">
@@ -103,7 +104,7 @@
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;border-left:1px solid #000;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
 <td colspan="2" style="font-family:Arial Black;font-size:8.0px;text-align:left;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">NPWP</td>
 <td style="font-family:Arial Black;font-size:8.0px;text-align:center;vertical-align:center;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">:</td>
-<td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">{{ $debitur->no_npwp_perusahaan ?? '' }}</td>
+<td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">'{{ $debitur->no_npwp_perusahaan ?? '' }}</td>
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;border-right:1px solid #000;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
@@ -240,7 +241,7 @@
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">PLAFOND</td>
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
 <td style="font-family:Arial Black;font-size:8.0px;text-align:center;vertical-align:center;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">:</td>
-<td colspan="3" style="font-family:Arial Black;font-size:8.0px;text-align:left;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
+<td colspan="1" style="font-family:Arial Black;font-size:8.0px;text-align:left;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">Rp {{ number_format((int)($debitur->simulation->plafond ?? 0), 0, ',', '.') }}</td>
 </tr>
 <tr style="height:20px">
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;border-left:1px solid #000;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
@@ -255,7 +256,7 @@
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">JANGKA WAKTU</td>
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
 <td style="font-family:Arial Black;font-size:8.0px;text-align:center;vertical-align:center;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">:</td>
-<td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
+<td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">{{ $debitur->simulation->jangka_waktu ?? ""}} Bulan </td>
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
 </tr>
 <tr style="height:20px">
@@ -271,7 +272,7 @@
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">SUKU BUNGA</td>
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
 <td style="font-family:Arial Black;font-size:8.0px;text-align:center;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">:</td>
-<td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
+<td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">{{ number_format((int) ($debitur->simulation?->bunga_effektif ?? 0)) }} &nbsp; % Effektif</td>
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
 </tr>
 <tr style="height:20px">
@@ -303,7 +304,7 @@
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">ANGSURAN</td>
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
 <td style="font-family:Arial Black;font-size:8.0px;text-align:center;vertical-align:center;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">:</td>
-<td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
+<td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">Rp {{ number_format((int)($debitur->simulation->angsuran ?? 0), 0, ',', '.') }}</td>
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
 </tr>
 <tr style="height:20px">
@@ -351,7 +352,7 @@
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">BIAYA ADM</td>
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
 <td style="font-family:Arial Black;font-size:8.0px;text-align:center;vertical-align:center;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">:</td>
-<td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
+<td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">Rp {{ number_format((int)($debitur->simulation->biaya_administrasi ?? 0), 0, ',', '.') }}</td>
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
 </tr>
 <tr style="height:20px">
@@ -367,7 +368,7 @@
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">BIAYA ASURANSI</td>
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
 <td style="font-family:Arial Black;font-size:8.0px;text-align:center;vertical-align:center;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">:</td>
-<td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
+<td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">Rp {{ $totalAsuransi > 0 ? number_format($totalAsuransi, 0, ',', '.') : '-' }}</td>
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
 </tr>
 <tr style="height:20px">
@@ -383,7 +384,7 @@
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">BIAYA NOTARIS</td>
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
 <td style="font-family:Arial Black;font-size:8.0px;text-align:center;vertical-align:center;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">:</td>
-<td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
+<td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">Rp {{ number_format((int)($debitur->simulation->biaya_notaris ?? 0), 0, ',', '.') }}</td>
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
 </tr>
 <tr style="height:20px">
@@ -399,7 +400,7 @@
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">BIAYA MATERAI</td>
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
 <td style="font-family:Arial Black;font-size:8.0px;text-align:center;vertical-align:center;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">:</td>
-<td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
+<td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">Rp {{ number_format((int)($debitur->simulation->biaya_materai ?? 0), 0, ',', '.') }}</td>
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
 </tr>
 <tr style="height:20px">
@@ -447,7 +448,7 @@
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">BUNGA</td>
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
 <td style="font-family:Arial Black;font-size:8.0px;text-align:center;vertical-align:center;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">:</td>
-<td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
+<td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">Rp {{ number_format((int)($debitur->simulation->bunga ?? 0), 0, ',', '.') }}</td>
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
 </tr>
 <tr style="height:20px">
@@ -629,7 +630,7 @@
 <td colspan="16" style="font-family:Arial Black;font-size:8.0px;text-align:center;white-space:pre-wrap;border-left:1px solid #000;border-right:1px solid #000;border-top:1px solid #000;padding:2px;overflow:hidden;word-break:break-word">TANGGAPAN KREDIT KOMMITTEE</td>
 </tr>
 <tr style="height:20px">
-<td colspan="3" style="font-family:Arial Black;font-size:8.0px;text-align:center;white-space:pre-wrap;border-left:1px solid #000;border-right:1px solid #000;border-top:1px solid #000;border-bottom:1px solid #000;padding:2px;overflow:hidden;word-break:break-word">PE BISNIS</td>
+<td colspan="3" style="font-family:Arial Black;font-size:8.0px;text-align:center;white-space:pre-wrap;border-left:1px solid #000;border-right:1px solid #000;border-top:1px solid #000;border-bottom:1px solid #000;padding:2px;overflow:hidden;word-break:break-word">KADIV BISNIS</td>
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;border-top:1px solid #000;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;border-top:1px solid #000;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;border-top:1px solid #000;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
@@ -723,7 +724,7 @@
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;border-bottom:1px solid #000;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
 </tr>
 <tr style="height:20px">
-<td colspan="3" style="font-family:Arial Black;font-size:8.0px;text-align:center;white-space:pre-wrap;border-left:1px solid #000;border-right:1px solid #000;border-top:1px solid #000;border-bottom:1px solid #000;padding:2px;overflow:hidden;word-break:break-word">DIREKTUR UTAMA</td>
+<td colspan="3" style="font-family:Arial Black;font-size:8.0px;text-align:center;white-space:pre-wrap;border-left:1px solid #000;border-right:1px solid #000;border-top:1px solid #000;border-bottom:1px solid #000;padding:2px;overflow:hidden;word-break:break-word">DIREKTUR BISNIS</td>
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;border-top:1px solid #000;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;border-top:1px solid #000;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>
 <td style="font-family:Arial Black;font-size:8.0px;white-space:pre-wrap;border-top:1px solid #000;padding:2px;overflow:hidden;word-break:break-word">&nbsp;</td>

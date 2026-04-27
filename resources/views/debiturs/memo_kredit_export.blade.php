@@ -22,6 +22,61 @@
         </tr>
     </thead>
     <tbody>
+        @php
+            /**
+             * Mapping data (Memo Kredit)
+             * Prioritas: relasi $debitur->simulation (jika ada) lalu fallback ke field $debitur.
+             */
+            $sim = $debitur->simulation ?? null;
+
+            // Format Rupiah angka: 1000000 -> 1.000.000
+            if (!function_exists('fmt_rp_angka')) {
+                function fmt_rp_angka($value): string {
+                    if ($value === null || $value === '') return '';
+                    // hilangkan pemisah ribuan jika string "1.000.000"
+                    if (is_string($value)) {
+                        $clean = str_replace(['.', ','], ['', '.'], $value);
+                        $value = is_numeric($clean) ? (float)$clean : 0;
+                    }
+                    $n = is_numeric($value) ? (float)$value : 0;
+                    return number_format($n, 0, ',', '.');
+                }
+            }
+
+            // Helper ambil nilai dari simulation lalu fallback debitur
+            if (!function_exists('pick_sim')) {
+                function pick_sim($sim, $debitur, string $key, $default = null) {
+                    if ($sim && isset($sim->{$key}) && $sim->{$key} !== null && $sim->{$key} !== '') {
+                        return $sim->{$key};
+                    }
+                    if (isset($debitur->{$key}) && $debitur->{$key} !== null && $debitur->{$key} !== '') {
+                        return $debitur->{$key};
+                    }
+                    return $default;
+                }
+            }
+
+            // Nilai yang sering dipakai
+            $memoNomor = function_exists('getNomorUrut') ? getNomorUrut($debitur->id, 'MEMO_KREDIT') : ($debitur->nomor_memo ?? '-');
+            $aoNama = optional($debitur->accountOfficer)->nama ?? ($debitur->account_officer ?? '');
+
+            $plafond = pick_sim($sim, $debitur, 'plafond', pick_sim($sim, $debitur, 'jumlah_permohonan_kredit', 0));
+            $jangkaWaktu = pick_sim($sim, $debitur, 'jangka_waktu', '');
+            $bungaFlat = pick_sim($sim, $debitur, 'bunga_flat', '');
+            $angsuran = pick_sim($sim, $debitur, 'angsuran', '');
+            $biayaProvisi = pick_sim($sim, $debitur, 'biaya_provisi', 0);
+            $biayaAdministrasi = pick_sim($sim, $debitur, 'biaya_administrasi', pick_sim($sim, $debitur, 'biaya_administrasi', 0));
+            $biayaAsuransi = pick_sim($sim, $debitur, 'biaya_asuransi', 0);
+            $biayaMaterai = pick_sim($sim, $debitur, 'biaya_materai', 0);
+            $retensi = pick_sim($sim, $debitur, 'retensi', 0);
+            $totalAsuransi = ($debitur->simulation->biaya_asuransi ?? 0) + ($debitur->simulation->ass_krd ?? 0);
+            $tglMulai = $debitur->simulation->tanggal_realisasi ?? $debitur->tanggal ?? now();
+            $tglAkhir = $debitur->simulation->jatuh_tempo ?? now();
+            $tenor    = $debitur->simulation->jangka_waktu ?? $debitur->jangka_waktu ?? '';
+            $nomor = getNomorUrut($debitur->id, 'MEMO_KREDIT');
+            $nomor = ($nomor == '-') ? generateNomorUrut('MEMO_KREDIT', 'KRD-INST/BPR-DP') : $nomor;
+
+        @endphp
         <tr>
             <td style="border-top:1px solid #000;border-left:1px solid #000;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
                 colspan="3">Kepada</td>
@@ -38,7 +93,7 @@
                 style="border:none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
                 :</td>
             <td style="border-right:1px solid #000;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
-                colspan="10">{{ ubahFormatTanggal($debitur->tanggal) }}</td>
+                colspan="10">{{ \Carbon\Carbon::parse($debitur->tanggal ?? now())->translatedFormat('d F Y') }}</td>
         </tr>
         <tr>
             <td style="border-left:1px solid #000;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
@@ -55,7 +110,7 @@
             <td style="border-bottom:1px solid #000;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
                 :</td>
             <td style="border-bottom:1px solid #000;border-right:1px solid #000;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
-                colspan="10">{{ ucwords($debitur->account_officer) }}</td>
+                colspan="10">{{ ucwords($aoNama) }}</td>
         </tr>
         <tr>
             <td style="border:1px solid #000;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
@@ -72,7 +127,7 @@
                 style="border:none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
                 :</td>
             <td style="border-right:1px solid #000;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
-                colspan="10">{{getNomorUrut($debitur->id,"MEMO_KREDIT")}}</td>
+                colspan="10">{{ $nomor }}</td>
         </tr>
         <tr>
             <td style="border:1px solid #000;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal"
@@ -85,7 +140,7 @@
                 style="border:none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
                 :</td>
             <td style="border-right:1px solid #000;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
-                colspan="3">{{ $debitur->nama }}</td>
+                colspan="3">{{ $debitur->nama_direktur }}</td>
             <td style="border:none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
                 colspan="2">NO. REK</td>
             <td
@@ -108,7 +163,7 @@
                 style="border:none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
                 :</td>
             <td style="border-right:1px solid #000;font-family:Calibri;font-size:15px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:middle;word-break:normal"
-                colspan="4" rowspan="3">{{ convertNumberFormat($debitur->jumlah_permohonan_kredit) }}</td>
+                colspan="4" rowspan="3">{{ convertNumberFormat($plafond) }}</td>
         </tr>
         <tr>
             <td style="border-left:1px solid #000;border-width:1px;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
@@ -124,7 +179,7 @@
                 style="border:none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
                 :</td>
             <td style="border-right:1px solid #000;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word"
-                colspan="4" rowspan="2">{{ formatRupiah($debitur->jumlah_permohonan_kredit) }}</td>
+                colspan="4" rowspan="2">{{ formatRupiah($plafond) }}</td>
         </tr>
         <tr>
             <td style="border:none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
@@ -195,7 +250,7 @@
                 :</td>
             <td
                 style="border:none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
-                {{ $debitur->simulation->jangka_waktu }}</td>
+                {{ $jangkaWaktu }}</td>
             <td style="border:none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
                 colspan="2">Bulan</td>
             <td style="border-left:1px solid #000;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
@@ -213,7 +268,7 @@
                 style="border:none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
                 :</td>
             <td style="border:none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
-                colspan="2"></td>
+                colspan="2">{{ \Carbon\Carbon::parse($tglAkhir)->locale('id')->translatedFormat('d F Y') }}</td>
             <td
                 style="border:none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
             </td>
@@ -235,7 +290,7 @@
                 style="border:none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
                 :</td>
             <td style="border:none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
-                colspan="2">{{ $debitur->simulation->bunga_flat }} %</td>
+                colspan="2">{{ $bungaFlat }} %</td>
             <td
                 style="border:none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
                 (Flatt)</td>
@@ -257,7 +312,7 @@
                 style="border:none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
                 :</td>
             <td style="border:none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
-                colspan="2">   {{ convertNumberFormat($debitur->angsuran) }} </td>
+                colspan="2">   {{ convertNumberFormat($angsuran) }} </td>
             <td
                 style="border:none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
             </td>
@@ -281,7 +336,7 @@
                 :</td>
             <td
                 style="border:none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
-                colspan="3">Rp. {{ convertNumberFormat($debitur->simulation->biaya_provisi) }}</td>
+                colspan="3">Rp. {{ convertNumberFormat($biayaProvisi) }}</td>
             
             <td style="border-right:1px solid #000;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
                 colspan="7" rowspan="4">
@@ -296,7 +351,7 @@
                 :</td>
             <td
                 style="border:none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
-                colspan="3">Rp. {{ convertNumberFormat($debitur->simulation->biaya_administrasi) }}</td>
+                colspan="3">Rp. {{ convertNumberFormat($biayaAdministrasi) }}</td>
             
         </tr>
         <tr>
@@ -307,7 +362,7 @@
                 :</td>
             <td
                 style="border:none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
-                colspan="3">Rp. {{ convertNumberFormat($debitur->simulation->biaya_asuransi) }}</td>
+                colspan="3">Rp. {{ convertNumberFormat($biayaAsuransi) }}</td>
         </tr>
         <tr>
             <td style="border-left:1px solid #000;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
@@ -317,7 +372,7 @@
                 :</td>
             <td
                 style="border:none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
-                colspan="3">Rp. {{ convertNumberFormat($debitur->simulation->biaya_materai) }}</td>
+                colspan="3">Rp. {{ convertNumberFormat($biayaMaterai) }}</td>
         </tr>
         <tr>
             <td style="border:1px solid #000;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
@@ -342,7 +397,7 @@
                 style="border:none;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
                 :</td>
             <td style="border:none;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
-                colspan="3"></td>
+                colspan="3">{{ \Carbon\Carbon::parse($debitur->tanggal ?? now())->translatedFormat('d F Y') }}</td>
             <td style="border:1px solid #000;border-style:solid;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal"
                 colspan="5">DROPPING KREDIT</td>
             <td style="border:1px solid #000;border-style:solid;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal"
@@ -370,7 +425,7 @@
                 &nbsp;&nbsp;<br> &nbsp;&nbsp; <br> &nbsp;&nbsp; <br> &nbsp;&nbsp; <br> &nbsp;&nbsp; <br> &nbsp;&nbsp; <br> &nbsp;&nbsp; <br> &nbsp;&nbsp; <br>
             </td>
             <td style="border:1px solid #000;border-style:solid;font-family:Calibri;font-size:15px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:middle;word-break:normal"
-                colspan="2" rowspan="11">TAB. DUTA</td>
+                colspan="2" rowspan="11">TAB. HALDEN</td>
             <td style="border:none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
                 colspan="3"> &nbsp;&nbsp; </td>
             <td style="border-right:1px solid #000;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
@@ -378,9 +433,9 @@
         </tr>
         <tr>
             <td style="border:none;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
-                colspan="3">TAB. DUTA</td>
+                colspan="3">TAB. HALDEN</td>
             <td style="border-right:1px solid #000;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
-                colspan="2">Rp.</td>
+                colspan="2">Rp. {{ number_format($debitur->simulation->tabungan_wajib ?? 0,0,',','.') }},-</td>
         </tr>
         <tr>
             <td style="border:none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
@@ -392,7 +447,7 @@
             <td style="border:none;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
                 colspan="3">PEND. ADM KRD</td>
             <td style="border-right:1px solid #000;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
-                colspan="2">Rp.</td>
+                colspan="2">Rp. {{ number_format($debitur->simulation->biaya_administrasi ?? 0,0,',','.') }},-</td>
         </tr>
         <tr>
             <td style="border:none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
@@ -404,7 +459,7 @@
             <td style="border:none;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
                 colspan="3">PEND. PROVISI</td>
             <td style="border-right:1px solid #000;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
-                colspan="2">Rp.</td>
+                colspan="2">Rp. {{ number_format($debitur->simulation->biaya_provisi ?? 0,0,',','.') }},-</td>
         </tr>
         <tr>
             <td style="border:none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
@@ -416,7 +471,7 @@
             <td style="border:none;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
                 colspan="3">BY. MATERAI</td>
             <td style="border-right:1px solid #000;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
-                colspan="2">Rp.</td>
+                colspan="2">Rp. {{ number_format($debitur->simulation->biaya_materai ?? 0,0,',','.') }},-</td>
         </tr>
         <tr>
             <td style="border:none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
@@ -438,7 +493,7 @@
             <td style="border:none;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
                 colspan="3">TTP. ASURANSI</td>
             <td style="border-right:1px solid #000;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
-                colspan="2">Rp.</td>
+                colspan="2">Rp. {{ $totalAsuransi > 0 ? number_format($totalAsuransi, 0, ',', '.') : '-' }}</td>
         </tr>
         <tr>
             <td style="border:1px solid #000;border-style:solid;font-family:Calibri;font-size:11px;font-weight:bold;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"

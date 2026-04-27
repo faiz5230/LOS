@@ -219,6 +219,15 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
+                                <div class="form-group">
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-text col-4">Nopen</span>
+                                        <input type="text" name="nopen" class="form-control"
+                                            value="{{ old('nopen', $debitur->nopen) }}">
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
 
@@ -320,7 +329,7 @@
                                     <div class="input-group input-group-sm">
                                         <span class="input-group-text col-4">Jumlah Permohonan Kredit</span>
                                         <input type="text" name="jumlah_permohonan_kredit" class="form-control"
-                                            value="{{ old('jumlah_permohonan_kredit', $debitur->jumlah_permohonan_kredit) }}">
+                                            value="{{ old('jumlahPermohonan_kredit', $debitur->jumlah_permohonan_kredit) }}">
                                     </div>
                                 </div>
                             </div>

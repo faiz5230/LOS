@@ -103,7 +103,7 @@
                                     <td class="name">Tonya Noble</td>
                                     <td class="company_name">Nesta Technologies</td>
                                     <!-- <td class="designation">Lead Designer / Developer</td> -->
-                                    <td class="email_id">tonyanoble@velzon.com</td>
+                                    <td class="email_id">tonyanoble@faiz.com</td>
                                     <td class="phone">414-453-5725</td>
                                     <td class="lead_score">154</td>
                                     <td class="tags">
@@ -334,7 +334,7 @@
                             </tr>
                             <tr>
                                 <td class="fw-medium" scope="row">Email ID</td>
-                                <td>tonyanoble@velzon.com</td>
+                                <td>tonyanoble@faiz.com</td>
                             </tr>
                             <tr>
                                 <td class="fw-medium" scope="row">Phone No</td>

@@ -1,5 +1,7 @@
 @extends('layouts.master')
-
+@php
+$sim = $simulation ?? \App\Models\Simulation::find(request()->route('id') ?? request()->route('simulation_id') ?? request('simulation_id'));
+@endphp
 @section('title')
     Data Debitur Pensiun
 @endsection
@@ -65,7 +67,7 @@
                                                         <div class="form-group">
                                                             <div class="input-group input-group-sm">
                                                                 <span class="input-group-text col-4">Permohonan Kredit</span>
-                                                                <input type="text" name="permohonan_kredit" class="form-control" value="{{ old('permohonan_kredit', $simulation->jenis_kredit ?? '') }}">
+                                                                <input type="text" name="permohonan_kredit" class="form-control"value="{{ old('permohonan_kredit', $simulation->jenis_kredit ?? '') }}" readonly>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -75,7 +77,7 @@
                                                         <div class="form-group">
                                                             <div class="input-group input-group-sm">
                                                                 <span class="input-group-text col-4">Tanggal</span>
-                                                                <input type="date" name="tanggal" class="form-control" value="{{ old('tanggal', $simulation->tanggal_realisasi ?? '') }}">
+                                                                <input type="date" name="tanggal" class="form-control"value="{{ old('tanggal', $simulation->tanggal_realisasi ?? '') }}" readonly>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -96,7 +98,7 @@
                                                         <div class="form-group">
                                                             <div class="input-group input-group-sm">
                                                                 <span class="input-group-text col-4">Nama Pensiun</span>
-                                                                <input type="text" name="nama_pensiun" class="form-control" value="{{ old('nama_pensiun', $simulation->nama ?? '')}}">
+                                                                <input type="text" name="nama_pensiun" class="form-control"value="{{ old('nama_pensiun', $simulation->nama ?? '') }}" readonly>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -219,6 +221,14 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
+                                                        <div class="form-group">
+                                                            <div class="input-group input-group-sm">
+                                                                <span class="input-group-text col-4">Nopen</span>
+                                                                <input type="text" name="nopen" class="form-control" value="{{ old('nopen') }}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -338,7 +348,7 @@
                                                         <div class="form-group">
                                                             <div class="input-group input-group-sm">
                                                                 <span class="input-group-text col-4">Jumlah Permohonan Kredit</span>
-                                                                <input type="text" name="jumlah_permohonan_kredit" class="form-control" value="{{ old('jumlah_permohonan_kredit', isset($simulation) ? number_format($simulation->plafond, 0, ',', '.') : '') }}">
+                                                                <input type="text" name="jumlah_permohonan_kredit" class="form-control" value="{{ old('jumlah_permohonan_kredit', isset($simulation) ? number_format($simulation->plafond, 0, ',', '.') : '') }}"readonly>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -379,7 +389,7 @@
                                                         <div class="form-group">
                                                             <div class="input-group input-group-sm">
                                                                 <span class="input-group-text col-4">Pemohon</span>
-                                                                <input type="text" name="nama_pensiun" class="form-control" value="{{ old('nama_pensiun', $simulation->nama ?? '')}}">
+                                                                <input type="text" name="pemohon" class="form-control" value="{{ old('pemohon', $simulation->nama ?? '') }}" readonly>
                                                             </div>
                                                         </div>
                                                     </div>

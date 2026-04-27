@@ -46,6 +46,10 @@ class DebiturModalKerja extends Model
         'jangka_waktu',
         'tujuan_penggunaan',
         'account_officer',
+        'nama_pasangan',
+        'alamat_pasangan',
+        'nik_pasangan',
+        'pekerjaan_pasangan',
         'pemohon',
     ];
 

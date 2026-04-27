@@ -21,7 +21,7 @@
                                     <div>
                                         <h4 class="fw-bold">Product Designer</h4>
                                         <div class="hstack gap-3 flex-wrap">
-                                            <div><i class="ri-building-line align-bottom me-1"></i> BANK DUTA PASUNDAN</div>
+                                            <div><i class="ri-building-line align-bottom me-1"></i> BANK HALDEN PRIME</div>
                                             <div class="vr"></div>
                                             <div><i class="ri-map-pin-2-line align-bottom me-1"></i> Zuweihir, UAE</div>
                                             <div class="vr"></div>
@@ -161,7 +161,7 @@
                         <a href="#!">
                             <h5>Web designer</h5>
                         </a>
-                        <p class="text-muted">BANK DUTA PASUNDAN</p>
+                        <p class="text-muted">BANK HALDEN PRIME</p>
 
                         <div class="d-flex gap-4 mb-3">
                             <div>
@@ -200,7 +200,7 @@
                         <a href="#!">
                             <h5>Marketing Director</h5>
                         </a>
-                        <p class="text-muted">BANK DUTA PASUNDAN</p>
+                        <p class="text-muted">BANK HALDEN PRIME</p>
 
                         <div class="d-flex gap-4 mb-3">
                             <div>
@@ -238,7 +238,7 @@
                         <a href="#!">
                             <h5>Product Sales Specialist</h5>
                         </a>
-                        <p class="text-muted">BANK DUTA PASUNDAN</p>
+                        <p class="text-muted">BANK HALDEN PRIME</p>
 
                         <div class="d-flex gap-4 mb-3">
                             <div>
@@ -276,7 +276,7 @@
                         <a href="#!">
                             <h5>Web designer</h5>
                         </a>
-                        <p class="text-muted">BANK DUTA PASUNDAN</p>
+                        <p class="text-muted">BANK HALDEN PRIME</p>
 
                         <div class="d-flex gap-4 mb-3">
                             <div>
@@ -315,7 +315,7 @@
                         <a href="#!">
                             <h5>Marketing Director</h5>
                         </a>
-                        <p class="text-muted">BANK DUTA PASUNDAN</p>
+                        <p class="text-muted">BANK HALDEN PRIME</p>
 
                         <div class="d-flex gap-4 mb-3">
                             <div>
@@ -353,7 +353,7 @@
                         <a href="#!">
                             <h5>Product Sales Specialist</h5>
                         </a>
-                        <p class="text-muted">BANK DUTA PASUNDAN</p>
+                        <p class="text-muted">BANK HALDEN PRIME</p>
 
                         <div class="d-flex gap-4 mb-3">
                             <div>
@@ -396,7 +396,7 @@
                             </tr>
                             <tr>
                                 <td class="fw-medium">Company Name</td>
-                                <td>BANK DUTA PASUNDAN</td>
+                                <td>BANK HALDEN PRIME</td>
                             </tr>
                             <tr>
                                 <td class="fw-medium">Location</td>
@@ -449,7 +449,7 @@
                 </div>
                 <div class="text-center">
                     <a href="#!">
-                        <h5 class="mt-3">BANK DUTA PASUNDAN</h5>
+                        <h5 class="mt-3">BANK HALDEN PRIME</h5>
                     </a>
                     <p class="text-muted">IT Department</p>
                 </div>

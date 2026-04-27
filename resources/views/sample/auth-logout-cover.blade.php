@@ -67,7 +67,7 @@
 
                                             <div class="mt-4 pt-2">
                                                 <h5>You are Logged Out</h5>
-                                                <p class="text-muted">Thank you for using <span class="fw-semibold">velzon</span> admin template</p>
+                                                <p class="text-muted">Thank you for using <span class="fw-semibold">faiz</span> admin template</p>
                                                 <div class="mt-4">
                                                     <a href="auth-signin-basic" class="btn btn-success w-100">Sign In</a>
                                                 </div>
@@ -95,7 +95,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="text-center">
-                                <p class="mb-0">&copy; <script>document.write(new Date().getFullYear())</script> SISTEM APLIKASI KREDIT -</i> by BANK DUTA PASUNDAN</p>
+                                <p class="mb-0">&copy; <script>document.write(new Date().getFullYear())</script> SISTEM APLIKASI KREDIT -</i> by BANK HALDEN PRIME</p>
                             </div>
                         </div>
                     </div>

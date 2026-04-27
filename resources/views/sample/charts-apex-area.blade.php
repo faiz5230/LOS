@@ -174,11 +174,11 @@
 @section('script')
     <script src="{{ URL::asset('build/libs/apexcharts/apexcharts.min.js') }}"></script>
     <!-- for basic area chart -->
-    <script src="https://img.themesbrand.com/velzon/apexchart-js/stock-prices.js"></script>
+    <script src="https://img.themesbrand.com/faiz/apexchart-js/stock-prices.js"></script>
     <!-- for github style chart -->
-    <script src="https://img.themesbrand.com/velzon/apexchart-js/github-data.js"></script>
+    <script src="https://img.themesbrand.com/faiz/apexchart-js/github-data.js"></script>
     <!-- for irregular timeseries chart -->
-    <script src="https://img.themesbrand.com/velzon/apexchart-js/irregular-data-series.js"></script>
+    <script src="https://img.themesbrand.com/faiz/apexchart-js/irregular-data-series.js"></script>
     <script src="{{ URL::asset('build/libs/moment/moment.js') }}"></script>
     <script src="{{ URL::asset('build/js/pages/apexcharts-area.init.js') }}"></script>
     <script src="{{ URL::asset('build/js/app.js') }}"></script>

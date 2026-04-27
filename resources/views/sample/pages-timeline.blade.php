@@ -92,7 +92,7 @@
                         <div class="date fs-13">10 Jul 2021</div>
                         <div class="content">
                             <h5 class="fs-14">Create new project buildng product</h5>
-                            <p class="text-muted">Every team project can have a velzon. Use the velzon to share
+                            <p class="text-muted">Every team project can have a faiz. Use the faiz to share
                                 information with your team to understand and contribute to your project.</p>
                             <div class="avatar-group mb-2">
                                 <a href="javascript: void(0);" class="avatar-group-item" data-bs-toggle="tooltip"
@@ -145,7 +145,7 @@
                         <i class="icon ri-user-smile-line"></i>
                         <div class="date fs-13">10 Feb 2021</div>
                         <div class="content">
-                            <h5 class="fs-14">Velzon admin dashboard templates layout upload</h5>
+                            <h5 class="fs-14">Faiz admin dashboard templates layout upload</h5>
                             <p class="text-muted">Powerful, clean & modern responsive bootstrap 5 admin template. The
                                 maximum file size for uploads in this demo :</p>
                             <div class="row border border-dashed rounded gx-2 p-2">
@@ -280,7 +280,7 @@
                             <div class="col-12">
                                 <div class="timeline-box">
                                     <div class="timeline-text">
-                                        <h5 class="fs-15">Velzon - Project Discussion</h5>
+                                        <h5 class="fs-15">Faiz - Project Discussion</h5>
                                         <p class="text-muted mb-0">The purpose of the discussion is to interpret and
                                             describe the significance of your findings in light of what was already known
                                             about the research problem being investigated, and to explain any new

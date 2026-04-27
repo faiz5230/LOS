@@ -149,13 +149,13 @@ class MasterDebiturController extends Controller
                     ->orWhere('no_ijasah', 'LIKE', '%' . $search . '%')
                     ->orWhere('nama_istri_suami', 'LIKE', '%' . $search . '%')
                     ->orWhere('jumlah_tanggungan', 'LIKE', '%' . $search . '%')
-                    ->orWhere('nama_perusahaan', 'LIKE', '%' . $search . '%')
+                    ->orWhere('nama_usaha', 'LIKE', '%' . $search . '%')
                     ->orWhere('alamat_perusahaan', 'LIKE', '%' . $search . '%')
                     ->orWhere('lama_bekerja', 'LIKE', '%' . $search . '%')
                     ->orWhere('no_telepon', 'LIKE', '%' . $search . '%')
                     ->orWhere('nama_kontak_tidak_serumah', 'LIKE', '%' . $search . '%')
                     ->orWhere('hubungan', 'LIKE', '%' . $search . '%')
-                    ->orWhere('alamat', 'LIKE', '%' . $search . '%')
+                    ->orWhere('alamat_saudara', 'LIKE', '%' . $search . '%')
                     ->orWhere('no_id_pegawai', 'LIKE', '%' . $search . '%')
                     ->orWhere('bidang_usaha', 'LIKE', '%' . $search . '%')
                     ->orWhere('jabatan', 'LIKE', '%' . $search . '%')
@@ -185,6 +185,24 @@ class MasterDebiturController extends Controller
 
     public function store(Request $request)
     {
+            // =========================================================
+    // GATE: kalau form ini sebenarnya untuk UMKM, lempar ke UMKM
+    // (tidak mengganggu flow debitur lain)
+    // =========================================================
+    if ($request->has('redirect_to_umkm') && $request->input('redirect_to_umkm') == 1) {
+        // pastikan punya id_simulation karena UMKM create/store butuh itu
+        $simId = $request->input('id_simulation');
+
+        // kalau id_simulation tidak ada, fallback ke input route yang lama
+        if (!$simId) {
+            return redirect()->route('debitur-umkm.index')
+                ->with('error', 'id_simulation tidak ditemukan untuk UMKM.');
+        }
+
+        // langsung arahkan ke form create UMKM (atau bisa langsung store UMKM, tapi paling aman ke create dulu)
+        return redirect()->route('debitur-umkm.create', $simId);
+    }
+
         // Validate the request data
         $validatedData = $request->validate([
             'tanggal' => 'required',
@@ -213,7 +231,7 @@ class MasterDebiturController extends Controller
             //'jumlah_tanggungan' => 'required',
             //'pekerjaan_pasangan' => 'required',
             //'nama_perusahaan_pasangan' => 'required',
-            'nama_perusahaan' => 'required',
+            'nama_usaha' => 'required',
             //'alamat_perusahaan_pasangan' => 'required',
             'alamat_perusahaan' => 'required',
             //'lama_bekerja_pasangan' => 'required',
@@ -222,7 +240,7 @@ class MasterDebiturController extends Controller
             'no_telepon' => 'required',
             'nama_kontak_tidak_serumah' => 'required',
             'hubungan' => 'required',
-            'alamat' => 'required',
+            'alamat_saudara' => 'nullable|string',
             'no_telepon_kontak_tidak_serumah' => 'required',
             'no_id_pegawai' => 'required',
             'bidang_usaha' => 'required',
@@ -322,6 +340,17 @@ class MasterDebiturController extends Controller
 
     public function update(Request $request, $id)
     {
+            if ($request->has('redirect_to_umkm') && $request->input('redirect_to_umkm') == 1) {
+        $simId = $request->input('id_simulation');
+
+        if (!$simId) {
+            return redirect()->route('debitur-umkm.index')
+                ->with('error', 'id_simulation tidak ditemukan untuk UMKM.');
+        }
+
+        return redirect()->route('debitur-umkm.edit', $id);
+    }
+
         $validatedData = $request->validate([
             'tanggal' => 'required',
             'nama' => 'required',
@@ -349,7 +378,7 @@ class MasterDebiturController extends Controller
             //'jumlah_tanggungan' => 'required',
             //'pekerjaan_pasangan' => 'required',
             //'nama_perusahaan_pasangan' => 'required',
-            'nama_perusahaan' => 'required',
+            'nama_usaha' => 'required',
             //'alamat_perusahaan_pasangan' => 'required',
             'alamat_perusahaan' => 'required',
             //'lama_bekerja_pasangan' => 'required',
@@ -358,7 +387,7 @@ class MasterDebiturController extends Controller
             'no_telepon' => 'required',
             'nama_kontak_tidak_serumah' => 'required',
             'hubungan' => 'required',
-            'alamat' => 'required',
+            'alamat_saudara' => 'nullable|string',
             'no_telepon_kontak_tidak_serumah' => 'required',
             'no_id_pegawai' => 'required',
             'bidang_usaha' => 'required',

@@ -29,51 +29,38 @@
                         <a class="btn btn-primary" href="{{ route('debitur-pensiun.export', $debitur->id) }}">
                             <i data-feather="download"></i> Download Excel
                         </a>
-                        <a href="{{ route('debiturs_memo_kredit_pensiun_export', $debitur->id) }}" 
+                        <a href="{{ route('debitur-pensiun.export.memo_kredit', $debitur->id) }}" 
                             class="btn btn-primary"><i class="fas fa-download"></i>Memo Droping
                         </a>
-                        <a href="{{ route('debiturs_sppk_export', $debitur->id) }}"
+                        <a href="{{ route('debitur-pensiun.export.sppk', $debitur->id) }}"
                            class="btn btn-primary"><i class="fas fa-download"></i> Export SPPK     
                         </a>
-                        <a href="{{ route('debiturs_sttu_export', $debitur->id) }}"
+                        <a href="{{ route('debitur-pensiun.export.sttu', $debitur->id) }}"
                            class="btn btn-primary"><i class="fas fa-download"></i> Export STTU   
                         </a>
-                        <a href="{{ route('debiturs_pk_snd_sim_export', $debitur->id) }}"
+                        <a href="{{ route('debitur-pensiun.export.pk_snd_sim', $debitur->id) }}"
                            class="btn btn-primary"><i class="fas fa-download"></i> PK Sendiri   
                         </a>
-                        <a href="{{ route('debiturs_pk_kredit_pasangan_export', $debitur->id) }}"
+                        <!--<a href="{{ route('debitur-pensiun.export.pk_kredit_pasangan', $debitur->id) }}"
                            class="btn btn-primary"><i class="fas fa-download"></i> PK Pasangan   
                         </a>
-                        <a href="{{ route('debiturs_surat_kuasa_export', $debitur->id) }}"
+                        <a href="{{ route('debitur-pensiun.export.surat_kuasa', $debitur->id) }}"
                            class="btn btn-primary"><i class="fas fa-download"></i> Surat Kuasa  
                         </a>
-                        <a href="{{ route('debiturs_surat_askep_export', $debitur->id) }}"
+                        <a href="{{ route('debitur-pensiun.export.surat_askep', $debitur->id) }}"
                            class="btn btn-primary"><i class="fas fa-download"></i> Surat Askep
                         </a>
-                        <a href="{{ route('debiturs_pk_kredit_perusahaan_export', $debitur->id) }}"
+                        <a href="{{ route('debitur-pensiun.export.pk_kredit_perusahaan', $debitur->id) }}"
                            class="btn btn-primary"><i class="fas fa-download"></i> PK Kredit Perusahaan
-                        </a>
-                        
-                        </div>
-                        <!-- BARIS 2 (kunci posisinya: kasih spacer sampai sejajar di bawah Download Excel) -->
-                        <div class="w-100"></div>
-
-                        <!-- kolom untuk "Kembali" biar Memo Fasilitas Kredit tepat di bawah Download Excel -->
-                        <div class="col-auto">
-                        <!-- spacer selebar tombol Kembali -->
-                        <div style="width: 90px;"></div>
-                        </div>
-
-                        <div class="col-auto">
+                        </a>-->
     
-    
-                        <a href="{{ route('debiturs_memo_fasilitas_kredit_export', $debitur->id) }}"
+                        <a href="{{ route('debitur-pensiun.export.memo_fasilitas_kredit', $debitur->id) }}"
                            class="btn btn-primary"><i class="fas fa-download"></i> Memo Fasilitas Kredit
                         </a>
-                        <a href="{{ route('debiturs_mcc_export', $debitur->id) }}"
+                        <a href="{{ route('debitur-pensiun.export.mcc', $debitur->id) }}"
                            class="btn btn-primary"><i class="fas fa-download"></i> MCC
                         </a>
-                        <a href="{{ route('debiturs_tanda_terima_export', $debitur->id) }}"
+                        <a href="{{ route('debitur-pensiun.export.tanda_terima', $debitur->id) }}"
                            class="btn btn-primary"><i class="fas fa-download"></i> Tanda Terima
                         </a>
                         <a class="btn btn-warning" href="{{ route('debitur-pensiun.edit', $debitur->id) }}">
@@ -138,6 +125,10 @@
                                             <tr>
                                                 <td><strong>Atas Nama Agunan</strong></td>
                                                 <td>: {{ $debitur->atas_nama_agunan }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Nopen</strong></td>
+                                                <td>: {{ $debitur->nopen }}</td>
                                             </tr>
                                         </table>
                                     </div>
@@ -268,7 +259,7 @@
                                             </tr>
                                             <tr>
                                                 <td><strong>Pemohon</strong></td>
-                                                <td>: {{ $debitur->pemohon }}</td>
+                                                <td>: {{ $debitur->nama_pensiun }}</td>
                                             </tr>
                                         </table>
                                     </div>

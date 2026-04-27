@@ -283,7 +283,7 @@ Create Invoice
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th scope="row">Discount <small class="text-muted">(VELZON15)</small></th>
+                                                    <th scope="row">Discount <small class="text-muted">(FAIZ15)</small></th>
                                                     <td>
                                                         <input type="text" class="form-control bg-light border-0" id="cart-discount" placeholder="$0.00" readonly />
                                                     </td>

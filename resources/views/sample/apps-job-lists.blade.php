@@ -80,7 +80,7 @@
                 <div class="mt-3">
                     <h5 class="view-title">Product Designer</h5>
                     <div class="hstack gap-3 mb-3">
-                        <span class="text-muted"><i class="ri-building-line me-1 align-bottom"></i> <span class="view-companyname">BANK DUTA PASUNDAN</span></span>
+                        <span class="text-muted"><i class="ri-building-line me-1 align-bottom"></i> <span class="view-companyname">BANK HALDEN PRIME</span></span>
                         <span class="text-muted"><i class="ri-map-pin-2-line me-1 align-bottom"></i> <span class="view-location">United Kingdom</span></span>
                     </div>
                     <p class="text-muted view-desc">A UI/UX designer's job is to create user-friendly interfaces that enable users to understand how to use complex technical products. If you're passionate about the latest technology trends and devices, you'll find great fulfillment in being involved in the design process for the next hot gadget.</p>

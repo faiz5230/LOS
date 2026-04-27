@@ -87,100 +87,160 @@
                                     <!-- DATA PERUSAHAAN -->
                                     <div class="card">
                                         <div class="card-header align-items-center d-flex">
-                                            <h4 class="card-title mb-0 flex-grow-1">DATA PERUSAHAAN</h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">DATA PERUSAHAAN</h4>
                                         </div>
-                                        <div class="card-body">
+                                            <div class="card-body">
                                             <div class="row">
-                                                <div class="col-6">
-                                                    <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
-                                                        <div class="form-group">
-                                                            <div class="input-group input-group-sm">
-                                                                <span class="input-group-text col-4">Nama Perusahaan</span>
-                                                                <input type="text" name="nama_perusahaan" class="form-control" value="{{ old('nama_perusahaan') }}">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
-                                                        <div class="form-group">
-                                                            <div class="input-group input-group-sm">
-                                                                <span class="input-group-text col-4">Bidang Usaha</span>
-                                                                <input type="text" name="bidang_usaha_perusahaan" class="form-control" value="{{ old('bidang_usaha_perusahaan') }}">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
-                                                        <div class="form-group">
-                                                            <div class="input-group input-group-sm">
-                                                                <span class="input-group-text col-4">NIB</span>
-                                                                <input type="text" name="nib" class="form-control" value="{{ old('nib') }}">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
-                                                        <div class="form-group">
-                                                            <div class="input-group input-group-sm">
-                                                                <span class="input-group-text col-4">Akte Pendirian</span>
-                                                                <input type="text" name="akte_pendirian" class="form-control" value="{{ old('akte_pendirian') }}">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
-                                                        <div class="form-group">
-                                                            <div class="input-group input-group-sm">
-                                                                <span class="input-group-text col-4">Alamat Lengkap</span>
-                                                                <textarea name="alamat_lengkap" class="form-control" rows="3">{{ old('alamat_lengkap') }}</textarea>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
-                                                        <div class="form-group">
-                                                            <div class="input-group input-group-sm">
-                                                                <span class="input-group-text col-4">No. NPWP</span>
-                                                                <input type="text" name="no_npwp_perusahaan" class="form-control" value="{{ old('no_npwp_perusahaan') }}">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
-                                                        <div class="form-group">
-                                                            <div class="input-group input-group-sm">
-                                                                <span class="input-group-text col-4">No. Telp</span>
-                                                                <input type="text" name="no_telp_perusahaan" class="form-control" value="{{ old('no_telp_perusahaan') }}">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6">
-                                                    <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
-                                                        <h5>Data Agunan</h5>
-                                                    </div>
-                                                    <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
-                                                        <div class="form-group">
-                                                            <div class="input-group input-group-sm">
-                                                                <span class="input-group-text col-4">Agunan</span>
-                                                                <input type="text" name="agunan" class="form-control" value="{{ old('agunan') }}">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
-                                                        <div class="form-group">
-                                                            <div class="input-group input-group-sm">
-                                                                <span class="input-group-text col-4">No. Agunan</span>
-                                                                <input type="text" name="no_agunan" class="form-control" value="{{ old('no_agunan') }}">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
-                                                        <div class="form-group">
-                                                            <div class="input-group input-group-sm">
-                                                                <span class="input-group-text col-4">Atas Nama Agunan</span>
-                                                                <input type="text" name="atas_nama_agunan" class="form-control" value="{{ old('atas_nama_agunan') }}">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+
+                                    <!-- ✅ KOLOM KIRI (tetap) -->
+                                        <div class="col-6">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
+                                        <div class="form-group">
+                                        <div class="input-group input-group-sm">
+                                        <span class="input-group-text col-4">Nama Perusahaan</span>
+                                        <input type="text" name="nama_perusahaan" class="form-control" value="{{ old('nama_perusahaan') }}">
                                         </div>
-                                    </div>
+                                        </div>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
+                                        <div class="form-group">
+                                        <div class="input-group input-group-sm">
+                                        <span class="input-group-text col-4">Bidang Usaha</span>
+                                         <input type="text" name="bidang_usaha_perusahaan" class="form-control" value="{{ old('bidang_usaha_perusahaan') }}">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
+                    <div class="form-group">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text col-4">NIB</span>
+                            <input type="text" name="nib" class="form-control" value="{{ old('nib') }}">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
+                    <div class="form-group">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text col-4">Akte Pendirian</span>
+                            <input type="text" name="akte_pendirian" class="form-control" value="{{ old('akte_pendirian') }}">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
+                    <div class="form-group">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text col-4">Alamat Lengkap</span>
+                            <textarea name="alamat_lengkap" class="form-control" rows="3">{{ old('alamat_lengkap') }}</textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
+                    <div class="form-group">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text col-4">No. NPWP</span>
+                            <input type="text" name="no_npwp_perusahaan" class="form-control" value="{{ old('no_npwp_perusahaan') }}">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
+                    <div class="form-group">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text col-4">No. Telp</span>
+                            <input type="text" name="no_telp_perusahaan" class="form-control" value="{{ old('no_telp_perusahaan') }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ✅ KOLOM KANAN -->
+            <div class="col-6">
+
+    <!-- Data Agunan -->
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <h5 class="mt-0 mb-3">Data Agunan</h5>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <div class="input-group input-group-sm">
+                <span class="input-group-text col-4">Agunan</span>
+                <input type="text" name="agunan" class="form-control" value="{{ old('agunan') }}">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
+        <div class="form-group">
+            <div class="input-group input-group-sm">
+                <span class="input-group-text col-4">No. Agunan</span>
+                <input type="text" name="no_agunan" class="form-control" value="{{ old('no_agunan') }}">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
+        <div class="form-group">
+            <div class="input-group input-group-sm">
+                <span class="input-group-text col-4">Atas Nama Agunan</span>
+                <input type="text" name="atas_nama_agunan" class="form-control" value="{{ old('atas_nama_agunan') }}">
+            </div>
+        </div>
+    </div>
+
+    <!-- Data Pasangan -->
+    <div class="col-xs-12 col-sm-12 col-md-12 pt-4">
+        <h5 class="mt-0 mb-3">Data Pasangan</h5>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <div class="input-group input-group-sm">
+                <span class="input-group-text col-4">Nama Pasangan</span>
+                <input type="text" name="nama_pasangan" class="form-control" value="{{ old('nama_pasangan') }}">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
+        <div class="form-group">
+            <div class="input-group input-group-sm">
+                <span class="input-group-text col-4">NIK</span>
+                <input type="text" name="nik_pasangan" class="form-control" value="{{ old('nik_pasangan') }}">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
+        <div class="form-group">
+            <div class="input-group input-group-sm">
+                <span class="input-group-text col-4">Pekerjaan</span>
+                <input type="text" name="pekerjaan_pasangan" class="form-control" value="{{ old('pekerjaan_pasangan') }}">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
+        <div class="form-group">
+            <div class="input-group input-group-sm">
+                <span class="input-group-text col-4">Alamat</span>
+                <input type="text" name="alamat_pasangan" class="form-control" value="{{ old('alamat_pasangan') }}">
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+        </div>
+    </div>
+</div>
+
 
                                     <!-- DATA DIREKTUR -->
                                     <div class="card">

@@ -332,9 +332,10 @@
                                 <label for="biaya_materai" class="form-label">Biaya Materai<span class="required-mark">*</span></label>
                                 <div class="input-group">
                                     <span class="input-group-text">Rp</span>
-                                    <input type="text" name="biaya_materai" id="biaya_materai" 
-                                        class="form-control @error('biaya_materai') is-invalid @enderror" 
-                                        value="{{ old('biaya_materai') }}" readonly>
+                                    <input type="text" name="biaya_materai" id="biaya_materai"
+                                        class="form-control @error('biaya_materai') is-invalid @enderror"
+                                        value="{{ old('biaya_materai', $biaya_materaiValue ?? 0) }}"
+                                        {{ ($jenis_kredit ?? old('jenis_kredit')) === 'Pensiun' ? '' : 'readonly' }}>
                                     @error('biaya_materai')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -358,9 +359,10 @@
                                 <label for="tabungan_wajib" class="form-label">Tabungan Wajib<span class="required-mark">*</span></label>
                                 <div class="input-group">
                                     <span class="input-group-text">Rp</span>
-                                    <input type="text" name="tabungan_wajib" id="tabungan_wajib" 
-                                        class="form-control @error('tabungan_wajib') is-invalid @enderror" 
-                                        value="{{ old('tabungan_wajib') }}" readonly>
+                                    <input type="text" name="tabungan_wajib" id="tabungan_wajib"
+                                        class="form-control @error('tabungan_wajib') is-invalid @enderror"
+                                        value="{{ old('tabungan_wajib', $tabungan_wajibValue ?? 0) }}"
+                                        {{ ($jenis_kredit ?? old('jenis_kredit')) === 'Pensiun' ? '' : 'readonly' }}>
                                     @error('tabungan_wajib')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -938,7 +940,7 @@
 
             // set ke field rate_asuransi & biaya_asuransi
             rate_asuransi.setRawValue(rateAsuransi.toFixed(2));
-            iaya_asuransi.setRawValue(biayaAsuransi.toFixed(2));
+            biaya_asuransi.setRawValue(biayaAsuransi.toFixed(2));
 
             // total diterima ikut update
             hitungTotalDiterima();

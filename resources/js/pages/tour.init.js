@@ -1,8 +1,8 @@
 /*
 Template Name: SISTEM APLIKASI KREDIT
-Author: BANK DUTA PASUNDAN
-Website: https://BANK DUTA PASUNDAN.com/
-Contact: BANK DUTA PASUNDAN@gmail.com
+Author: BANK HALDEN PRIME
+Website: https://BANK HALDEN PRIME.com/
+Contact: BANK HALDEN PRIME@gmail.com
 File: tour init js
 */
 
@@ -42,7 +42,7 @@ if (document.querySelector('#logo-tour'))
 if (document.querySelector('#register-tour'))
     tour.addStep({
         title: 'Register your account',
-        text: 'Get your Free Velzon account now.',
+        text: 'Get your Free Faiz account now.',
         attachTo: {
             element: '#register-tour',
             on: 'bottom'
@@ -64,7 +64,7 @@ if (document.querySelector('#register-tour'))
 if (document.querySelector('#login-tour'))
     tour.addStep({
         title: 'Login your account',
-        text: 'Sign in to continue to Velzon.',
+        text: 'Sign in to continue to Faiz.',
         attachTo: {
             element: '#login-tour',
             on: 'bottom'
@@ -86,7 +86,7 @@ if (document.querySelector('#login-tour'))
 if (document.querySelector('#getproduct-tour'))
     tour.addStep({
         title: 'Get yout Product',
-        text: 'Sign in to continue to Velzon.',
+        text: 'Sign in to continue to Faiz.',
         attachTo: {
             element: '#getproduct-tour',
             on: 'bottom'
@@ -108,7 +108,7 @@ if (document.querySelector('#getproduct-tour'))
 if (document.querySelector('#thankyou-tour'))
     tour.addStep({
         title: 'Thank you !',
-        text: 'Sign in to continue to Velzon.',
+        text: 'Sign in to continue to Faiz.',
         attachTo: {
             element: '#thankyou-tour',
             on: 'bottom'

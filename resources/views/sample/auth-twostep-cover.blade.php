@@ -148,7 +148,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="text-center">
-                                <p class="mb-0">&copy; <script>document.write(new Date().getFullYear())</script> SISTEM APLIKASI KREDIT -</i> by BANK DUTA PASUNDAN</p>
+                                <p class="mb-0">&copy; <script>document.write(new Date().getFullYear())</script> SISTEM APLIKASI KREDIT -</i> by BANK HALDEN PRIME</p>
                             </div>
                         </div>
                     </div>

@@ -42,7 +42,7 @@
                             <div class="card-body p-4">
                                 <div class="text-center mt-2">
                                     <h5 class="text-primary">Forgot Password?</h5>
-                                    <p class="text-muted">Reset password with velzon</p>
+                                    <p class="text-muted">Reset password with faiz</p>
 
                                     <lord-icon src="https://cdn.lordicon.com/rhvddzym.json" trigger="loop"
                                         colors="primary:#0ab39c" class="avatar-xl">
@@ -108,7 +108,7 @@
                             <script>
                                 document.write(new Date().getFullYear())
                             </script> SISTEM APLIKASI KREDIT -</i> by
-                            BANK DUTA PASUNDAN</p>
+                            BANK HALDEN PRIME</p>
                         </div>
                     </div>
                 </div>

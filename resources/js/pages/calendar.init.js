@@ -1,8 +1,8 @@
 /*
 Template Name: SISTEM APLIKASI KREDIT
-Author: BANK DUTA PASUNDAN
-Website: https://BANK DUTA PASUNDAN.com/
-Contact: BANK DUTA PASUNDAN@gmail.com
+Author: BANK HALDEN PRIME
+Website: https://BANK HALDEN PRIME.com/
+Contact: BANK HALDEN PRIME@gmail.com
 File: Calendar init js
 */
 
@@ -208,7 +208,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         {
             id: 456,
-            title: 'Velzon Project Discussion with Team',
+            title: 'Faiz Project Discussion with Team',
             start: new Date(y, m, d + 23, 20, 0),
             end: new Date(y, m, d + 24, 16, 0),
             allDay: true,

@@ -162,60 +162,119 @@
                                         <td>{{ convertNumberFormat($item->angsuran) }}</td>
 
                                         <td>
+                                        @php
+                                        $jk = request('jenis_kredit'); // "Pasar" / "Pensiun" / "Modal Kerja"
+                                        @endphp
 
-
-                                            <a href="{{ route('debitur-pensiun.open', $item->id) }}" class="btn btn-info"
+                                        {{-- VIEW / OPEN sesuai jenis kredit --}}
+                                        @if($jk == 'Pensiun')
+                                        <a href="{{ route('debitur-pensiun.open', $item->id) }}" class="btn btn-info"
                                             data-toggle="tooltip" data-placement="top"
                                             title="Detail Debitur Pensiun #{{ $item->id }}">
                                             <i class="ri-eye-line"></i>
-                                            </a>
+                                        </a>
+                                        @elseif($jk == 'Pasar')
+                                        <a href="{{ route('debitur-pasar.open', $item->id) }}" class="btn btn-info"
+                                            data-toggle="tooltip" data-placement="top"
+                                            title="Detail Debitur Pasar #{{ $item->id }}">
+                                            <i class="ri-eye-line"></i>
+                                        </a>
+                                        @elseif($jk == 'Modal Kerja')
+                                        {{-- kalau kamu mau pakai show/open silakan sesuaikan --}}
+                                        <a href="{{ route('debitur-modal-kerja.show', $item->id) }}" class="btn btn-info"
+                                            data-toggle="tooltip" data-placement="top"
+                                            title="Detail Debitur Modal Kerja #{{ $item->id }}">
+                                            <i class="ri-eye-line"></i>
+                                        </a>
+                                        @elseif($jk == 'UMKM')
+                                        {{-- kalau kamu mau pakai show/open silakan sesuaikan --}}
+                                        <a href="{{ route('debitur-umkm.show', $item->id) }}" class="btn btn-info"
+                                            data-toggle="tooltip" data-placement="top"
+                                            title="Detail Debitur UMKM #{{ $item->id }}">
+                                            <i class="ri-eye-line"></i>
+                                        </a>
+                                        @endif
 
-                                            @if($item->latestAnalisaKredit)
-                                                {{-- Jika sudah ada analisa kredit, tampilkan tombol Edit --}}
-                                                <a href="{{ route('analisa_kredit.edit', $item->latestAnalisaKredit->id) }}"
-                                                   class="btn btn-success"
-                                                   data-toggle="tooltip"
-                                                   data-placement="top"
-                                                   title="Edit Analisa Kredit #{{ $item->id }}">
-                                                   <i class="ri-file-edit-line"></i>
-                                                </a>
-                                            @else
-                                                {{-- Jika belum ada analisa kredit, tampilkan tombol Create --}}
-                                                <a href="{{ route('analisa_kredit.create', $item->id) }}"
-                                                   class="btn btn-primary"
-                                                   data-toggle="tooltip"
-                                                   data-placement="top"
-                                                   title="Buat Analisa Kredit #{{ $item->id }}">
-                                                   <i class="ri-file-add-line"></i>
-                                                </a>
-                                            @endif
+                                        {{-- ANALISA KREDIT (tetap 1 tombol saja) --}}
+                                        @if($item->latestAnalisaKredit)
+                                        <a href="{{ route('analisa_kredit.edit', $item->latestAnalisaKredit->id) }}"
+                                            class="btn btn-success"
+                                            data-toggle="tooltip" data-placement="top"
+                                            title="Edit Analisa Kredit #{{ $item->id }}">
+                                            <i class="ri-file-edit-line"></i>
+                                        </a>
+                                        @else
+                                        <a href="{{ route('analisa_kredit.create', $item->id) }}"
+                                            class="btn btn-primary"
+                                            data-toggle="tooltip" data-placement="top"
+                                            title="Buat Analisa Kredit #{{ $item->id }}">
+                                            <i class="ri-file-add-line"></i>
+                                        </a>
+                                        @endif
 
-                                            {{-- <a href="{{ route('debiturs_analisa_kredit_export', $item->id) }}"
-                                                class="btn btn-success" data-toggle="tooltip" data-placement="top"
-                                                title="Analisa Kredit #{{ $item->id }}"><i
-                                                    class="ri-folder-chart-line"></i></a>
+                                        {{-- EDIT sesuai jenis kredit --}}
+                                        @if($jk == 'Pensiun')
+                                        <a href="{{ route('debitur-pensiun.edit', $item->id) }}" class="btn btn-warning"
+                                            title="Edit Debitur Pensiun #{{ $item->id }}">
+                                            <i class="ri-pencil-line"></i>
+                                        </a>
+                                        @elseif($jk == 'Pasar')
+                                        <a href="{{ route('debitur-pasar.edit', $item->id) }}" class="btn btn-warning"
+                                            title="Edit Debitur Pasar #{{ $item->id }}">
+                                            <i class="ri-pencil-line"></i>
+                                        </a>
+                                        @elseif($jk == 'Modal Kerja')
+                                        <a href="{{ route('debitur-modal-kerja.edit', $item->id) }}" class="btn btn-warning"
+                                            title="Edit Debitur Modal Kerja #{{ $item->id }}">
+                                            <i class="ri-pencil-line"></i>
+                                        </a>
+                                        @elseif($jk == 'UMKM')
+                                        <a href="{{ route('debitur-umkm.edit', $item->id) }}" class="btn btn-warning"
+                                            title="Edit Debitur UMKM #{{ $item->id }}">
+                                            <i class="ri-pencil-line"></i>
+                                        </a>
+                                        @endif
 
-                                            <a href="{{ route('debiturs_memo_kredit_export', $item->id) }}"
-                                                class="btn btn-success" data-toggle="tooltip" data-placement="top"
-                                                title="Memo Kredit #{{ $item->id }}"><i
-                                                    class="ri-folder-chart-line"></i></a> --}}
-
-                                            <a href="{{ route('debitur-pensiun.edit', $item->id) }}" class="btn btn-warning"
-                                                title="Edit Debitur Pensiun #{{ $item->id }}">
-                                                <i class="ri-pencil-line"></i></a>
-
-                                            <!-- Tombol Delete -->
-                                            <form action="{{ route($route . '.destroy', $item->id) }}" method="POST"
-                                                style="display:inline-block;">
+                                        {{-- DELETE (pastikan route destroy sesuai jenis kredit juga) --}}
+                                        @if($jk == 'Pensiun')
+                                            <form action="{{ route('debitur-pensiun.destroy', $item->id) }}" method="POST" style="display:inline-block;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger" data-toggle="tooltip"
-                                                    data-placement="top" title="Delete #{{ $item->id }}"><i
-                                                        class="ri-delete-bin-line"></i></button>
+                                                    data-placement="top" title="Delete #{{ $item->id }}">
+                                                    <i class="ri-delete-bin-line"></i>
+                                                </button>
                                             </form>
+                                        @elseif($jk == 'Pasar')
+                                            <form action="{{ route('debitur-pasar.destroy', $item->id) }}" method="POST" style="display:inline-block;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger" data-toggle="tooltip"
+                                                    data-placement="top" title="Delete #{{ $item->id }}">
+                                                    <i class="ri-delete-bin-line"></i>
+                                                </button>
+                                            </form>
+                                        @elseif($jk == 'Modal Kerja')
+                                            <form action="{{ route('debitur-modal-kerja.destroy', $item->id) }}" method="POST" style="display:inline-block;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger" data-toggle="tooltip"
+                                                    data-placement="top" title="Delete #{{ $item->id }}">
+                                                    <i class="ri-delete-bin-line"></i>
+                                                </button>
+                                            </form>
+                                        @elseif($jk == 'UMKM')
+                                            <form action="{{ route('debitur-umkm.destroy', $item->id) }}" method="POST" style="display:inline-block;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger" data-toggle="tooltip"
+                                                    data-placement="top" title="Delete #{{ $item->id }}">
+                                                    <i class="ri-delete-bin-line"></i>
+                                                </button>
+                                            </form>
+                                        @endif
+                                    </td>
 
-
-                                        </td>
                                     </tr>
                                 @endforeach
 

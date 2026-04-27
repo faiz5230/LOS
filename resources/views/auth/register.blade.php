@@ -41,7 +41,7 @@
                             <div class="card-body p-4">
                                 <div class="text-center mt-2">
                                     <h5 class="text-primary">Create New Account</h5>
-                                    <p class="text-muted">Get your free velzon account now</p>
+                                    <p class="text-muted">Get your free faiz account now</p>
                                 </div>
                                 <div class="p-2 mt-4">
                                     <form class="needs-validation" novalidate method="POST"
@@ -119,7 +119,7 @@
 
                                         <div class="mb-4">
                                             <p class="mb-0 fs-12 text-muted fst-italic">By registering you agree to the
-                                                Velzon <a href="#"
+                                                Faiz <a href="#"
                                                     class="text-primary text-decoration-underline fst-normal fw-medium">Terms
                                                     of Use</a></p>
                                         </div>
@@ -178,7 +178,7 @@
                             <script>
                                 document.write(new Date().getFullYear())
                             </script> SISTEM APLIKASI KREDIT <i
-                                    class="mdi mdi-heart text-danger"></i> by BANK DUTA PASUNDAN</p>
+                                    class="mdi mdi-heart text-danger"></i> by BANK HALDEN PRIME</p>
                         </div>
                     </div>
                 </div>

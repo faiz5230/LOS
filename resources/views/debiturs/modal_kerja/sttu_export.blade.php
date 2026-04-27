@@ -482,7 +482,7 @@
         </tr>
         <tr>
             <td style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
-                colspan="3">Dari PT. BPR&nbsp;&nbsp;&nbsp;DUTA PASUNDAN</td>
+                colspan="3">Dari PT. BPR&nbsp;&nbsp;&nbsp;HALDEN PRIME</td>
             <td
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
             </td>

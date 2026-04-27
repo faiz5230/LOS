@@ -127,7 +127,7 @@
             <div class="card-body">
                 <div class="d-flex">
                     <div class="flex-shrink-0">
-                        <img src="https://img.themesbrand.com/velzon/images/img-5.gif" alt="" class="avatar-sm object-fit-cover rounded">
+                        <img src="https://img.themesbrand.com/faiz/images/img-5.gif" alt="" class="avatar-sm object-fit-cover rounded">
                     </div>
                     <div class="ms-3 flex-grow-1">
                         <a href="pages-profile">
@@ -294,7 +294,7 @@
     <!--end col-->
     <div class="col">
         <div class="card">
-            <img src="https://img.themesbrand.com/velzon/images/img-2.gif" alt="" class="object-fit-cover card-img-top" height="120">
+            <img src="https://img.themesbrand.com/faiz/images/img-2.gif" alt="" class="object-fit-cover card-img-top" height="120">
             <div class="card-body text-center">
                 <img src="{{URL::asset('build/images/users/avatar-6.jpg')}}" alt="" class="avatar-md rounded-circle object-fit-cover mt-n5 img-thumbnail border-light border-5 border-white mx-auto d-block">
                 <a href="pages-profile">
@@ -326,7 +326,7 @@
         <div class="card">
             <img src="{{URL::asset('build/images/nft/img-06.jpg')}}" alt="" class="object-fit-cover card-img-top" height="120">
             <div class="card-body text-center">
-                <img src="https://img.themesbrand.com/velzon/images/img-1.gif" alt="" class="avatar-md rounded-circle object-fit-cover mt-n5 img-thumbnail border-light border-5 border-white mx-auto d-block">
+                <img src="https://img.themesbrand.com/faiz/images/img-1.gif" alt="" class="avatar-md rounded-circle object-fit-cover mt-n5 img-thumbnail border-light border-5 border-white mx-auto d-block">
                 <a href="pages-profile">
                     <h5 class="mt-2 mb-1">James Morris</h5>
                 </a>
@@ -339,7 +339,7 @@
     <!--end col-->
     <div class="col">
         <div class="card">
-            <img src="https://img.themesbrand.com/velzon/images/img-3.gif" alt="" class="object-fit-cover card-img-top" height="120">
+            <img src="https://img.themesbrand.com/faiz/images/img-3.gif" alt="" class="object-fit-cover card-img-top" height="120">
             <div class="card-body text-center">
                 <img src="{{URL::asset('build/images/users/avatar-8.jpg')}}" alt="" class="avatar-md rounded-circle object-fit-cover mt-n5 img-thumbnail border-light border-5 border-white mx-auto d-block">
                 <a href="pages-profile">
@@ -369,7 +369,7 @@
     <!--end col-->
     <div class="col">
         <div class="card">
-            <img src="https://img.themesbrand.com/velzon/images/img-2.gif" alt="" class="object-fit-cover card-img-top" height="120">
+            <img src="https://img.themesbrand.com/faiz/images/img-2.gif" alt="" class="object-fit-cover card-img-top" height="120">
             <div class="card-body text-center">
                 <img src="{{URL::asset('build/images/users/avatar-6.jpg')}}" alt="" class="avatar-md rounded-circle object-fit-cover mt-n5 img-thumbnail border-light border-5 border-white mx-auto d-block">
                 <a href="pages-profile">
@@ -401,7 +401,7 @@
         <div class="card">
             <img src="{{URL::asset('build/images/nft/img-01.jpg')}}" alt="" class="object-fit-cover card-img-top" height="120">
             <div class="card-body text-center">
-                <img src="https://img.themesbrand.com/velzon/images/img-1.gif" alt="" class="avatar-md rounded-circle object-fit-cover mt-n5 img-thumbnail border-light border-5 border-white mx-auto d-block">
+                <img src="https://img.themesbrand.com/faiz/images/img-1.gif" alt="" class="avatar-md rounded-circle object-fit-cover mt-n5 img-thumbnail border-light border-5 border-white mx-auto d-block">
                 <a href="pages-profile">
                     <h5 class="mt-2 mb-1">Kevin Dawson</h5>
                 </a>
@@ -414,7 +414,7 @@
     <!--end col-->
     <div class="col">
         <div class="card">
-            <img src="https://img.themesbrand.com/velzon/images/img-4.gif" alt="" class="object-fit-cover card-img-top" height="120">
+            <img src="https://img.themesbrand.com/faiz/images/img-4.gif" alt="" class="object-fit-cover card-img-top" height="120">
             <div class="card-body text-center">
                 <img src="{{URL::asset('build/images/users/avatar-10.jpg')}}" alt="" class="avatar-md rounded-circle object-fit-cover mt-n5 img-thumbnail border-light border-5 border-white mx-auto d-block">
                 <a href="pages-profile">

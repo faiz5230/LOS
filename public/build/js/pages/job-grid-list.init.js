@@ -1,8 +1,8 @@
 /*
 Template Name: SISTEM APLIKASI KREDIT
-Author: BANK DUTA PASUNDAN
-Website: https://BANK DUTA PASUNDAN.com/
-Contact: BANK DUTA PASUNDAN@gmail.com
+Author: BANK HALDEN PRIME
+Website: https://BANK HALDEN PRIME.com/
+Contact: BANK HALDEN PRIME@gmail.com
 File: job grid list Js File
 */
 
@@ -54,7 +54,7 @@ function loadJobListData(datas, page) {
         document.querySelector("#job-list").insertAdjacentHTML('afterbegin', '<div class="col-lg-3 col-md-6" id="job-widget">\
         <div class="card card-height-100 bg-info bg-job">\
             <div class="card-body p-5">\
-                <h2 class="lh-base text-white">Velzon invites young professionals for an intership!</h2>\
+                <h2 class="lh-base text-white">Faiz invites young professionals for an intership!</h2>\
                 <p class="text-white text-opacity-75 mb-0 fs-14">Don\'t miss your opportunity to improve your skills!</p>\
                 <div class="mt-5 pt-2">\
                     <button type="button" class="btn btn-light w-100">View More <i class="ri-arrow-right-line align-bottom"></i></button>\

@@ -20,9 +20,9 @@
                                     </div>
                                     <div class="col-md">
                                         <div>
-                                            <h4 class="fw-bold">Velzon - Admin & Dashboard</h4>
+                                            <h4 class="fw-bold">Faiz - Admin & Dashboard</h4>
                                             <div class="hstack gap-3 flex-wrap">
-                                                <div><i class="ri-building-line align-bottom me-1"></i> BANK DUTA PASUNDAN</div>
+                                                <div><i class="ri-building-line align-bottom me-1"></i> BANK HALDEN PRIME</div>
                                                 <div class="vr"></div>
                                                 <div>Create Date : <span class="fw-medium">15 Sep, 2021</span></div>
                                                 <div class="vr"></div>
@@ -204,7 +204,7 @@
                                                             </div>
                                                             <div class="flex-grow-1 overflow-hidden">
                                                                 <h5 class="fs-13 mb-1"><a href="#"
-                                                                        class="text-body text-truncate d-block">Velzon
+                                                                        class="text-body text-truncate d-block">Faiz
                                                                         admin.ppt</a></h5>
                                                                 <div>2.4MB</div>
                                                             </div>
@@ -682,7 +682,7 @@
                                                 </div>
                                                 <div class="flex-grow-1 overflow-hidden">
                                                     <h5 class="fs-13 mb-1"><a href="#"
-                                                            class="text-body text-truncate d-block">Velzon-admin.ppt</a>
+                                                            class="text-body text-truncate d-block">Faiz-admin.ppt</a>
                                                     </h5>
                                                     <div>2.4MB</div>
                                                 </div>
@@ -1038,7 +1038,7 @@
                                                             </div>
                                                             <div class="ms-3 flex-grow-1">
                                                                 <h5 class="fs-13 mb-0"><a href="javascript:void(0);"
-                                                                        class="text-body">Velzon-logo.png</a></h5>
+                                                                        class="text-body">Faiz-logo.png</a></h5>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -1187,7 +1187,7 @@
                                     </div>
                                     <div class="flex-grow-1 ms-3">
                                         <h6 class="mb-1">Bethany Johnson</h6>
-                                        <p class="text-muted mb-2">added a new member to velzon dashboard</p>
+                                        <p class="text-muted mb-2">added a new member to faiz dashboard</p>
                                         <small class="mb-0 text-muted">19 Nov</small>
                                     </div>
                                 </div>

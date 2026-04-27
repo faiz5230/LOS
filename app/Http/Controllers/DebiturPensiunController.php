@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DebiturPensiun;
 use App\Models\MasterDebitur;
+use App\Models\Simulation;
 use App\Models\NomorUrut;
 use App\Models\AccountOfficer;
 use App\Exports\Sttu;
@@ -35,15 +36,11 @@ class DebiturPensiunController extends Controller
         return view('debitur-pensiun.index', compact('data'));
     }
 
-    public function create(Request $request)
+    public function create(Simulation $simulation)
     {
-        $simulation = null;
-        if ($request->has('simulation_id')) {
-            $simulation = \App\Models\Simulation::findOrFail($request->simulation_id);
-        }
-        $accountOfficers = \App\Models\AccountOfficer::where('nama_dokumen', 'DATA CALON DEBITUR')->get();
-        return view('debitur-pensiun.create', compact('simulation', 'accountOfficers'));
-    }
+    $accountOfficers = AccountOfficer::where('nama_dokumen', 'DATA CALON DEBITUR')->get();
+    return view('debitur-pensiun.create', compact('simulation', 'accountOfficers'));
+}
 
     public function open($id)
 {
@@ -278,7 +275,7 @@ public function tanda_terima_export($id)
 
     return Excel::download(
         new TandaTerima($debitur->id),
-        'mcc_' . $debitur->id . '.xlsx'
+        'tanda_terima_' . $debitur->id . '.xlsx'
     );
 }
     public function store(Request $request)

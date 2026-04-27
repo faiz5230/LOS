@@ -208,7 +208,7 @@
                                     <td class="id"><a href="apps-tasks-details"
                                             class="fw-medium link-primary">#VLZ501</a></td>
                                     <td class="project_name"><a href="apps-projects-overview"
-                                            class="fw-medium link-primary">Velzon -
+                                            class="fw-medium link-primary">Faiz -
                                             v1.0.0</a></td>
                                     <td>
                                         <div class="d-flex">

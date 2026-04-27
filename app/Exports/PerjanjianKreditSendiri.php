@@ -37,7 +37,7 @@ class PerjanjianKreditSendiri implements FromView, WithStyles, WithDrawings
         if ($this->jenis === 'modal_kerja') {
             $debitur = DebiturModalKerja::with('simulation')->findOrFail($this->id);
 
-            return view('debiturs.pk_snd_sim_export', [
+            return view('debiturs.modal_kerja.pk_snd_sim_export', [
                 'debitur' => $debitur
             ]);
         }
@@ -45,7 +45,7 @@ class PerjanjianKreditSendiri implements FromView, WithStyles, WithDrawings
         // ✅ Kalau jenis tidak diisi, coba cari otomatis
         $debitur = DebiturModalKerja::with('simulation')->find($this->id);
         if ($debitur) {
-            return view('debiturs.pk_snd_sim_export', compact('debitur'));
+            return view('debiturs.modal_kerja.pk_snd_sim_export', compact('debitur'));
         }
 
         $debitur = DebiturPensiun::with('simulation')->findOrFail($this->id);

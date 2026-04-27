@@ -64,7 +64,7 @@
                                 <div class="col-lg-6">
                                     <div class="p-lg-5 p-4">
                                         <h5 class="text-primary">Forgot Password?</h5>
-                                        <p class="text-muted">Reset password with velzon</p>
+                                        <p class="text-muted">Reset password with faiz</p>
 
                                         <div class="mt-2 text-center">
                                             <lord-icon src="https://cdn.lordicon.com/rhvddzym.json" trigger="loop"
@@ -123,7 +123,7 @@
                             <script>
                                 document.write(new Date().getFullYear())
                             </script> SISTEM APLIKASI KREDIT <i
-                                    class="mdi mdi-heart text-danger"></i> by BANK DUTA PASUNDAN</p>
+                                    class="mdi mdi-heart text-danger"></i> by BANK HALDEN PRIME</p>
                         </div>
                     </div>
                 </div>

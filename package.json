@@ -1,8 +1,8 @@
 {
     "private": true,
-    "name": "velzon",
+    "name": "faiz",
     "version": "3.0.0",
-    "author": "BANK DUTA PASUNDAN",
+    "author": "BANK HALDEN PRIME",
     "scripts": {
         "dev": "vite",
         "build": "vite build",

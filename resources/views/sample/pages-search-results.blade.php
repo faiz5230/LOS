@@ -108,14 +108,14 @@
                     <div class="tab-content text-muted">
                         <div class="tab-pane active" id="all" role="tabpanel">
                             <div class="pb-3">
-                                <h5 class="fs-14 mb-1"><a href="javascript:void(0);">Velzon - Responsive Bootstrap 5
+                                <h5 class="fs-14 mb-1"><a href="javascript:void(0);">Faiz - Responsive Bootstrap 5
                                         Admin Dashboard</a></h5>
-                                <p class="text-success mb-2">https://themesbrand.com/velzon/index.html</p>
-                                <p class="text-muted mb-2">Velzon admin is super flexible, powerful, clean, modern &
+                                <p class="text-success mb-2">https://themesbrand.com/faiz/index.html</p>
+                                <p class="text-muted mb-2">Faiz admin is super flexible, powerful, clean, modern &
                                     responsive admin template based on <span class="fw-semibold">bootstrap 5</span>
                                     stable with unlimited possibilities. You can simply change to any layout or mode by
                                     changing a couple of lines of code. You can start small and large projects or update
-                                    design in your existing project using Velzon it is very quick and easy as it is
+                                    design in your existing project using Faiz it is very quick and easy as it is
                                     beautiful, adroit, and delivers the ultimate user experience.</p>
                                 <ul class="list-inline d-flex align-items-center g-3 text-muted fs-14 mb-0">
                                     <li class="list-inline-item me-3"><i class="ri-thumb-up-line align-middle me-1"></i>10
@@ -128,7 +128,7 @@
                                                 <i class="ri-user-line"></i>
                                             </div>
                                             <div class="flex-grow-1 fs-13 ms-1">
-                                                <span class="fw-medium">BANK DUTA PASUNDAN</span>
+                                                <span class="fw-medium">BANK HALDEN PRIME</span>
                                             </div>
                                         </div>
                                     </li>
@@ -196,7 +196,7 @@
 
                             <div class="py-3">
                                 <h5 class="fs-14 mb-1"><a href="javascript:void(0);">Skote - Admin & Dashboard Template
-                                        by BANK DUTA PASUNDAN</a></h5>
+                                        by BANK HALDEN PRIME</a></h5>
                                 <p class="text-success mb-2">https://themesbrand.com/skote/</p>
                                 <p class="text-muted mb-2">Skote is an admin dashboard template that is a beautifully
                                     crafted, clean & minimal designed admin template with Dark, Light Layouts with RTL
@@ -213,7 +213,7 @@
                                                 <i class="ri-user-line"></i>
                                             </div>
                                             <div class="flex-grow-1 fs-13 ms-1">
-                                                <span class="fw-medium">BANK DUTA PASUNDAN</span>
+                                                <span class="fw-medium">BANK HALDEN PRIME</span>
                                             </div>
                                         </div>
                                     </li>
@@ -241,7 +241,7 @@
                                                 <i class="ri-user-line"></i>
                                             </div>
                                             <div class="flex-grow-1 fs-13 ms-1">
-                                                <span class="fw-medium">BANK DUTA PASUNDAN</span>
+                                                <span class="fw-medium">BANK HALDEN PRIME</span>
                                             </div>
                                         </div>
                                     </li>
@@ -252,7 +252,7 @@
 
                             <div class="py-3">
                                 <h5 class="fs-14 mb-1"><a href="javascript:void(0);">Doson - Angular Admin & Dashboard
-                                        Template by BANK DUTA PASUNDAN</a></h5>
+                                        Template by BANK HALDEN PRIME</a></h5>
                                 <p class="text-success mb-2">https://themesbrand.com/dason/angular/</p>
                                 <p class="text-muted mb-2">Dason is a simple and beautiful admin template built with
                                     Bootstrap ^5.1.3. It has 5+ different layouts and 3 modes ( Dark, Light & RTL ) which
@@ -269,7 +269,7 @@
                                                 <i class="ri-user-line"></i>
                                             </div>
                                             <div class="flex-grow-1 fs-13 ms-1">
-                                                <span class="fw-medium">BANK DUTA PASUNDAN</span>
+                                                <span class="fw-medium">BANK HALDEN PRIME</span>
                                             </div>
                                         </div>
                                     </li>
@@ -1177,19 +1177,19 @@
                                 <div class="col-lg-12 video-list">
                                     <div class="list-element">
                                         <h5 class="fs-14 mb-1"><a href="javascript:void(0);">Admin dashboard templates
-                                                - Material Design for Velzon</a></h5>
-                                        <p class="text-success">https://themesbrand.com/velzon/index.html</p>
+                                                - Material Design for Faiz</a></h5>
+                                        <p class="text-success">https://themesbrand.com/faiz/index.html</p>
                                         <div class="d-flex flex-column flex-sm-row">
                                             <div class="flex-shrink-0">
                                                 <iframe src="https://www.youtube.com/embed/GfSZtaoc5bw"
                                                     title="YouTube video" allowfullscreen class="rounded"></iframe>
                                             </div>
                                             <div class="flex-grow-1 ms-sm-3 mt-2 mt-sm-0">
-                                                <p class="text-muted mb-0">Velzon admin is super flexible, powerful, clean,
+                                                <p class="text-muted mb-0">Faiz admin is super flexible, powerful, clean,
                                                     modern & responsive admin template based on <b>bootstrap 5</b> stable
                                                     with unlimited possibilities. You can simply change to any layout or
                                                     mode by changing a couple of lines of code. You can start small and
-                                                    large projects or update design in your existing project using Velzon it
+                                                    large projects or update design in your existing project using Faiz it
                                                     is very quick and easy as it is beautiful, adroit, and delivers the
                                                     ultimate user experience.</p>
                                                 <div class="border border-dashed mb-1 mt-3"></div>
@@ -1205,7 +1205,7 @@
                                                                 <i class="ri-user-line"></i>
                                                             </div>
                                                             <div class="flex-grow-1 fs-13 ms-1">
-                                                                <span class="fw-medium">BANK DUTA PASUNDAN</span>
+                                                                <span class="fw-medium">BANK HALDEN PRIME</span>
                                                             </div>
                                                         </div>
                                                     </li>
@@ -1218,18 +1218,18 @@
                                     <div class="list-element mt-4">
                                         <h5 class="fs-14 mb-1"><a href="javascript:void(0);">Create Responsive Admin
                                                 Dashboard using Html CSS</a></h5>
-                                        <p class="text-success">https://themesbrand.com/velzon/index.html</p>
+                                        <p class="text-success">https://themesbrand.com/faiz/index.html</p>
                                         <div class="d-flex flex-column flex-sm-row">
                                             <div class="flex-shrink-0">
                                                 <iframe src="https://www.youtube.com/embed/Z-fV2lGKnnU"
                                                     title="YouTube video" allowfullscreen class="rounded"></iframe>
                                             </div>
                                             <div class="flex-grow-1 ms-sm-3 mt-2 mt-sm-0">
-                                                <p class="text-muted mb-0">Velzon admin is super flexible, powerful, clean,
+                                                <p class="text-muted mb-0">Faiz admin is super flexible, powerful, clean,
                                                     modern & responsive admin template based on <b>bootstrap 5</b> stable
                                                     with unlimited possibilities. You can simply change to any layout or
                                                     mode by changing a couple of lines of code. You can start small and
-                                                    large projects or update design in your existing project using Velzon it
+                                                    large projects or update design in your existing project using Faiz it
                                                     is very quick and easy as it is beautiful, adroit, and delivers the
                                                     ultimate user experience.</p>
                                                 <div class="border border-dashed mb-1 mt-3"></div>
@@ -1245,7 +1245,7 @@
                                                                 <i class="ri-user-line"></i>
                                                             </div>
                                                             <div class="flex-grow-1 fs-13 ms-1">
-                                                                <span class="fw-medium">BANK DUTA PASUNDAN</span>
+                                                                <span class="fw-medium">BANK HALDEN PRIME</span>
                                                             </div>
                                                         </div>
                                                     </li>
@@ -1256,20 +1256,20 @@
                                     <!--end list-element-->
 
                                     <div class="list-element mt-4">
-                                        <h5 class="fs-14 mb-1"><a href="javascript:void(0);">Velzon - The Most Popular
+                                        <h5 class="fs-14 mb-1"><a href="javascript:void(0);">Faiz - The Most Popular
                                                 Bootstrap 5 HTML, Angular & React Js Admin</a></h5>
-                                        <p class="text-success">https://themesbrand.com/velzon/index.html</p>
+                                        <p class="text-success">https://themesbrand.com/faiz/index.html</p>
                                         <div class="d-flex flex-column flex-sm-row">
                                             <div class="flex-shrink-0">
                                                 <iframe src="https://www.youtube.com/embed/2RZQN_ko0iU"
                                                     title="YouTube video" allowfullscreen class="rounded"></iframe>
                                             </div>
                                             <div class="flex-grow-1 ms-sm-3 mt-2 mt-sm-0">
-                                                <p class="text-muted mb-0">Velzon admin is super flexible, powerful, clean,
+                                                <p class="text-muted mb-0">Faiz admin is super flexible, powerful, clean,
                                                     modern & responsive admin template based on <b>bootstrap 5</b> stable
                                                     with unlimited possibilities. You can simply change to any layout or
                                                     mode by changing a couple of lines of code. You can start small and
-                                                    large projects or update design in your existing project using Velzon it
+                                                    large projects or update design in your existing project using Faiz it
                                                     is very quick and easy as it is beautiful, adroit, and delivers the
                                                     ultimate user experience.</p>
                                                 <div class="border border-dashed mb-1 mt-3"></div>
@@ -1285,7 +1285,7 @@
                                                                 <i class="ri-user-line"></i>
                                                             </div>
                                                             <div class="flex-grow-1 fs-13 ms-1">
-                                                                <span class="fw-medium">BANK DUTA PASUNDAN</span>
+                                                                <span class="fw-medium">BANK HALDEN PRIME</span>
                                                             </div>
                                                         </div>
                                                     </li>
@@ -1296,20 +1296,20 @@
                                     <!--end list-element-->
 
                                     <div class="list-element mt-4">
-                                        <h5 class="fs-14 mb-1"><a href="javascript:void(0);">Velzon Admin Dashboard
+                                        <h5 class="fs-14 mb-1"><a href="javascript:void(0);">Faiz Admin Dashboard
                                                 (website analytics) with Bootstrap 5</a></h5>
-                                        <p class="text-success">https://themesbrand.com/velzon/index.html</p>
+                                        <p class="text-success">https://themesbrand.com/faiz/index.html</p>
                                         <div class="d-flex flex-column flex-sm-row">
                                             <div class="flex-shrink-0">
                                                 <iframe src="https://www.youtube.com/embed/Z-fV2lGKnnU"
                                                     title="YouTube video" allowfullscreen class="rounded"></iframe>
                                             </div>
                                             <div class="flex-grow-1 ms-sm-3 mt-2 mt-sm-0">
-                                                <p class="text-muted mb-0">Velzon admin is super flexible, powerful, clean,
+                                                <p class="text-muted mb-0">Faiz admin is super flexible, powerful, clean,
                                                     modern & responsive admin template based on <b>bootstrap 5</b> stable
                                                     with unlimited possibilities. You can simply change to any layout or
                                                     mode by changing a couple of lines of code. You can start small and
-                                                    large projects or update design in your existing project using Velzon it
+                                                    large projects or update design in your existing project using Faiz it
                                                     is very quick and easy as it is beautiful, adroit, and delivers the
                                                     ultimate user experience.</p>
                                                 <div class="border border-dashed mb-1 mt-3"></div>
@@ -1325,7 +1325,7 @@
                                                                 <i class="ri-user-line"></i>
                                                             </div>
                                                             <div class="flex-grow-1 fs-13 ms-1">
-                                                                <span class="fw-medium">BANK DUTA PASUNDAN</span>
+                                                                <span class="fw-medium">BANK HALDEN PRIME</span>
                                                             </div>
                                                         </div>
                                                     </li>
@@ -1338,18 +1338,18 @@
                                     <div class="list-element mt-4">
                                         <h5 class="fs-14 mb-1"><a href="javascript:void(0);">Dashboard Admin Basics -
                                                 YouTube</a></h5>
-                                        <p class="text-success">https://themesbrand.com/velzon/index.html</p>
+                                        <p class="text-success">https://themesbrand.com/faiz/index.html</p>
                                         <div class="d-flex flex-column flex-sm-row">
                                             <div class="flex-shrink-0">
                                                 <iframe src="https://www.youtube.com/embed/1y_kfWUCFDQ"
                                                     title="YouTube video" allowfullscreen class="rounded"></iframe>
                                             </div>
                                             <div class="flex-grow-1 ms-sm-3 mt-2 mt-sm-0">
-                                                <p class="text-muted mb-0">Velzon admin is super flexible, powerful, clean,
+                                                <p class="text-muted mb-0">Faiz admin is super flexible, powerful, clean,
                                                     modern & responsive admin template based on <b>bootstrap 5</b> stable
                                                     with unlimited possibilities. You can simply change to any layout or
                                                     mode by changing a couple of lines of code. You can start small and
-                                                    large projects or update design in your existing project using Velzon it
+                                                    large projects or update design in your existing project using Faiz it
                                                     is very quick and easy as it is beautiful, adroit, and delivers the
                                                     ultimate user experience.</p>
                                                 <div class="border border-dashed mb-1 mt-3"></div>
@@ -1365,7 +1365,7 @@
                                                                 <i class="ri-user-line"></i>
                                                             </div>
                                                             <div class="flex-grow-1 fs-13 ms-1">
-                                                                <span class="fw-medium">BANK DUTA PASUNDAN</span>
+                                                                <span class="fw-medium">BANK HALDEN PRIME</span>
                                                             </div>
                                                         </div>
                                                     </li>

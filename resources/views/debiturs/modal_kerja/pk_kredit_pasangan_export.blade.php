@@ -3,6 +3,7 @@ use Carbon\Carbon;
 use App\Models\AccountOfficer;
 Carbon::setLocale('id');
 $sim = $simulation ?? ($debitur->simulation ?? null);
+$totalAsuransi = ($debitur->simulation->biaya_asuransi ?? 0) + ($debitur->simulation->ass_krd ?? 0);
 $ao = $debitur->accountOfficer ?? AccountOfficer::where('nama_dokumen','PERJANJIAN KREDIT')->first();
 $tanggalDasar = $sim?->tanggal ?? $debitur->tanggal ?? now('Asia/Jakarta');
 $tanggal = $tanggalDasar instanceof Carbon ? $tanggalDasar : Carbon::parse($tanggalDasar, 'Asia/Jakarta');
@@ -27,34 +28,6 @@ $jatuhTempoText = $jatuhTempo->translatedFormat('d F Y');
 <col style="width:96px;">
 <col style="width:96px;">
 </colgroup>
-<tr >
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-</tr>
-<tr >
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-</tr>
 <tr >
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
@@ -235,7 +208,7 @@ $jatuhTempoText = $jatuhTempo->translatedFormat('d F Y');
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">Nama</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;text-align:center;vertical-align:middle;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">:</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">{{ $ao?->nama ?? "-" }}</td>
+<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">'{{ $ao?->nama ?? "-" }}</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
@@ -248,7 +221,7 @@ $jatuhTempoText = $jatuhTempo->translatedFormat('d F Y');
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">NIK</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;text-align:center;vertical-align:middle;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">:</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">{{ $ao?->nik ?? "-" }}</td>
+<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">'{{ $ao?->nik ?? "-" }}</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
@@ -334,7 +307,7 @@ $jatuhTempoText = $jatuhTempo->translatedFormat('d F Y');
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">NIK</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">:</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">{{ $sim->nik ?? "" }}</td>
+<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">{{ !empty($debitur->no_ktp_sim) ? "'".$debitur->no_ktp_sim : "-" }}</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
@@ -348,20 +321,20 @@ $jatuhTempoText = $jatuhTempo->translatedFormat('d F Y');
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">Alamat</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">:</td>
-<td rowspan="2" colspan="8" style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">{{ $sim->alamat ?? $debitur->alamat_lengkap ?? "" }}</td>
+<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">{{ $sim->alamat ?? $debitur->alamat_lengkap ?? "" }}</td>
 </tr>
-<tr >
+<!--<tr >
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-</tr>
+</tr>-->
 <tr >
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">Pekerjaan</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">:</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">{{ $sim->pekerjaan ?? "" }}</td>
+<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">{{ $debitur->pekerjaan ?? '-' }}</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
@@ -412,7 +385,7 @@ $jatuhTempoText = $jatuhTempo->translatedFormat('d F Y');
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">Nama</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">:</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">{{ $sim->nama_pasangan ?? "" }}</td>
+<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">{{ $debitur->nama_pasangan ?? '-' }}</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
@@ -426,7 +399,7 @@ $jatuhTempoText = $jatuhTempo->translatedFormat('d F Y');
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">NIK</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">:</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">{{ $sim->nik_pasangan ?? "" }}</td>
+<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">{{ !empty($debitur->nik_pasangan) ? "'".$debitur->nik_pasangan : "-" }}</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
@@ -440,20 +413,20 @@ $jatuhTempoText = $jatuhTempo->translatedFormat('d F Y');
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">Alamat</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">:</td>
-<td rowspan="2" colspan="8" style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:middle;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">{{ $sim->alamat_pasangan ?? ($sim->alamat ?? "") }}</td>
+<td style="font-family:Aptos Narrow;font-size:11.0px;vertical-align:middle;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">{{ $debitur->alamat_pasangan ?? '-' }}</td>
 </tr>
-<tr >
+<!--<tr >
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-</tr>
+</tr>-->
 <tr >
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">Pekerjaan</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">:</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;vertical-align:middle;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">{{ $sim->pekerjaan_pasangan ?? ($sim->pekerjaan ?? "") }}</td>
+<td style="font-family:Aptos Narrow;font-size:11.0px;vertical-align:middle;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">{{ $debitur->pekerjaan_pasangan ?? '-' }}</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
@@ -524,118 +497,6 @@ $jatuhTempoText = $jatuhTempo->translatedFormat('d F Y');
 <tr >
 </tr>
 <tr >
-</tr>
-<tr >
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-</tr>
-<tr >
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-</tr>
-<tr >
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-</tr>
-<tr >
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-</tr>
-<tr >
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-</tr>
-<tr >
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-</tr>
-<tr >
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-</tr>
-<tr >
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 </tr>
 <tr >
 <td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
@@ -760,7 +621,7 @@ $jatuhTempoText = $jatuhTempo->translatedFormat('d F Y');
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">g.</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">Asuransi</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">:</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">Rp {{ number_format((float)($sim->biaya_asuransi ?? $debitur->biaya_asuransi ?? 0), 0, ",", ".") }}</td>
+<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">Rp {{ $totalAsuransi > 0 ? number_format($totalAsuransi, 0, ',', '.') : '-' }}</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
@@ -939,7 +800,7 @@ $jatuhTempoText = $jatuhTempo->translatedFormat('d F Y');
 <tr >
 <td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">-</td>
-<td colspan="10" style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">Transfer melalui Bank Mandiri No. Rek 130.000.450.8555 atas nama PT. BPR DUTA PASUNDAN.</td>
+<td colspan="10" style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">Transfer melalui Bank Mandiri No. Rek 130.000.450.8555 atas nama PT. BPR HALDEN PRIME.</td>
 </tr>
 <tr >
 <td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
@@ -974,91 +835,6 @@ $jatuhTempoText = $jatuhTempo->translatedFormat('d F Y');
 </tr>
 <tr >
 <td style="font-family:Aptos Narrow;font-size:11.0px;text-align:center;vertical-align:middle;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-</tr>
-<tr >
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-</tr>
-<tr >
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-</tr>
-<tr >
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-</tr>
-<tr >
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-</tr>
-<tr >
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-</tr>
-<tr >
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:justify;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 </tr>
 <tr >
 <td colspan="12" style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">PASAL 4</td>
@@ -1280,76 +1056,6 @@ $jatuhTempoText = $jatuhTempo->translatedFormat('d F Y');
 <td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-</tr>
-<tr >
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-</tr>
-<tr >
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-</tr>
-<tr >
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;text-align:left;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-</tr>
-<tr >
-<td style="font-family:Aptos Narrow;font-size:11.0px;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-</tr>
-<tr >
-<td style="font-family:Aptos Narrow;font-size:11.0px;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 </tr>
 <tr >
 <td colspan="12" style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">PASAL 8</td>
@@ -1596,104 +1302,6 @@ $jatuhTempoText = $jatuhTempo->translatedFormat('d F Y');
 <td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 </tr>
 <tr >
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-</tr>
-<tr >
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-</tr>
-<tr >
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-</tr>
-<tr >
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-</tr>
-<tr >
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-</tr>
-<tr >
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-</tr>
-<tr >
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-</tr>
-<tr >
 <td colspan="12" style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;text-align:center;vertical-align:top;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">Pasal 10</td>
 </tr>
 <tr >
@@ -1833,20 +1441,6 @@ $jatuhTempoText = $jatuhTempo->translatedFormat('d F Y');
 <td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;font-weight:bold;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-</tr>
-<tr >
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
-<td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 <td style="font-family:Aptos Narrow;font-size:11.0px;white-space:pre-wrap;padding:2px;overflow:hidden;word-break:break-word;">&nbsp;</td>
 </tr>

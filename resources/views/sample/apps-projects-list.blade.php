@@ -89,7 +89,7 @@
                                 <h5 class="mb-1 fs-14"><a href="apps-projects-overview"
                                         class="text-body">Slack brand logo design</a></h5>
                                 <p class="text-muted text-truncate-two-lines mb-3">Create a Brand logo
-                                    design for a velzon admin.</p>
+                                    design for a faiz admin.</p>
                             </div>
                         </div>
                         <div class="mt-auto">

@@ -333,7 +333,7 @@
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
                 :</td>
             <td style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
-                colspan="6">{{ $debitur->no_ktp_sim }}</td>
+                colspan="6">'{{ $debitur->no_ktp_sim }}</td>
         </tr>
         <tr>
             <td
@@ -482,7 +482,7 @@
         </tr>
         <tr>
             <td style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
-                colspan="3">Dari PT. BPR&nbsp;&nbsp;&nbsp;DUTA PASUNDAN</td>
+                colspan="3">Dari PT. BPR&nbsp;&nbsp;&nbsp;HALDEN PRIME</td>
             <td
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
             </td>
@@ -787,34 +787,8 @@
             <td
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
             </td>
-            <td
-                style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
-            </td>
-            <td
-                style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
-            </td>
-            <td
-                style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
-            </td>
-            <td
-                style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
-            </td>
-        </tr>
-        <tr>
-            <td
-                style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
-            </td>
-            <td
-                style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
-            </td>
-            <td
-                style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
-            </td>
-            <td
-                style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
-            </td>
             <td style="border: none;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal"
-                colspan="4">{{ ucwords($debitur->nama) }}</td>
+                colspan="4">{{ ucwords($debitur->nama_pensiun) }}</td>
         </tr>
         <tr>
             <td

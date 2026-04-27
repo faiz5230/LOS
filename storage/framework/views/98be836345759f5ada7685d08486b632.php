@@ -88,7 +88,7 @@
                                             <a href="<?php echo e(route('simulations.index', ['jenis_kredit' => 'Pasar'])); ?>" class="nav-link"><?php echo app('translator')->get('translation.simulasi_pasar'); ?></a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="<?php echo e(route('debiturs.index', ['jenis_kredit' => 'Pasar'])); ?>" class="nav-link"><?php echo app('translator')->get('translation.data_debitur_pasar'); ?></a>
+                                            <a href="<?php echo e(route('debitur-pasar.index')); ?>" class="nav-link"><?php echo app('translator')->get('translation.data_debitur_pasar'); ?></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -104,7 +104,7 @@
                                             <a href="<?php echo e(route('simulations.index', ['jenis_kredit' => 'UMKM'])); ?>" class="nav-link"><?php echo app('translator')->get('translation.simulasi_umkm'); ?></a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="<?php echo e(route('debiturs.index', ['jenis_kredit' => 'UMKM'])); ?>" class="nav-link"><?php echo app('translator')->get('translation.data_debitur_umkm'); ?></a>
+                                            <a href="<?php echo e(route('debitur-umkm.index')); ?>" class="nav-link"><?php echo app('translator')->get('translation.data_debitur_umkm'); ?></a>
                                         </li>
                                     </ul>
                                 </div>

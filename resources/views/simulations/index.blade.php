@@ -61,9 +61,6 @@
                         <div class="col-sm-auto">
 
                             <form action="{{ url()->current() }}" method="get">
-
-                                
-                                
                                
                                     <select class="form-control" name="rows" onchange="this.form.submit()">
                                         <option value="10" {{ $rows == 10 ? 'selected' : '' }}>10</option>
@@ -72,8 +69,6 @@
                                         <!-- Add more options as needed -->
                                     </select>
                                     <input type="hidden" name="jenis_kredit" value="{{ request('jenis_kredit') }}">
-                               
-                               
 
                             </form>
 
@@ -98,10 +93,6 @@
                         </div>
 
                     </div>
-
-
-
-                  
                     <div class="live-preview">
 
                         @if ($message = Session::get('success'))
@@ -158,26 +149,50 @@
                                         <td>{{ convertNumberFormat($item->total_diterima) }}</td>
                                         <td>
 
-                                           
-                                                <a href="{{ route($route . '.show', $item->id) }}" class="btn btn-info"
-                                                    data-toggle="tooltip" data-placement="top"
-                                                    title="View #{{ $item->name }}"><i class="ri-eye-line"></i></a>
-                                               
-                                                    <a href="{{ route($route . '.edit', $item->id) }}"
-                                                        class="btn btn-warning" data-toggle="tooltip" data-placement="top"
-                                                        title="Edit #{{ $item->name }}"><i class="ri-pencil-line"></i></a>
+                                                <div class="btn-group" role="group" aria-label="Action">
 
-                                                    <!-- Tombol Delete -->
-                                                    <form action="{{ route($route . '.destroy', $item->id) }}" method="POST"
-                                                        style="display:inline-block;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger" data-toggle="tooltip"
-                                                            data-placement="top" title="Delete #{{ $item->name }}"><i
-                                                                class="ri-delete-bin-line"></i></button>
-                                                    </form>
-                                              
-                                           
+                                                    <!--{{-- INPUT DEBITUR UMKM --}}
+                                                    <a href="{{ route('debitur-umkm.simulation', $item->id) }}"
+                                                    class="btn btn-primary btn-sm"
+                                                    title="Input Debitur UMKM">
+                                                    <i class="ri-add-line"></i>
+                                                    </a>-->
+
+                                                     {{-- VIEW --}}
+                                                    <a href="{{ route($route . '.show', $item->id) }}"
+                                                        class="btn btn-info btn-sm"
+                                                        title="View">
+                                                        <i class="ri-eye-line"></i>
+                                                    </a>
+
+                                                      {{-- EDIT --}}
+                                                    <a href="{{ route($route . '.edit', $item->id) }}"
+                                                        class="btn btn-warning btn-sm"
+                                                        title="Edit">
+                                                        <i class="ri-pencil-line"></i>
+                                                    </a>
+
+                                                    {{-- DOWNLOAD --}}
+                                                    <a href="{{ route($route . '.download', $item->id) }}"
+                                                        class="btn btn-success btn-sm"
+                                                        title="Download">
+                                                        <i class="ri-download-2-line"></i>
+                                                    </a>
+
+                                             </div>
+
+                                                     {{-- DELETE --}}
+                                                    <form action="{{ route($route . '.destroy', $item->id) }}"
+                                                    method="POST"
+                                                    class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                    class="btn btn-danger btn-sm"
+                                                    title="Delete">
+                                                    <i class="ri-delete-bin-line"></i>
+                                                    </button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

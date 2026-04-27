@@ -71,8 +71,8 @@
                         <div class="col-lg-8 col-sm-10">
                             <div class="text-center mt-lg-5 pt-5">
                                 <h1 class="display-6 fw-bold mb-3 lh-base">The better way to manage your website with <span
-                                        class="text-success">Velzon </span></h1>
-                                <p class="lead text-muted lh-base">Velzon is a fully responsive, multipurpose and premium
+                                        class="text-success">Faiz </span></h1>
+                                <p class="lead text-muted lh-base">Faiz is a fully responsive, multipurpose and premium
                                     Bootstrap 5 Admin & Dashboard Template built in multiple frameworks.</p>
 
                                 <div class="d-flex gap-2 justify-content-center mt-4">
@@ -467,13 +467,13 @@
                     <div class="row align-items-center gy-4">
                         <div class="col-sm">
                             <div>
-                                <h4 class="text-white mb-0 fw-semibold">Build your web App/SaaS with Velzon dashboard</h4>
+                                <h4 class="text-white mb-0 fw-semibold">Build your web App/SaaS with Faiz dashboard</h4>
                             </div>
                         </div>
                         <!-- end col -->
                         <div class="col-sm-auto">
                             <div>
-                                <a href="https://1.envato.market/velzon-admin" target="_blank"
+                                <a href="https://1.envato.market/faiz-admin" target="_blank"
                                     class="btn bg-gradient btn-danger"><i
                                         class="ri-shopping-cart-2-line align-middle me-1"></i> Buy Now</a>
                             </div>
@@ -1719,13 +1719,13 @@
                     <div class="row align-items-center gy-4">
                         <div class="col-sm">
                             <div>
-                                <h4 class="text-white mb-0 fw-semibold">Build your web App/SaaS with Velzon dashboard</h4>
+                                <h4 class="text-white mb-0 fw-semibold">Build your web App/SaaS with Faiz dashboard</h4>
                             </div>
                         </div>
                         <!-- end col -->
                         <div class="col-sm-auto">
                             <div>
-                                <a href="https://1.envato.market/velzon-admin" target="_blank"
+                                <a href="https://1.envato.market/faiz-admin" target="_blank"
                                     class="btn bg-gradient btn-danger"><i
                                         class="ri-shopping-cart-2-line align-middle me-1"></i> Buy Now</a>
                             </div>
@@ -1751,7 +1751,7 @@
                                     <p>SISTEM APLIKASI KREDIT</p>
                                     <p class="ff-secondary">You can build any type of web application like eCommerce,
                                         CRM, CMS, Project
-                                        management apps, Admin Panels, etc using Velzon.</p>
+                                        management apps, Admin Panels, etc using Faiz.</p>
                                 </div>
                             </div>
                         </div>
@@ -1802,7 +1802,7 @@
                                 <p class="copy-rights mb-0">
                                     <script>
                                         document.write(new Date().getFullYear())
-                                    </script> © Velzon - BANK DUTA PASUNDAN
+                                    </script> © Faiz - BANK HALDEN PRIME
                                 </p>
                             </div>
                         </div>

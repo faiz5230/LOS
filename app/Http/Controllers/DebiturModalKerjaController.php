@@ -235,7 +235,7 @@ public function tanda_terima_export($id)
 
     return Excel::download(
         new TandaTerima($debitur->id),
-        'mcc_' . $debitur->id . '.xlsx'
+        'tanda_terima_' . $debitur->id . '.xlsx'
     );
 }
     public function store(Request $request)

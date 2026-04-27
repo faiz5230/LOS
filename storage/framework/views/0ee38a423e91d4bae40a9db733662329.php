@@ -61,9 +61,6 @@
                         <div class="col-sm-auto">
 
                             <form action="<?php echo e(url()->current()); ?>" method="get">
-
-                                
-                                
                                
                                     <select class="form-control" name="rows" onchange="this.form.submit()">
                                         <option value="10" <?php echo e($rows == 10 ? 'selected' : ''); ?>>10</option>
@@ -72,8 +69,6 @@
                                         <!-- Add more options as needed -->
                                     </select>
                                     <input type="hidden" name="jenis_kredit" value="<?php echo e(request('jenis_kredit')); ?>">
-                               
-                               
 
                             </form>
 
@@ -98,10 +93,6 @@
                         </div>
 
                     </div>
-
-
-
-                  
                     <div class="live-preview">
 
                         <?php if($message = Session::get('success')): ?>
@@ -158,26 +149,50 @@
                                         <td><?php echo e(convertNumberFormat($item->total_diterima)); ?></td>
                                         <td>
 
-                                           
-                                                <a href="<?php echo e(route($route . '.show', $item->id)); ?>" class="btn btn-info"
-                                                    data-toggle="tooltip" data-placement="top"
-                                                    title="View #<?php echo e($item->name); ?>"><i class="ri-eye-line"></i></a>
-                                               
-                                                    <a href="<?php echo e(route($route . '.edit', $item->id)); ?>"
-                                                        class="btn btn-warning" data-toggle="tooltip" data-placement="top"
-                                                        title="Edit #<?php echo e($item->name); ?>"><i class="ri-pencil-line"></i></a>
+                                                <div class="btn-group" role="group" aria-label="Action">
 
-                                                    <!-- Tombol Delete -->
-                                                    <form action="<?php echo e(route($route . '.destroy', $item->id)); ?>" method="POST"
-                                                        style="display:inline-block;">
-                                                        <?php echo csrf_field(); ?>
-                                                        <?php echo method_field('DELETE'); ?>
-                                                        <button type="submit" class="btn btn-danger" data-toggle="tooltip"
-                                                            data-placement="top" title="Delete #<?php echo e($item->name); ?>"><i
-                                                                class="ri-delete-bin-line"></i></button>
-                                                    </form>
-                                              
-                                           
+                                                    <!--
+                                                    <a href="<?php echo e(route('debitur-umkm.simulation', $item->id)); ?>"
+                                                    class="btn btn-primary btn-sm"
+                                                    title="Input Debitur UMKM">
+                                                    <i class="ri-add-line"></i>
+                                                    </a>-->
+
+                                                     
+                                                    <a href="<?php echo e(route($route . '.show', $item->id)); ?>"
+                                                        class="btn btn-info btn-sm"
+                                                        title="View">
+                                                        <i class="ri-eye-line"></i>
+                                                    </a>
+
+                                                      
+                                                    <a href="<?php echo e(route($route . '.edit', $item->id)); ?>"
+                                                        class="btn btn-warning btn-sm"
+                                                        title="Edit">
+                                                        <i class="ri-pencil-line"></i>
+                                                    </a>
+
+                                                    
+                                                    <a href="<?php echo e(route($route . '.download', $item->id)); ?>"
+                                                        class="btn btn-success btn-sm"
+                                                        title="Download">
+                                                        <i class="ri-download-2-line"></i>
+                                                    </a>
+
+                                             </div>
+
+                                                     
+                                                    <form action="<?php echo e(route($route . '.destroy', $item->id)); ?>"
+                                                    method="POST"
+                                                    class="d-inline">
+                                                    <?php echo csrf_field(); ?>
+                                                    <?php echo method_field('DELETE'); ?>
+                                                    <button type="submit"
+                                                    class="btn btn-danger btn-sm"
+                                                    title="Delete">
+                                                    <i class="ri-delete-bin-line"></i>
+                                                    </button>
+                                            </form>
                                         </td>
                                     </tr>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

@@ -11,7 +11,7 @@
 @section('content')
 @component('components.breadcrumb')
 @slot('li_1')
-Velzon
+Faiz
 @endslot
 @slot('title')
 Widgets
@@ -432,7 +432,7 @@ Widgets
                 <a href="#!">
                     <h6 class="fs-15 fw-semibold">Marketing Director <span class="text-muted fs-13">(2-4 Yrs Exp.)</span></h6>
                 </a>
-                <p class="text-muted mb-0"><i class="ri-building-line align-bottom"></i> BANK DUTA PASUNDAN <span class="ms-2"><i class="ri-map-pin-2-line align-bottom"></i> California</span></p>
+                <p class="text-muted mb-0"><i class="ri-building-line align-bottom"></i> BANK HALDEN PRIME <span class="ms-2"><i class="ri-map-pin-2-line align-bottom"></i> California</span></p>
             </div>
         </div>
     </div>
@@ -454,7 +454,7 @@ Widgets
                 <a href="#!">
                     <h6 class="fs-15 fw-semibold">Sr. Web Designer <span class="text-muted fs-13">(2+ Yrs Exp.)</span></h6>
                 </a>
-                <p class="text-muted mb-0"><i class="ri-building-line align-bottom"></i> BANK DUTA PASUNDAN <span class="ms-2"><i class="ri-map-pin-2-line align-bottom"></i> California</span></p>
+                <p class="text-muted mb-0"><i class="ri-building-line align-bottom"></i> BANK HALDEN PRIME <span class="ms-2"><i class="ri-map-pin-2-line align-bottom"></i> California</span></p>
             </div>
         </div>
     </div>
@@ -476,7 +476,7 @@ Widgets
                 <a href="#!">
                     <h6 class="fs-15 fw-semibold">Sr. Web Designer <span class="text-muted fs-13">(2+ Yrs Exp.)</span></h6>
                 </a>
-                <p class="text-muted mb-0"><i class="ri-building-line align-bottom"></i> BANK DUTA PASUNDAN <span class="ms-2"><i class="ri-map-pin-2-line align-bottom"></i> California</span></p>
+                <p class="text-muted mb-0"><i class="ri-building-line align-bottom"></i> BANK HALDEN PRIME <span class="ms-2"><i class="ri-map-pin-2-line align-bottom"></i> California</span></p>
             </div>
         </div>
     </div>
@@ -498,7 +498,7 @@ Widgets
                 <a href="#!">
                     <h6 class="fs-15 fw-semibold">Sr. Web Designer <span class="text-muted fs-13">(2+ Yrs Exp.)</span></h6>
                 </a>
-                <p class="text-muted mb-0"><i class="ri-building-line align-bottom"></i> BANK DUTA PASUNDAN <span class="ms-2"><i class="ri-map-pin-2-line align-bottom"></i> California</span></p>
+                <p class="text-muted mb-0"><i class="ri-building-line align-bottom"></i> BANK HALDEN PRIME <span class="ms-2"><i class="ri-map-pin-2-line align-bottom"></i> California</span></p>
             </div>
         </div>
     </div> <!-- end col-->
@@ -1024,7 +1024,7 @@ Widgets
                                         </div>
                                         <div class="flex-grow-1">
                                             <label class="form-check-label mb-0 ps-2" for="task_six">Styling wireframe design and
-                                                documentation for velzon admin</label>
+                                                documentation for faiz admin</label>
                                         </div>
                                         <div class="flex-shrink-0 ms-2">
                                             <p class="text-muted fs-12 mb-0">27 Sep, 2021</p>

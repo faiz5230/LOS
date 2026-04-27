@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\SettingParam;
 use App\Models\Simulation;
 use Illuminate\Http\Request;
+use App\Exports\DataSimulasi;
+use Maatwebsite\Excel\Facades\Excel;
 use DB;
 
 class SimulationController extends Controller
@@ -368,7 +370,13 @@ class SimulationController extends Controller
         return redirect()->route('simulations.index')
             ->with('success', 'Simulation updated successfully.');
     }
-
+    public function download(Simulation $simulation)
+    {
+    return Excel::download(
+        new DataSimulasi($simulation),
+        'simulasi-'.$simulation->id.'.xlsx'
+    );
+    }
     /**
      * Remove the specified resource from storage.
      *

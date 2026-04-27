@@ -1,6 +1,6 @@
 /*
 Template Name: SISTEM APLIKASI KREDIT
-Author: BANK DUTA PASUNDAN
+Author: BANK HALDEN PRIME
 Website: https://themesbrand.com/
 Contact: themesbrand@gmail.com
 File: Material design Init Js File

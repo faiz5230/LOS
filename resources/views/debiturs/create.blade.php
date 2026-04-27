@@ -700,8 +700,8 @@
                                                              <div class="input-group input-group-sm">
                                                                 <span class="input-group-text col-4">Alamat <span
                                                                         style="color:red">*</span></span>
-                                                                <textarea name="alamat" id="alamat" class="form-control form-control-sm" required>{{ old('alamat') }}</textarea>
-                                                                @error('alamat')
+                                                                <textarea name="alamat_saudara" id="alamat_saudara" class="form-control form-control-sm" required>{{ old('alamat_saudara') }}</textarea>
+                                                                @error('alamat saudara')
                                                                     <div class="alert alert-danger mt-1 mb-1">
                                                                         {{ $message }}
                                                                     </div>
@@ -1048,6 +1048,25 @@
                                 </div>
 
                             </div>
+                            <script>
+                            document.addEventListener("DOMContentLoaded", function () {
+                            const fields = [
+                            "alamat_saudara",
+                            "nama_usaha",
+                            "alamat_perusahaan",
+                            "alamat_perusahaan_pasangan"
+                            ];
+
+                            fields.forEach(function(field) {
+                            let el = document.querySelector("[name='" + field + "']");
+                            if (el) {
+                            if (!el.value || el.value.trim() === "") {
+                            el.value = "-";
+                            }
+                            }
+                            });
+                            });
+                            </script>
                         </form>
                     </div>
                     

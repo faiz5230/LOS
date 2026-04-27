@@ -44,6 +44,8 @@
             $biayaAdministrasi = pick_sim($sim, $debitur, 'biaya_administrasi', pick_sim($sim, $debitur, 'biaya_administrasi', 0));
             $biayaAsuransi = pick_sim($sim, $debitur, 'biaya_asuransi', 0);
             $biayaMaterai = pick_sim($sim, $debitur, 'biaya_materai', 0);
+            $tglMulai = $debitur->simulation->tanggal_realisasi ?? $debitur->tanggal ?? now();
+            $tglAkhir = $debitur->simulation->jatuh_tempo ?? now();
             $retensi = pick_sim($sim, $debitur, 'retensi', 0);
         @endphp
 
@@ -208,7 +210,7 @@
     <tr>
         <td colspan="4" style="border:1px solid #000;">JATUH TEMPO</td>
         <td colspan="1" style="border:1px solid #000;text-align:center;">:</td>
-        <td colspan="4" style="border:1px solid #000;">{{ $debitur->simulation->jatuh_tempo ?? '' }}</td>
+        <td colspan="4" style="border:1px solid #000;">{{ \Carbon\Carbon::parse($tglAkhir)->locale('id')->translatedFormat('d F Y') }}</td>
 
         <td colspan="3" style="border:1px solid #000;">GOL. DEBITUR</td>
         <td colspan="1" style="border:1px solid #000;text-align:center;">:</td>
@@ -219,7 +221,7 @@
     <tr>
         <td colspan="4" style="border:1px solid #000;">BUNGA</td>
         <td colspan="1" style="border:1px solid #000;text-align:center;">:</td>
-        <td colspan="4" style="border:1px solid #000;">{{ number_format($debitur->simulation->bunga_flat ?? 0,2,',','.') }}%</td>
+        <td colspan="4" style="border:1px solid #000;">{{ number_format($debitur->simulation->bunga_effektif ?? 0,2,',','.') }}%</td>
 
         <td colspan="3" style="border:1px solid #000;">SEKTOR EKONOMI</td>
         <td colspan="1" style="border:1px solid #000;text-align:center;">:</td>
@@ -250,12 +252,12 @@
         <td colspan="1" style="border:1px solid #000;text-align:center;">:</td>
         <td colspan="1" style="border:1px solid #000;">Rp.</td>
         <td colspan="4" style="border:1px solid #000;text-align:right;">
-            {{ number_format($debitur->simulation->tabungan_wajib ?? 0,0,',','.') }}</td>
+            {{ number_format($debitur->simulation->tabungan_wajib ?? 0,0,',','.') }},</td>
 
         <td colspan="3" style="border:1px solid #000;">RETENSI</td>
         <td colspan="1" style="border:1px solid #000;text-align:center;">:</td>
         <td colspan="4" style="border:1px solid #000;text-align:right;">
-            {{ number_format($debitur->simulation->angsuran ?? 0,0,',','.') }}
+            {{ number_format($debitur->simulation->angsuran ?? 0,0,',','.') }},-
         </td>
     </tr>
 
@@ -264,7 +266,7 @@
         <td colspan="1" style="border:1px solid #000;text-align:center;">:</td>
         <td colspan="1" style="border:1px solid #000;">Rp.</td>
         <td colspan="4" style="border:1px solid #000;text-align:right;">
-            {{ number_format($debitur->simulation->biaya_administrasi ?? 0,0,',','.') }}
+           {{ number_format($debitur->simulation?->biaya_administrasi ?? 0,0,',','.') }}
         </td>
 
         <td colspan="3" style="border:1px solid #000;">TATA LAKSANA</td>
@@ -333,13 +335,13 @@
             PI INST<br> TAB.<br> HALDEN
         </td>
 
-        <td colspan="3" style="border:1px solid #000;">TAB. PAKET DUTA</td>
-        <td colspan="3" style="border:1px solid #000;">Rp.</td>
+        <td colspan="3" style="border:1px solid #000;">TAB. PAKET HALDEN</td>
+        <td colspan="3" style="border:1px solid #000;">Rp. {{ number_format($debitur->simulation->tabungan_wajib ?? 0,0,',','.') }}</td>
     </tr>
 
     <tr>
         <td colspan="3" style="border:1px solid #000;">PEND. ADM KRD</td>
-        <td colspan="3" style="border:1px solid #000;">Rp.</td>
+        <td colspan="3" style="border:1px solid #000;">Rp. {{ number_format($debitur->simulation?->biaya_administrasi ?? 0,0,',','.') }}</td>
     </tr>
 
     <tr>
@@ -349,7 +351,7 @@
 
     <tr>
         <td colspan="3" style="border:1px solid #000;">BY. MATERAI</td>
-        <td colspan="3" style="border:1px solid #000;">Rp.</td>
+        <td colspan="3" style="border:1px solid #000;">Rp. {{ number_format($debitur->simulation?->biaya_materai ?? 0,0,',','.') }}</td>
     </tr>
 
     <tr>

@@ -1,8 +1,8 @@
 /*
 Template Name: SISTEM APLIKASI KREDIT
-Author: BANK DUTA PASUNDAN
-Website: https://BANK DUTA PASUNDAN.com/
-Contact: BANK DUTA PASUNDAN@gmail.comom
+Author: BANK HALDEN PRIME
+Website: https://BANK HALDEN PRIME.com/
+Contact: BANK HALDEN PRIME@gmail.comom
 File: Coming soon Init Js File
 */
 

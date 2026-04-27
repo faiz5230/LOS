@@ -1,5 +1,5 @@
 /*
-Template Name: Velzon - Admin & Dashboard Template
+Template Name: Faiz - Admin & Dashboard Template
 Author: Themesbrand
 Version: 3.0.0
 Website: https://Themesbrand.com/

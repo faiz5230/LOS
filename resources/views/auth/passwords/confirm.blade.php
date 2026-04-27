@@ -39,7 +39,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="mt-4 text-center">
-                                                            <p class="mb-0">© <script>document.write(new Date().getFullYear())</script> Borex   . Crafted with -</i> by BANK DUTA PASUNDAN</p>
+                                                            <p class="mb-0">© <script>document.write(new Date().getFullYear())</script> Borex   . Crafted with -</i> by BANK HALDEN PRIME</p>
                                                         </div>
                                                     </div>
                                                 </div>

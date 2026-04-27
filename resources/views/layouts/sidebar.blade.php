@@ -88,7 +88,7 @@
                                             <a href="{{ route('simulations.index', ['jenis_kredit' => 'Pasar']) }}" class="nav-link">@lang('translation.simulasi_pasar')</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="{{ route('debiturs.index', ['jenis_kredit' => 'Pasar']) }}" class="nav-link">@lang('translation.data_debitur_pasar')</a>
+                                            <a href="{{ route('debitur-pasar.index') }}" class="nav-link">@lang('translation.data_debitur_pasar')</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -104,7 +104,7 @@
                                             <a href="{{ route('simulations.index', ['jenis_kredit' => 'UMKM']) }}" class="nav-link">@lang('translation.simulasi_umkm')</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="{{ route('debiturs.index', ['jenis_kredit' => 'UMKM']) }}" class="nav-link">@lang('translation.data_debitur_umkm')</a>
+                                            <a href="{{ route('debitur-umkm.index') }}" class="nav-link">@lang('translation.data_debitur_umkm')</a>
                                         </li>
                                     </ul>
                                 </div>

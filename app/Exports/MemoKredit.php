@@ -4,6 +4,7 @@ namespace App\Exports;
 
 use App\Models\DebiturModalKerja;
 use App\Models\DebiturPensiun;
+use App\Models\DebiturPasar;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\WithStyles;
@@ -40,15 +41,27 @@ class MemoKredit implements FromView, WithStyles, WithDrawings
                 'debitur' => $debitur
             ]);
         }
+        if ($this->jenis === 'pasar') {
+            $debitur = DebiturPasar::with('simulation')->findOrFail($this->id);
+
+            return view('debitur.pasar.memo_kredit_pasar_export', [
+                'debitur' => $debitur
+            ]);
+        }
 
         // ✅ Kalau jenis tidak diisi, coba cari otomatis
         $debitur = DebiturModalKerja::with('simulation')->find($this->id);
         if ($debitur) {
             return view('debiturs.memo_kredit_export', compact('debitur'));
         }
-
+        if ($debitur) {
         $debitur = DebiturPensiun::with('simulation')->findOrFail($this->id);
         return view('debiturs.Pensiun.memo_kredit_pensiun_export', compact('debitur'));
+        } 
+        if ($debitur) {
+        $debitur = DebiturPasar::with('simulation')->findOrFail($this->id);
+        return view('debiturs.Pasar.memo_kredit_pasar_export', compact('debitur'));
+        } 
     }
 
     public function styles(Worksheet $sheet)

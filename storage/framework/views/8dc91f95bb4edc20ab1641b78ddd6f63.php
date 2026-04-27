@@ -24,33 +24,30 @@
                 <div class="card-body">
                     <div class="pull-right mb-2">
                         <a class="btn btn-success" href="<?php echo e(route('debitur-modal-kerja.index')); ?>">
-                            <i data-feather="arrow-left"></i> Kembali
-                        </a>
+                        <i data-feather="arrow-left"></i> Kembali</a>
                         <a class="btn btn-primary" href="<?php echo e(route('debitur-modal-kerja.export', $debitur->id)); ?>">
-                            <i data-feather="download"></i> Download Excel
-                        </a>
-                        <a href="<?php echo e(route('debiturs.modal_kerja.memo_kredit_export', $debitur->id)); ?>" 
-                            class="btn btn-primary"><i class="fas fa-download"></i>Memo Droping
-                        </a>
-                        <a href="<?php echo e(route('debiturs_sppk_export', $debitur->id)); ?>"
+                            <i data-feather="download"></i> Download Excel</a>
+                        <a href="<?php echo e(route('debitur-modal-kerja.export.memo_kredit', $debitur->id)); ?>" class="btn btn-primary">
+                        <i class="fas fa-download"></i> Memo Droping</a>
+                        <a href="<?php echo e(route('debitur-modal-kerja.export.sppk', $debitur->id)); ?>"
                            class="btn btn-primary"><i class="fas fa-download"></i> Export SPPK     
                         </a>
-                        <a href="<?php echo e(route('debiturs_sttu_export', $debitur->id)); ?>"
+                        <a href="<?php echo e(route('debitur-modal-kerja.export.sttu', $debitur->id)); ?>"
                            class="btn btn-primary"><i class="fas fa-download"></i> Export STTU   
                         </a>
-                        <a href="<?php echo e(route('debiturs_pk_snd_sim_export', $debitur->id)); ?>"
+                        <a href="<?php echo e(route('debitur-modal-kerja.export.pk_snd_sim', $debitur->id)); ?>"
                            class="btn btn-primary"><i class="fas fa-download"></i> PK Sendiri   
                         </a>
-                        <a href="<?php echo e(route('debiturs_pk_kredit_pasangan_export', $debitur->id)); ?>"
+                        <a href="<?php echo e(route('debitur-modal-kerja.export.pk_kredit_pasangan', $debitur->id)); ?>"
                            class="btn btn-primary"><i class="fas fa-download"></i> PK Pasangan   
                         </a>
-                        <a href="<?php echo e(route('debiturs_surat_kuasa_export', $debitur->id)); ?>"
+                        <a href="<?php echo e(route('debitur-modal-kerja.export.surat_kuasa', $debitur->id)); ?>"
                            class="btn btn-primary"><i class="fas fa-download"></i> Surat Kuasa  
                         </a>
-                        <a href="<?php echo e(route('debiturs_surat_askep_export', $debitur->id)); ?>"
+                        <a href="<?php echo e(route('debitur-modal-kerja.export.surat_askep', $debitur->id)); ?>"
                            class="btn btn-primary"><i class="fas fa-download"></i> Surat Askep
                         </a>
-                        <a href="<?php echo e(route('debiturs_pk_kredit_perusahaan_export', $debitur->id)); ?>"
+                        <a href="<?php echo e(route('debitur-modal-kerja.export.pk_kredit_perusahaan', $debitur->id)); ?>"
                            class="btn btn-primary"><i class="fas fa-download"></i> PK Kredit Perusahaan
                         </a>
                         
@@ -67,13 +64,13 @@
                         <div class="col-auto">
     
     
-                        <a href="<?php echo e(route('debiturs_memo_fasilitas_kredit_export', $debitur->id)); ?>"
+                        <a href="<?php echo e(route('debitur-modal-kerja.export.memo_fasilitas_kredit', $debitur->id)); ?>"
                            class="btn btn-primary"><i class="fas fa-download"></i> Memo Fasilitas Kredit
                         </a>
-                        <a href="<?php echo e(route('debiturs_mcc_export', $debitur->id)); ?>"
+                        <a href="<?php echo e(route('debitur-modal-kerja.export.mcc', $debitur->id)); ?>"
                            class="btn btn-primary"><i class="fas fa-download"></i> MCC
                         </a>
-                        <a href="<?php echo e(route('debiturs_tanda_terima_export', $debitur->id)); ?>"
+                        <a href="<?php echo e(route('debitur-modal-kerja.export.tanda_terima', $debitur->id)); ?>"
                            class="btn btn-primary"><i class="fas fa-download"></i> Tanda Terima
                         </a>
                         <a class="btn btn-warning" href="<?php echo e(route('debitur-modal-kerja.edit', $debitur->id)); ?>">

@@ -151,7 +151,7 @@
                                 <div class="input-group">
                                     <input type="text" name="dsr" id="dsr" 
                                         class="form-control @error('dsr') is-invalid @enderror" 
-                                        value="{{ old('dsr', $dsrValue ?? '') }}" placeholder="0">
+                                        value="{{ old('dsr', $simulation->dsr) }}" placeholder="0">
                                     <span class="input-group-text">%</span>
                                     @error('dsr')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -202,7 +202,7 @@
                                     class="form-control select2 @error('jangka_waktu') is-invalid @enderror">
                                     <option value="">-- Pilih --</option>
                                     @for ($i = 1; $i <= 240; $i++)
-                                        <option value="{{ $i }}" {{ old('jangka_waktu') == $i ? 'selected' : '' }}>
+                                        <option value="{{ $i }}" {{ old('jangka_waktu', $simulation->jangka_waktu) == $i ? 'selected' : '' }}>
                                             {{ $i }} Bulan
                                         </option>
                                     @endfor
@@ -334,9 +334,11 @@
                                 <label for="biaya_materai" class="form-label">Biaya Materai<span class="required-mark">*</span></label>
                                 <div class="input-group">
                                     <span class="input-group-text">Rp</span>
-                                    <input type="text" name="biaya_materai" id="biaya_materai" 
-                                        class="form-control @error('biaya_materai') is-invalid @enderror" 
-                                        value="{{ old('biaya_materai', $simulation->biaya_materai) }}" readonly>
+                                    <input type="text" name="biaya_materai" id="biaya_materai"
+                                        class="form-control @error('biaya_materai') is-invalid @enderror"
+                                        value="{{ old('biaya_materai', $simulation->biaya_materai ?? ($biaya_materaiValue ?? 0)) }}"
+                                        {{ ($simulation->jenis_kredit ?? $jenis_kredit ?? old('jenis_kredit')) === 'Pensiun' ? '' : 'readonly' }}>
+
                                     @error('biaya_materai')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -349,7 +351,7 @@
                                     <span class="input-group-text">Rp</span>
                                     <input type="text" name="retensi" id="retensi" 
                                         class="form-control @error('retensi') is-invalid @enderror" 
-                                        value="{{ old('retensi', 0) }}">
+                                        value="{{ old('retensi', $simulation->retensi) }}">
                                     @error('retensi')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -360,9 +362,11 @@
                                 <label for="tabungan_wajib" class="form-label">Tabungan Wajib<span class="required-mark">*</span></label>
                                 <div class="input-group">
                                     <span class="input-group-text">Rp</span>
-                                    <input type="text" name="tabungan_wajib" id="tabungan_wajib" 
-                                        class="form-control @error('tabungan_wajib') is-invalid @enderror" 
-                                        value="{{ old('tabungan_wajib', $simulation->tabungan_wajib) }}" readonly>
+                                    <input type="text" name="tabungan_wajib" id="tabungan_wajib"
+                                        class="form-control @error('tabungan_wajib') is-invalid @enderror"
+                                        value="{{ old('tabungan_wajib', $simulation->tabungan_wajib ?? ($tabungan_wajibValue ?? 0)) }}"
+                                        {{ ($simulation->jenis_kredit ?? $jenis_kredit ?? old('jenis_kredit')) === 'Pensiun' ? '' : 'readonly' }}>
+
                                     @error('tabungan_wajib')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -757,10 +761,13 @@ $(document).ready(function () {
         let jangkaWaktu = parseFloat($('#jangka_waktu').val() || 0);
         let usia = parseFloat($('#usia').val() || 0);
         let bungaFlat = parseFloat(bunga_flat.getRawValue() || 0) / 100;
-        // Materai & Tabungan Wajib harus NOMINAL sesuai setting_params
-        biaya_materai.setRawValue(SETTING_MATERAI.toFixed(2));
-        tabungan_wajib.setRawValue(SETTING_TABUNGAN_WAJIB.toFixed(2));
-        // Stop jika belum lengkap data utama
+        // Materai & Tabungan Wajib
+        // - Selain Pensiun: pakai setting_params (readonly, auto)
+        // - Pensiun: boleh diinput manual, jangan ditimpa tiap hitung
+        if (jenisKredit !== 'Pensiun') {
+            biaya_materai.setRawValue(SETTING_MATERAI.toFixed(2));
+            tabungan_wajib.setRawValue(SETTING_TABUNGAN_WAJIB.toFixed(2));
+        }// Stop jika belum lengkap data utama
         if (!plafond_input || !jangkaWaktu || !usia || !bungaFlat) return;
 
         // =========================
@@ -838,7 +845,7 @@ $(document).ready(function () {
         });
 
     // Event biaya manual tetap update total
-    $('#biaya_notaris, #bunga, #denda, #pinalty, #tabungan_wajib').on('input', function () {
+    $('#biaya_notaris, #bunga, #denda, #pinalty, #biaya_materai, #tabungan_wajib').on('input', function () {
         hitungTotalDiterima();
     });
 
@@ -851,5 +858,4 @@ $(document).ready(function () {
 });
 </script>
 @endsection
-
 

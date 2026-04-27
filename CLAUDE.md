@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a Loan Origination System (LOS) for Bank Duta Pasundan, built with Laravel 10 and Vite. The system manages credit applications, debtor information, credit analysis, simulations, and document generation for various loan-related documents.
+This is a Loan Origination System (LOS) for BANK HALDEN PRIME, built with Laravel 10 and Vite. The system manages credit applications, debtor information, credit analysis, simulations, and document generation for various loan-related documents.
 
 ## Tech Stack
 

@@ -58,7 +58,7 @@
                                     <script>
                                         document.write(new Date().getFullYear())
                                     </script> SISTEM APLIKASI KREDIT -</i>
-                                    by BANK DUTA PASUNDAN
+                                    by BANK HALDEN PRIME
                                 </p>
                             </div>
                         </div>

@@ -29,7 +29,7 @@
                         <div class="me-2"><i
                                 class="ri-map-pin-user-line me-1 text-white text-opacity-75 fs-16 align-middle"></i>California,
                             United States</div>
-                        <div><i class="ri-building-line me-1 text-white text-opacity-75 fs-16 align-middle"></i>BANK DUTA PASUNDAN
+                        <div><i class="ri-building-line me-1 text-white text-opacity-75 fs-16 align-middle"></i>BANK HALDEN PRIME
                         </div>
                     </div>
                 </div>
@@ -126,7 +126,7 @@
                                                     </tr>
                                                     <tr>
                                                         <th class="ps-0" scope="row">E-mail :</th>
-                                                        <td class="text-muted">daveadame@velzon.com</td>
+                                                        <td class="text-muted">daveadame@faiz.com</td>
                                                     </tr>
                                                     <tr>
                                                         <th class="ps-0" scope="row">Location :</th>
@@ -390,7 +390,7 @@
                                                     </div>
                                                     <div class="flex-grow-1 overflow-hidden">
                                                         <p class="mb-1">Website :</p>
-                                                        <a href="#" class="fw-semibold">www.velzon.com</a>
+                                                        <a href="#" class="fw-semibold">www.faiz.com</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -655,8 +655,8 @@
                                                                         <div class="accordion-body ms-2 ps-5">
                                                                             <p class="text-muted mb-2">
                                                                                 Every team project can
-                                                                                have a velzon. Use the
-                                                                                velzon to share
+                                                                                have a faiz. Use the
+                                                                                faiz to share
                                                                                 information with your
                                                                                 team to understand and
                                                                                 contribute to your
@@ -803,7 +803,7 @@
                                                                                 </div>
                                                                                 <div class="flex-grow-1 ms-3">
                                                                                     <h6 class="fs-14 mb-1">
-                                                                                        Velzon admin
+                                                                                        Faiz admin
                                                                                         dashboard
                                                                                         templates layout
                                                                                         upload</h6>
@@ -1184,8 +1184,8 @@
                                                                         <div class="accordion-body ms-2 ps-5">
                                                                             <p class="text-muted mb-2">
                                                                                 Every team project can
-                                                                                have a velzon. Use the
-                                                                                velzon to share
+                                                                                have a faiz. Use the
+                                                                                faiz to share
                                                                                 information with your
                                                                                 team to understand and
                                                                                 contribute to your
@@ -1659,7 +1659,7 @@
                                         </div>
                                         <div class="flex-grow-1 ms-3">
                                             <h6 class="mb-1">Bethany Johnson</h6>
-                                            <p class="text-muted mb-2">added a new member to velzon
+                                            <p class="text-muted mb-2">added a new member to faiz
                                                 dashboard</p>
                                             <small class="mb-0 text-muted">19 Nov</small>
                                         </div>
@@ -1918,7 +1918,7 @@
                                                 <div class="d-flex">
                                                     <div class="flex-grow-1 text-muted overflow-hidden">
                                                         <h5 class="fs-14 text-truncate"><a href="#"
-                                                                class="text-body">Velzon Project</a>
+                                                                class="text-body">Faiz Project</a>
                                                         </h5>
                                                         <p class="text-muted text-truncate mb-0">Last
                                                             Update : <span class="fw-semibold text-body">11 hr
@@ -2679,7 +2679,7 @@
                                                                 <div class="ms-3 flex-grow-1">
                                                                     <h6 class="fs-14 mb-0"><a
                                                                             href="javascript:void(0);"
-                                                                            class="text-body">Velzon-logo.png</a>
+                                                                            class="text-body">Faiz-logo.png</a>
                                                                     </h6>
                                                                 </div>
                                                             </div>

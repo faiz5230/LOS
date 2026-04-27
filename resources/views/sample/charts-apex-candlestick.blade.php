@@ -75,7 +75,7 @@ Apex Candlestick Charts
 <script src="{{ URL::asset('build/libs/apexcharts/apexcharts.min.js') }}"></script>
 <script src="https://apexcharts.com/samples/assets/ohlc.js"></script>
 <!-- for Category x-axis chart -->
-<script src="https://img.themesbrand.com/velzon/apexchart-js/dayjs.min.js"></script>
+<script src="https://img.themesbrand.com/faiz/apexchart-js/dayjs.min.js"></script>
 <script src="{{ URL::asset('build/js/pages/apexcharts-candlestick.init.js') }}"></script>
 
     <script src="{{ URL::asset('build/js/app.js') }}"></script>

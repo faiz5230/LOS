@@ -211,7 +211,7 @@
                                 <button type="button" class="btn btn-icon active" data-bs-toggle="button" aria-pressed="true"><i class="mdi mdi-cards-heart fs-16"></i></button>
                             </div>
                             <div class="explore-place-bid-img">
-                                <img src="https://img.themesbrand.com/velzon/images/img-4.gif" alt="" class="card-img-top explore-img" />
+                                <img src="https://img.themesbrand.com/faiz/images/img-4.gif" alt="" class="card-img-top explore-img" />
                                 <div class="bg-overlay"></div>
                                 <div class="place-bid-btn">
                                     <a href="#!" class="btn btn-success"><i class="ri-auction-fill align-bottom me-1"></i> Place Bid</a>
@@ -402,11 +402,11 @@
                                             <div class="row g-1 mb-3">
                                                 <div class="col-6">
                                                     <img src="{{URL::asset('build/images/nft/img-06.jpg')}}" alt="" class="img-fluid rounded">
-                                                    <img src="https://img.themesbrand.com/velzon/images/img-2.gif" alt="" class="img-fluid rounded mt-1">
+                                                    <img src="https://img.themesbrand.com/faiz/images/img-2.gif" alt="" class="img-fluid rounded mt-1">
                                                 </div>
                                                 <!--end col-->
                                                 <div class="col-6">
-                                                    <img src="https://img.themesbrand.com/velzon/images/img-5.gif" alt="" class="img-fluid rounded mb-1">
+                                                    <img src="https://img.themesbrand.com/faiz/images/img-5.gif" alt="" class="img-fluid rounded mb-1">
                                                     <img src="{{URL::asset('build/images/nft/img-03.jpg')}}" alt="" class="img-fluid rounded">
                                                 </div>
                                                 <!--end col-->
@@ -423,11 +423,11 @@
                                             <div class="row g-1 mb-3">
                                                 <div class="col-6">
                                                     <img src="{{URL::asset('build/images/nft/img-05.jpg')}}" alt="" class="img-fluid rounded">
-                                                    <img src="https://img.themesbrand.com/velzon/images/img-1.gif" alt="" class="img-fluid rounded mt-1">
+                                                    <img src="https://img.themesbrand.com/faiz/images/img-1.gif" alt="" class="img-fluid rounded mt-1">
                                                 </div>
                                                 <!--end col-->
                                                 <div class="col-6">
-                                                    <img src="https://img.themesbrand.com/velzon/images/img-4.gif" alt="" class="img-fluid rounded mb-1">
+                                                    <img src="https://img.themesbrand.com/faiz/images/img-4.gif" alt="" class="img-fluid rounded mb-1">
                                                     <img src="{{URL::asset('build/images/nft/img-04.jpg')}}" alt="" class="img-fluid rounded">
                                                 </div>
                                                 <!--end col-->
@@ -444,11 +444,11 @@
                                             <div class="row g-1 mb-3">
                                                 <div class="col-6">
                                                     <img src="{{URL::asset('build/images/nft/img-02.jpg')}}" alt="" class="img-fluid rounded">
-                                                    <img src="https://img.themesbrand.com/velzon/images/img-3.gif" alt="" class="img-fluid rounded mt-1">
+                                                    <img src="https://img.themesbrand.com/faiz/images/img-3.gif" alt="" class="img-fluid rounded mt-1">
                                                 </div>
                                                 <!--end col-->
                                                 <div class="col-6">
-                                                    <img src="https://img.themesbrand.com/velzon/images/img-1.gif" alt="" class="img-fluid rounded mb-1">
+                                                    <img src="https://img.themesbrand.com/faiz/images/img-1.gif" alt="" class="img-fluid rounded mb-1">
                                                     <img src="{{URL::asset('build/images/nft/img-01.jpg')}}" alt="" class="img-fluid rounded">
                                                 </div>
                                                 <!--end col-->
@@ -465,11 +465,11 @@
                                             <div class="row g-1 mb-3">
                                                 <div class="col-6">
                                                     <img src="{{URL::asset('build/images/nft/img-03.jpg')}}" alt="" class="img-fluid rounded">
-                                                    <img src="https://img.themesbrand.com/velzon/images/img-5.gif" alt="" class="img-fluid rounded mt-1">
+                                                    <img src="https://img.themesbrand.com/faiz/images/img-5.gif" alt="" class="img-fluid rounded mt-1">
                                                 </div>
                                                 <!--end col-->
                                                 <div class="col-6">
-                                                    <img src="https://img.themesbrand.com/velzon/images/img-2.gif" alt="" class="img-fluid rounded mb-1">
+                                                    <img src="https://img.themesbrand.com/faiz/images/img-2.gif" alt="" class="img-fluid rounded mb-1">
                                                     <img src="{{URL::asset('build/images/nft/img-05.jpg')}}" alt="" class="img-fluid rounded">
                                                 </div>
                                                 <!--end col-->
@@ -486,11 +486,11 @@
                                             <div class="row g-1 mb-3">
                                                 <div class="col-6">
                                                     <img src="{{URL::asset('build/images/nft/img-02.jpg')}}" alt="" class="img-fluid rounded">
-                                                    <img src="https://img.themesbrand.com/velzon/images/img-3.gif" alt="" class="img-fluid rounded mt-1">
+                                                    <img src="https://img.themesbrand.com/faiz/images/img-3.gif" alt="" class="img-fluid rounded mt-1">
                                                 </div>
                                                 <!--end col-->
                                                 <div class="col-6">
-                                                    <img src="https://img.themesbrand.com/velzon/images/img-1.gif" alt="" class="img-fluid rounded mb-1">
+                                                    <img src="https://img.themesbrand.com/faiz/images/img-1.gif" alt="" class="img-fluid rounded mb-1">
                                                     <img src="{{URL::asset('build/images/nft/img-01.jpg')}}" alt="" class="img-fluid rounded">
                                                 </div>
                                                 <!--end col-->
@@ -598,7 +598,7 @@
                                     </div>
                                 </div>
                                 <div class="explore-place-bid-img overflow-hidden rounded">
-                                    <img src="https://img.themesbrand.com/velzon/images/img-1.gif" alt="" class="img-fluid explore-img">
+                                    <img src="https://img.themesbrand.com/faiz/images/img-1.gif" alt="" class="img-fluid explore-img">
                                     <div class="bg-overlay"></div>
                                     <div class="place-bid-btn">
                                         <a href="#!" class="btn btn-success"><i class="ri-auction-fill align-bottom me-1"></i> Place Bid</a>
@@ -724,7 +724,7 @@
                             <div class="card-body">
                                 <div class="d-flex">
                                     <div class="flex-shink-0">
-                                        <img src="https://img.themesbrand.com/velzon/images/img-5.gif" alt="" class="avatar-sm object-fit-cover rounded">
+                                        <img src="https://img.themesbrand.com/faiz/images/img-5.gif" alt="" class="avatar-sm object-fit-cover rounded">
                                     </div>
                                     <div class="ms-3 flex-grow-1">
                                         <a href="pages-profile">
@@ -846,7 +846,7 @@
                             </div>
                             <div class="mt-4">
                                 <p>SISTEM APLIKASI KREDIT</p>
-                                <p>You can build any type of web application like eCommerce, CRM, CMS, Project management apps, Admin Panels, etc using Velzon.</p>
+                                <p>You can build any type of web application like eCommerce, CRM, CMS, Project management apps, Admin Panels, etc using Faiz.</p>
                             </div>
                         </div>
                     </div>
@@ -898,7 +898,7 @@
                                 <script>
                                     document.write(new Date().getFullYear())
 
-                                </script> © Velzon - BANK DUTA PASUNDAN
+                                </script> © Faiz - BANK HALDEN PRIME
                             </p>
                         </div>
                     </div>

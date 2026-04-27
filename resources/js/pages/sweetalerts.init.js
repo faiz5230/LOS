@@ -1,8 +1,8 @@
 /*
 Template Name: SISTEM APLIKASI KREDIT
-Author: BANK DUTA PASUNDAN
-Website: https://BANK DUTA PASUNDAN.com/
-Contact: BANK DUTA PASUNDAN@gmail.com
+Author: BANK HALDEN PRIME
+Website: https://BANK HALDEN PRIME.com/
+Contact: BANK HALDEN PRIME@gmail.com
 File: Sweatalerts init js
 */
 
@@ -192,7 +192,7 @@ if (document.getElementById("custom-html-alert"))
             title: '<i>HTML</i> <u>example</u>',
             icon: 'info',
             html: 'You can use <b>bold text</b>, ' +
-                '<a href="//BANK DUTA PASUNDAN.in/">links</a> ' +
+                '<a href="//BANK HALDEN PRIME.in/">links</a> ' +
                 'and other HTML tags',
             showCloseButton: true,
             showCancelButton: true,
@@ -370,7 +370,7 @@ if (document.getElementById("custom-sa-community"))
         Swal.fire({
             title: 'Join Our Community',
             html: 'You can use <b>bold text</b>, ' +
-                '<a href="//BANK DUTA PASUNDAN.in/">links</a> ' +
+                '<a href="//BANK HALDEN PRIME.in/">links</a> ' +
                 'and other HTML tags',
             html: '<div class="mt-3 text-start">' +
                 '<label for="input-email" class="form-label fs-13">Email</label>' +

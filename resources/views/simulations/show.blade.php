@@ -22,15 +22,39 @@
 
             <div class="card-body">
                 <div class="pull-right mb-2">
-                    <a class="btn btn-success" href="{{ route($route . '.index') }}"> <i data-feather="arrow-left"></i> Kembali</a>
-                    @if($simulation->jenis_kredit == 'Modal Kerja')
-                        <a class="btn btn-primary" href="{{ route('debitur-modal-kerja.create', ['simulation_id' => $simulation->id]) }}"> <i data-feather="plus-square"></i> Buat Data Debitur Modal Kerja</a>
-                    @elseif($simulation->jenis_kredit == 'Pensiun')
-                        <a class="btn btn-primary" href="{{ route('debitur-pensiun.create', ['simulation_id' => $simulation->id]) }}"><i data-feather="plus-square"></i> Buat Data Debitur Pensiun</a>
-                    @else
-                        <a class="btn btn-primary" href="{{ route('debiturs_simulation',[$simulation->id]) }}"> <i data-feather="plus-square"></i> Buat Data Debitur</a>
-                    @endif
-                </div> 
+                <a class="btn btn-success" href="{{ route($route . '.index') }}">
+                <i data-feather="arrow-left"></i> Kembali
+                </a>
+
+                @if($simulation->jenis_kredit == 'Modal Kerja')
+                <a class="btn btn-primary" href="{{ route('debitur-modal-kerja.create', ['simulation' => $simulation->id]) }}">
+                Buat Debitur Modal Kerja
+                </a>
+
+                @elseif($simulation->jenis_kredit == 'Pensiun')
+                <a class="btn btn-primary" href="{{ route('debitur-pensiun.create', ['simulation' => $simulation->id]) }}">
+                <i data-feather="plus-square"></i> Buat Data Debitur Pensiun
+                 </a>
+
+                @elseif($simulation->jenis_kredit == 'Pasar')
+                <a class="btn btn-primary" href="{{ route('debitur-pasar.create', ['simulation' => $simulation->id]) }}">
+                <i data-feather="plus-square"></i> Buat Data Debitur Pasar
+                </a>
+
+                @elseif($simulation->jenis_kredit == 'UMKM')
+                {{-- FIX UMKM: arahkan ke debitur/umkm/create/{simulation} --}}
+                <a class="btn btn-primary" href="{{ route('debitur-umkm.create', ['simulation' => $simulation->id]) }}">
+                <i data-feather="plus-square"></i> Buat Data Debitur UMKM
+                </a>
+
+                @else
+                {{-- default lama kalau jenis kredit lain --}}
+                <a class="btn btn-primary" href="{{ route('debiturs_simulation', [$simulation->id]) }}">
+                <i data-feather="plus-square"></i> Buat Data Debitur
+                </a>
+                @endif
+                </div>
+
                 
                 <div class="live-preview">
                 @if(session('status'))

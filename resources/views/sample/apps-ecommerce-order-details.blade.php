@@ -136,7 +136,7 @@
                                                     <td class="text-end">$359.96</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Discount <span class="text-muted">(VELZON15)</span> : :</td>
+                                                    <td>Discount <span class="text-muted">(FAIZ15)</span> : :</td>
                                                     <td class="text-end">-$53.99</td>
                                                 </tr>
                                                 <tr>

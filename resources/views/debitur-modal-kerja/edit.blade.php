@@ -150,35 +150,83 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-6">
-                                                    <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
-                                                        <h5>Data Agunan</h5>
-                                                    </div>
-                                                    <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
-                                                        <div class="form-group">
-                                                            <div class="input-group input-group-sm">
-                                                                <span class="input-group-text col-4">Agunan</span>
-                                                                <input type="text" name="agunan" class="form-control" value="{{ old('agunan', $debitur->agunan) }}">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
-                                                        <div class="form-group">
-                                                            <div class="input-group input-group-sm">
-                                                                <span class="input-group-text col-4">No. Agunan</span>
-                                                                <input type="text" name="no_agunan" class="form-control" value="{{ old('no_agunan', $debitur->no_agunan) }}">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
-                                                        <div class="form-group">
-                                                            <div class="input-group input-group-sm">
-                                                                <span class="input-group-text col-4">Atas Nama Agunan</span>
-                                                                <input type="text" name="atas_nama_agunan" class="form-control" value="{{ old('atas_nama_agunan', $debitur->atas_nama_agunan) }}">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+    <div class="col-6">
+
+    <!-- Data Agunan -->
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <h5 class="mt-0 mb-3">Data Agunan</h5>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <div class="input-group input-group-sm">
+                <span class="input-group-text col-4">Agunan</span>
+                <input type="text" name="agunan" class="form-control" value="{{ old('agunan') }}">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
+        <div class="form-group">
+            <div class="input-group input-group-sm">
+                <span class="input-group-text col-4">No. Agunan</span>
+                <input type="text" name="no_agunan" class="form-control" value="{{ old('no_agunan') }}">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
+        <div class="form-group">
+            <div class="input-group input-group-sm">
+                <span class="input-group-text col-4">Atas Nama Agunan</span>
+                <input type="text" name="atas_nama_agunan" class="form-control" value="{{ old('atas_nama_agunan') }}">
+            </div>
+        </div>
+    </div>
+
+    <!-- Data Pasangan -->
+    <div class="col-xs-12 col-sm-12 col-md-12 pt-4">
+        <h5 class="mt-0 mb-3">Data Pasangan</h5>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <div class="input-group input-group-sm">
+                <span class="input-group-text col-4">Nama Pasangan</span>
+                <input type="text" name="nama_pasangan" class="form-control" value="{{ old('nama_pasangan') }}">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
+        <div class="form-group">
+            <div class="input-group input-group-sm">
+                <span class="input-group-text col-4">NIK</span>
+                <input type="text" name="nik_pasangan" class="form-control" value="{{ old('nik_pasangan') }}">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
+        <div class="form-group">
+            <div class="input-group input-group-sm">
+                <span class="input-group-text col-4">Pekerjaan</span>
+                <input type="text" name="pekerjaan_pasangan" class="form-control" value="{{ old('pekerjaan_pasangan') }}">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 pt-3">
+        <div class="form-group">
+            <div class="input-group input-group-sm">
+                <span class="input-group-text col-4">Alamat</span>
+                <input type="text" name="alamat_pasangan" class="form-control" value="{{ old('alamat_pasangan') }}">
+            </div>
+        </div>
+    </div>
+
+</div>
+
                                             </div>
                                         </div>
                                     </div>

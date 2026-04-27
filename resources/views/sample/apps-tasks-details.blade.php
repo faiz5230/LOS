@@ -49,7 +49,7 @@
                                 </tr>
                                 <tr>
                                     <td class="fw-medium">Project Name</td>
-                                    <td>Velzon - Admin Dashboard</td>
+                                    <td>Faiz - Admin Dashboard</td>
                                 </tr>
                                 <tr>
                                     <td class="fw-medium">Priority</td>
@@ -227,7 +227,7 @@
                                 </div>
                                 <div class="flex-grow-1 overflow-hidden">
                                     <h5 class="fs-13 mb-1"><a href="javascript:void(0);"
-                                            class="text-body text-truncate d-block">Velzon admin.ppt</a></h5>
+                                            class="text-body text-truncate d-block">Faiz admin.ppt</a></h5>
                                     <div class="text-muted">2.4MB</div>
                                 </div>
                                 <div class="flex-shrink-0 ms-2">
@@ -557,7 +557,7 @@
                                                     </div>
                                                     <div class="ms-3 flex-grow-1">
                                                         <h6 class="fs-14 mb-0"><a href="javascript:void(0);"
-                                                                class="text-body">Velzon admin.ppt</a></h6>
+                                                                class="text-body">Faiz admin.ppt</a></h6>
                                                     </div>
                                                 </div>
                                             </td>

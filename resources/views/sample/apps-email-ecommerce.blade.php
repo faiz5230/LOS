@@ -154,7 +154,7 @@
                             <a href="#" itemprop="url" style="font-family: 'Roboto', sans-serif; box-sizing: border-box; font-size: .8125rem; color: #FFF; text-decoration: none; font-weight: 400; text-align: center; cursor: pointer; display: inline-block; border-radius: .25rem; text-transform: capitalize; background-color: #0ab39c; margin: 0; border-color: #0ab39c; border-style: solid; border-width: 1px; padding: .5rem .9rem;">Back to Shop</a>
                         </div>
                         <div style="text-align: center; margin: 28px auto 0px auto;">
-                            <p style="font-family: 'Roboto', sans-serif; font-size: 14px;color: #98a6ad; margin: 0px;">2022 Velzon. Design & Develop by BANK DUTA PASUNDAN</p>
+                            <p style="font-family: 'Roboto', sans-serif; font-size: 14px;color: #98a6ad; margin: 0px;">2022 Faiz. Design & Develop by BANK HALDEN PRIME</p>
                         </div>
                     </div>
                 </td>
@@ -204,7 +204,7 @@
                                             <td class="content-block" style="font-family: 'Roboto', sans-serif; box-sizing: border-box; font-size: 15px; vertical-align:     top; margin: 0; padding: 0 0 0px;" valign="top">
                                                 <p style="font-family: 'Roboto', sans-serif; margin-bottom: 8px; color: #878a99;line-height: 1.5;">Dear valuable Customer,</p>
                                                 <p style="font-family: 'Roboto', sans-serif; margin-bottom: 8px; color: #878a99;line-height: 1.5;">Thank you so much for providing 5 stars review It really means a lot to us. Your review motivates us to work even hard and provide top-notch features, support, and updates. You can share more details via the contact us so we can provide the best from our side in future updates. We are going to release the Vue and React version asap.</p>
-                                                <p style="font-family: 'Roboto', sans-serif; margin-bottom: 8px; color: #878a99;line-height: 1.5;">Feel free to get in touch with us anytime via support from the link below. <a href="https://themeforest.net/item/velzon-aspnet-core-admin-dashboard-template/36077495/support" target="_blank">https://themeforest.net/item/velzon-aspnet-core-admin-dashboard-template/36077495/support</a></p>
+                                                <p style="font-family: 'Roboto', sans-serif; margin-bottom: 8px; color: #878a99;line-height: 1.5;">Feel free to get in touch with us anytime via support from the link below. <a href="https://themeforest.net/item/faiz-aspnet-core-admin-dashboard-template/36077495/support" target="_blank">https://themeforest.net/item/faiz-aspnet-core-admin-dashboard-template/36077495/support</a></p>
                                                 <h6 style="font-family: 'Roboto', sans-serif; font-size: 14px; margin-bottom: 0px; text-align: end;">Thank you!</h6>
                                             </td>
                                         </tr>
@@ -213,7 +213,7 @@
                             </tr>
                         </table>
                         <div style="text-align: center; margin: 28px auto 0px auto;">
-                            <p style="font-family: 'Roboto', sans-serif; font-size: 14px;color: #98a6ad; margin: 0px;">2022 Velzon. Design & Develop by BANK DUTA PASUNDAN</p>
+                            <p style="font-family: 'Roboto', sans-serif; font-size: 14px;color: #98a6ad; margin: 0px;">2022 Faiz. Design & Develop by BANK HALDEN PRIME</p>
                         </div>
                     </div>
                 </td>
@@ -302,7 +302,7 @@
                             </tr>
                         </table>
                         <div style="text-align: center; margin: 28px auto 0px auto;">
-                            <p style="font-family: 'Roboto', sans-serif; font-size: 14px;color: #98a6ad; margin: 0px;">2022 Velzon. Design & Develop by BANK DUTA PASUNDAN</p>
+                            <p style="font-family: 'Roboto', sans-serif; font-size: 14px;color: #98a6ad; margin: 0px;">2022 Faiz. Design & Develop by BANK HALDEN PRIME</p>
                         </div>
                     </div>
                 </td>

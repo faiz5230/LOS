@@ -180,7 +180,7 @@ Apex Line Charts
 @endsection
 @section('script')
 <script src="{{ URL::asset('build/libs/apexcharts/apexcharts.min.js') }}"></script>
-<script src="https://img.themesbrand.com/velzon/apexchart-js/stock-prices.js"></script>
+<script src="https://img.themesbrand.com/faiz/apexchart-js/stock-prices.js"></script>
 <script src="{{ URL::asset('build/js/pages/apexcharts-line.init.js') }}"></script>
 
 <script src="{{ URL::asset('build/js/app.js') }}"></script>

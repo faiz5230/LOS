@@ -60,7 +60,7 @@
             <div class="col-xxl-3 col-lg-4 col-md-6 product-item upto-30">
                 <div class="card explore-box card-animate">
                     <div class="position-relative rounded overflow-hidden">
-                        <img src="https://img.themesbrand.com/velzon/images/img-1.gif" alt="" class="card-img-top explore-img">
+                        <img src="https://img.themesbrand.com/faiz/images/img-1.gif" alt="" class="card-img-top explore-img">
                         <div class="discount-time">
                             <h5 id="auction-time-2" class="mb-0 text-white"></h5>
                         </div>
@@ -129,7 +129,7 @@
             <div class="col-xxl-3 col-lg-4 col-md-6 product-item upto-40">
                 <div class="card explore-box card-animate">
                     <div class="position-relative rounded overflow-hidden">
-                        <img src="https://img.themesbrand.com/velzon/images/img-5.gif" alt="" class="card-img-top explore-img">
+                        <img src="https://img.themesbrand.com/faiz/images/img-5.gif" alt="" class="card-img-top explore-img">
                         <div class="discount-time">
                             <h5 id="auction-time-5" class="mb-0 text-white"></h5>
                         </div>
@@ -198,7 +198,7 @@
             <div class="col-xxl-3 col-lg-4 col-md-6 product-item upto-15">
                 <div class="card explore-box card-animate">
                     <div class="position-relative rounded overflow-hidden">
-                        <img src="https://img.themesbrand.com/velzon/images/img-4.gif" alt="" class="card-img-top explore-img">
+                        <img src="https://img.themesbrand.com/faiz/images/img-4.gif" alt="" class="card-img-top explore-img">
                         <div class="discount-time">
                             <h5 id="auction-time-8" class="mb-0 text-white"></h5>
                         </div>
@@ -258,7 +258,7 @@
                             <tr>
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <img src="https://img.themesbrand.com/velzon/images/img-4.gif" alt="" class="avatar-sm object-fit-cover rounded-circle">
+                                        <img src="https://img.themesbrand.com/faiz/images/img-4.gif" alt="" class="avatar-sm object-fit-cover rounded-circle">
                                         <div class="ms-2">
                                             <a href="apps-nft-item-details">
                                                 <h6 class="fs-15 mb-1">Patterns arts & culture</h6>
@@ -272,7 +272,7 @@
                             <tr>
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <img src="https://img.themesbrand.com/velzon/images/img-3.gif" alt="" class="avatar-sm object-fit-cover rounded-circle">
+                                        <img src="https://img.themesbrand.com/faiz/images/img-3.gif" alt="" class="avatar-sm object-fit-cover rounded-circle">
                                         <div class="ms-2">
                                             <a href="apps-nft-item-details">
                                                 <h6 class="fs-15 mb-1">Evolved Reality</h6>

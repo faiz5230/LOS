@@ -50,7 +50,7 @@
 
     <script src="https://apexcharts.com/samples/assets/ohlc.js"></script>
     <!-- for Category x-axis chart -->
-    <script src="https://img.themesbrand.com/velzon/apexchart-js/dayjs.min.js"></script>
+    <script src="https://img.themesbrand.com/faiz/apexchart-js/dayjs.min.js"></script>
 
     <!-- range-area charts init -->
     <script src="{{ URL::asset('build/js/pages/apexcharts-range-area.init.js') }}"></script>

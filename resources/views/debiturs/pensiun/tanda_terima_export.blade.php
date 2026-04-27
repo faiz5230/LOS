@@ -224,7 +224,7 @@
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
                 :</td>
             <td style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
-                colspan="5">{{ ucwords($debitur->nama) }}</td>
+                colspan="5">{{ ucwords($debitur->nama_pensiun) }}</td>
             <td
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
             </td>
@@ -295,12 +295,12 @@
         <tr>
             <td
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
-                No. Ijazah Terakhir</td>
+                No. SK</td>
             <td
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
                 :</td>
             <td style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
-                colspan="5">{{ $debitur->no_ijasah }}</td>
+                colspan="5">{{ $debitur->no_sk }}</td>
             <td
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
             </td>
@@ -316,7 +316,7 @@
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
                 :</td>
             <td style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
-                colspan="5">{{ ucwords($debitur->nama) }}</td>
+                colspan="5">{{ ($debitur->nama_pensiun) }}</td>
             <td
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
             </td>
@@ -361,7 +361,7 @@
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
                 :</td>
             <td style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal"
-                colspan="7">Sebagai Jaminan atas Pinjaman Kredit Fasilitas Installment</td>
+                colspan="7">Sebagai Jaminan atas Pinjaman Kredit Fasilitas Installment Pensiun</td>
         </tr>
         <tr>
             <td
@@ -423,7 +423,7 @@
         </tr>
         <tr>
             <td style="border: none;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal"
-                colspan="9">PT. BPR DUTA&nbsp;&nbsp;&nbsp;PASUNDAN</td>
+                colspan="9">PT. BPR HALDEN&nbsp;&nbsp;&nbsp;PRIME</td>
         </tr>
         <tr>
             <td style="border:1px solid #000;border-style:solid;border-width:1px;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal"

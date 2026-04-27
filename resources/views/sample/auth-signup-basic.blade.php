@@ -40,7 +40,7 @@
                                 <div class="card-body p-4">
                                     <div class="text-center mt-2">
                                         <h5 class="text-primary">Create New Account</h5>
-                                        <p class="text-muted">Get your free velzon account now</p>
+                                        <p class="text-muted">Get your free faiz account now</p>
                                     </div>
                                     <div class="p-2 mt-4">
                                         <form class="needs-validation" novalidate action="index">
@@ -72,7 +72,7 @@
                                             </div>
 
                                             <div class="mb-4">
-                                                <p class="mb-0 fs-12 text-muted fst-italic">By registering you agree to the Velzon <a href="#" class="text-primary text-decoration-underline fst-normal fw-medium">Terms of Use</a></p>
+                                                <p class="mb-0 fs-12 text-muted fst-italic">By registering you agree to the Faiz <a href="#" class="text-primary text-decoration-underline fst-normal fw-medium">Terms of Use</a></p>
                                             </div>
 
                                             <div id="password-contain" class="p-3 bg-light mb-2 rounded">
@@ -125,7 +125,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="text-center">
-                                <p class="mb-0 text-muted">&copy; <script>document.write(new Date().getFullYear())</script> SISTEM APLIKASI KREDIT -</i> by BANK DUTA PASUNDAN</p>
+                                <p class="mb-0 text-muted">&copy; <script>document.write(new Date().getFullYear())</script> SISTEM APLIKASI KREDIT -</i> by BANK HALDEN PRIME</p>
                             </div>
                         </div>
                     </div>

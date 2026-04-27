@@ -144,7 +144,7 @@
             <td style="border-color:inherit;border-style:solid;border-width:0px;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-break:normal"></td>
             <td style="border-color:inherit;border-style:solid;border-width:0px;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-break:normal">Jabatan</td>
             <td style="border-color:inherit;border-style:solid;border-width:0px;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">:</td>
-            <td style="border-color:inherit;border-style:solid;border-width:0px;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-break:normal" colspan="8">{{$jabatan}} PT. BPR DUTA PASUNDAN</td>
+            <td style="border-color:inherit;border-style:solid;border-width:0px;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-break:normal" colspan="8">{{$jabatan}} PT. BPR HALDEN PRIME</td>
         </tr>
         <tr>
             <td style="border-color:inherit;border-style:solid;border-width:0px;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-break:normal"></td>
@@ -167,7 +167,7 @@
         </tr>
         <tr>
             <td style="border-color:inherit;border-style:solid;border-width:0px;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-break:normal"></td>
-            <td style="height:45px;border-color:inherit;border-style:solid;border-width:0px;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-wrap:break-word" colspan="10">Berdasarkan SK No.&nbsp;&nbsp;&nbsp;018/BPR-DP/DIR/SK/VII/2023 bertindak untuk dan atas nama PT. BPR DUTA&nbsp;&nbsp;&nbsp;PASUNDAN, yang beralamat dijalan Terusan Kopo Nomor 456 D Kabupaten Bandung.</td>
+            <td style="height:45px;border-color:inherit;border-style:solid;border-width:0px;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-wrap:break-word" colspan="10">Berdasarkan SK No.&nbsp;&nbsp;&nbsp;018/BPR-DP/DIR/SK/VII/2023 bertindak untuk dan atas nama PT. BPR HALDEN&nbsp;&nbsp;&nbsp;PRIME, yang beralamat dijalan Terusan Kopo Nomor 456 D Kabupaten Bandung.</td>
         </tr>
         <tr>
             <td style="border-color:inherit;border-style:solid;border-width:0px;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-break:normal"></td>
@@ -488,7 +488,7 @@
         </tr>
         <tr>
             <td style="border-color:inherit;border-style:solid;border-width:0px;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-wrap:break-word" colspan="12" rowspan="3">Fasilitas Pinjaman INSTALLMENT dapat ditarik oleh Debitur dengan&nbsp;&nbsp;&nbsp;menyerahkan Surat Tanda Terima Uang (Kwitansi), jumlah kredit mana diterima&nbsp;&nbsp;&nbsp;sekaligus dan dimasukkan ke dalam rekening Debitur pada PT. BPR
-                DUTA&nbsp;&nbsp;&nbsp;PASUNDAN.</td>
+                HALDEN&nbsp;&nbsp;&nbsp;PRIME.</td>
         </tr>
         <tr></tr>
         <tr></tr>
@@ -760,22 +760,22 @@
         <tr>
             <td style="border-color:inherit;border-style:solid;border-width:0px;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-break:normal"></td>
             <td style="border-color:inherit;border-style:solid;border-width:0px;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-break:normal">a.</td>
-            <td style="border-color:inherit;border-style:solid;border-width:0px;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-wrap:break-word" colspan="10">Setor tunai&nbsp;&nbsp;&nbsp;melalui rekening tabungan PT. BPR Duta Pasundan dengan No Rekening dan atas&nbsp;&nbsp;&nbsp;nama DEBITUR</td>
+            <td style="border-color:inherit;border-style:solid;border-width:0px;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-wrap:break-word" colspan="10">Setor tunai&nbsp;&nbsp;&nbsp;melalui rekening tabungan PT. BPR Halden Prime dengan No Rekening dan atas&nbsp;&nbsp;&nbsp;nama DEBITUR</td>
         </tr>
         <tr>
             <td style="border-color:inherit;border-style:solid;border-width:0px;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-break:normal"></td>
             <td style="border-color:inherit;border-style:solid;border-width:0px;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-break:normal">b.</td>
-            <td style="border-color:inherit;border-style:solid;border-width:0px;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-wrap:break-word" colspan="10">Transfer melalui Bank Mandiri No. Rek&nbsp;&nbsp;&nbsp;130.000.450.8555 atas nama PT. BPR DUTA PASUNDAN</td>
+            <td style="border-color:inherit;border-style:solid;border-width:0px;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-wrap:break-word" colspan="10">Transfer melalui Bank Mandiri No. Rek&nbsp;&nbsp;&nbsp;130.000.450.8555 atas nama PT. BPR HALDEN PRIME</td>
         </tr>
         <tr>
             <td style="border-color:inherit;border-style:solid;border-width:0px;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-break:normal"></td>
             <td style="border-color:inherit;border-style:solid;border-width:0px;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-break:normal">c.</td>
-            <td style="border-color:inherit;border-style:solid;border-width:0px;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-wrap:break-word" colspan="10">Transfer melalui BCA (Bank Central Asia)&nbsp;&nbsp;&nbsp;No. Rekening 3793013929 atas nama PT. BPR DUTA PASUNDAN</td>
+            <td style="border-color:inherit;border-style:solid;border-width:0px;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-wrap:break-word" colspan="10">Transfer melalui BCA (Bank Central Asia)&nbsp;&nbsp;&nbsp;No. Rekening 3793013929 atas nama PT. BPR HALDEN PRIME</td>
         </tr>
         <tr>
             <td style="border-color:inherit;border-style:solid;border-width:0px;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-break:normal"></td>
             <td style="border-color:inherit;border-style:solid;border-width:0px;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-break:normal">d.</td>
-            <td style="border-color:inherit;border-style:solid;border-width:0px;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-wrap:break-word" colspan="10">Diambil oleh pihak BPR Duta Pasundan dengan&nbsp;&nbsp;&nbsp;dikenakan biaya sebesar Rp. 10.000,-</td>
+            <td style="border-color:inherit;border-style:solid;border-width:0px;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-wrap:break-word" colspan="10">Diambil oleh pihak BPR Halden Prime dengan&nbsp;&nbsp;&nbsp;dikenakan biaya sebesar Rp. 10.000,-</td>
         </tr>
         <tr>
             <td style="border-color:inherit;border-style:solid;border-width:0px;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-break:normal"></td>
@@ -1394,7 +1394,7 @@
             <td style="border-color:inherit;border-style:solid;border-width:0px;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-break:normal"></td>
         </tr>
         <tr>
-            <td style="border-color:inherit;border-style:solid;border-width:0px;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-break:normal" colspan="4">PT.&nbsp;&nbsp;&nbsp;BPR DUTA PASUNDAN</td>
+            <td style="border-color:inherit;border-style:solid;border-width:0px;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-break:normal" colspan="4">PT.&nbsp;&nbsp;&nbsp;BPR HALDEN PRIME</td>
             <td style="border-color:inherit;border-style:solid;border-width:0px;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-break:normal"></td>
             <td style="border-color:inherit;border-style:solid;border-width:0px;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-break:normal"></td>
             <td style="border-color:inherit;border-style:solid;border-width:0px;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-break:normal"></td>

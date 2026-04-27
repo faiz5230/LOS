@@ -170,7 +170,7 @@
                 style="border: none;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
                 :</td>
             <td style="border: none;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word"
-                colspan="3">{{getNomorUrut($debitur->id,"SPPK")}}</td>
+                colspan="3">{{ $debitur->nomor_pk ?? '/KRD-INST/BPR-HP/'.\Carbon\Carbon::parse($debitur->tanggal ?? now())->format('m').'/'.\Carbon\Carbon::parse($debitur->tanggal ?? now())->format('Y') }}</td>
             <td
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
             </td>
@@ -255,7 +255,7 @@
         </tr>
         <tr>
             <td style="border: none;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word"
-                colspan="7">{{ ucwords($debitur->nama) }}</td>
+                colspan="7">{{ ucwords($debitur->simulation->nama_direktur ?? $debitur->nama_direktur ?? '') }}</td>
             <td
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
             </td>
@@ -418,7 +418,7 @@
         <tr>
             <td style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-wrap:break-word"
                 colspan="11" rowspan="3">Sehubungan dengan permohonan yang saudara ajukan kepada PT.
-                BPR&nbsp;&nbsp;&nbsp;DUTA PASUNDAN, Bersama ini kami sampaikan bahwa PT. BPR DUTA PASUNDAN
+                BPR&nbsp;&nbsp;&nbsp;HALDEN PRIME, Bersama ini kami sampaikan bahwa PT. BPR HALDEN PRIME
                 pada&nbsp;&nbsp;&nbsp;prinsipnya menyetujui permohonan tersebut diatas dengan ketentuan
                 dan&nbsp;&nbsp;&nbsp;persyaratan sebagai berikut :</td>
         </tr>
@@ -653,7 +653,7 @@
                 :</td>
             <td
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">
-                Rp. {{ convertNumberFormat($debitur->angsuran) }}</td>
+                Rp. {{ $debitur->simulation->angsuran }}</td>
             <td
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
             </td>
@@ -1210,7 +1210,7 @@
                 2.</td>
             <td style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-wrap:break-word"
                 colspan="9" rowspan="3">Pencairan&nbsp;&nbsp;&nbsp;kredit akan dilakukan melalui Tabungan
-                DEBITUR di PT. BPR DUTA PASUNDAN,&nbsp;&nbsp;&nbsp;demikian pula pembebanan angsuran akan dilakukan
+                DEBITUR di PT. BPR HALDEN PRIME,&nbsp;&nbsp;&nbsp;demikian pula pembebanan angsuran akan dilakukan
                 dengan pemotongan/pendebetan&nbsp;&nbsp;&nbsp;rekening tersebut.</td>
         </tr>
         <tr>
@@ -1250,8 +1250,8 @@
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
                 -</td>
             <td style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-wrap:break-word"
-                colspan="9" rowspan="2"> Setor tunai melalui rekening tabungan PT.&nbsp;&nbsp;&nbsp;BPR Duta
-                Pasundan dengan No Rekening dan atas nama DEBITUR</td>
+                colspan="9" rowspan="2"> Setor tunai melalui rekening tabungan PT.&nbsp;&nbsp;&nbsp;BPR Halden
+                Prime dengan No Rekening dan atas nama DEBITUR</td>
         </tr>
         <tr>
             <td
@@ -1270,7 +1270,7 @@
                 -</td>
             <td style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-wrap:break-word"
                 colspan="9">Transfer melalui Bank Mandiri No.&nbsp;&nbsp;&nbsp;Rek 130.000.450.8555 atas nama PT.
-                BPR DUTA PASUNDAN</td>
+                BPR HALDEN PRIME</td>
         </tr>
         <tr>
             <td
@@ -1281,7 +1281,7 @@
                 -</td>
             <td style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-wrap:break-word"
                 colspan="9" rowspan="2">Transfer&nbsp;&nbsp;&nbsp;melalui BCA (Bank Central Asia) No. Rekening
-                3793013929 atas nama PT. BPR&nbsp;&nbsp;&nbsp;DUTA PASUNDAN</td>
+                3793013929 atas nama PT. BPR&nbsp;&nbsp;&nbsp;HALDEN PRIME</td>
         </tr>
         <tr>
             <td
@@ -1299,7 +1299,7 @@
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
                 -</td>
             <td style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-wrap:break-word"
-                colspan="9">Diambil oleh pihak BPR Duta Pasundan&nbsp;&nbsp;&nbsp;dengan dikenakan biaya sebesar Rp.
+                colspan="9">Diambil oleh pihak BPR Halden Prime&nbsp;&nbsp;&nbsp;dengan dikenakan biaya sebesar Rp.
                 10.000,-</td>
         </tr>
         <tr>
@@ -1436,7 +1436,7 @@
         <tr>
             <td style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-wrap:break-word"
                 colspan="11" rowspan="3">Persetujuan ini diberikan berdasarkan kondisi dan informasi
-                yang&nbsp;&nbsp;&nbsp;telah saudara berikan kepada kami, PT. BPR DUTA PASUNDAN berhak
+                yang&nbsp;&nbsp;&nbsp;telah saudara berikan kepada kami, PT. BPR HALDEN PRIME berhak
                 untuk&nbsp;&nbsp;&nbsp;membatalkan persetujuan kredit pemberian kredit ini apabila kondisi
                 dan&nbsp;&nbsp;&nbsp;informasi tersebut tidak benar.</td>
         </tr>
@@ -1561,7 +1561,7 @@
             <td style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:justify;vertical-align:top;word-wrap:break-word"
                 colspan="11" rowspan="3">Demikianlah, sebagai tanda persetujuan, kiranya saudara
                 dapat&nbsp;&nbsp;&nbsp;menandatangani surat ini beserta salinannya dan menyerahkan kembali ke
-                PT.&nbsp;&nbsp;&nbsp;BPR DUTA PASUNDAN jalan terusan kopo No. 456 D Bandung.</td>
+                PT.&nbsp;&nbsp;&nbsp;BPR HALDEN PRIME jalan terusan kopo No. 456 D Bandung.</td>
         </tr>
         <tr></tr>
         <tr></tr>
@@ -1643,7 +1643,7 @@
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
             </td>
             <td style="border: none;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-wrap:break-word"
-                colspan="3">PT. BPR DUTA PASUNDAN</td>
+                colspan="3">PT. BPR HALDEN PRIME</td>
             <td
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
             </td>
@@ -1684,34 +1684,7 @@
             <td style="border: none;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-wrap:break-word"
                 colspan="3">Ketentuan dan Persyaratan diatas</td>
         </tr>
-        <tr>
-            <td
-                style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
-            </td>
-            <td
-                style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
-            </td>
-            <td
-                style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
-            </td>
-            <td
-                style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
-            </td>
-            <td
-                style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
-            </td>
-            <td
-                style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
-            </td>
-            <td
-                style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
-            </td>
-            <td
-                style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
-            </td>
-            <td style="border: none;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-wrap:break-word"
-                colspan="3">Debitur</td>
-        </tr>
+        
         <tr>
             <td
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
@@ -1860,7 +1833,7 @@
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
             </td>
             <td style="border: none;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-wrap:break-word"
-                colspan="3">Fitra Ramdani, ST</td>
+                colspan="3">Dwi Gustin Caturani</td>
             <td
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
             </td>
@@ -1871,36 +1844,31 @@
                 style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
             </td>
             <td style="border: none;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-wrap:break-word"
-                colspan="3">{{ ucwords($debitur->nama) }}</td>
+                colspan="3">{{ ucwords($debitur->simulation->nama_direktur ?? $debitur->nama_direktur ?? '') }}</td>
         </tr>
         <tr>
-            <td
-                style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
-            </td>
-            <td
-                style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
-            </td>
-            <td style="border: none;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-wrap:break-word"
-                colspan="3">Pejabat Eksekutif Kredit</td>
-            <td
-                style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
-            </td>
-            <td
-                style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
-            </td>
-            <td
-                style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
-            </td>
-            <td
-                style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
-            </td>
-            <td
-                style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
-            </td>
-            <td
-                style="border: none;font-family:Calibri;font-size:11px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-wrap:break-word">
-            </td>
-        </tr>
+    <td></td>
+    <td></td>
+
+    <!-- KIRI -->
+    <td style="border: none;font-family:Calibri;font-size:11px;font-weight:bold;
+        overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-wrap:break-word"
+        colspan="3">
+        Kepala Divisi Bisnis
+    </td>
+
+    <td></td>
+    <td></td>
+    <td></td>
+
+    <!-- KANAN -->
+    <td style="border: none;font-family:Calibri;font-size:11px;font-weight:bold;
+        overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-wrap:break-word"
+        colspan="3">
+        Debitur
+    </td>
+</tr>
+
     </tbody>
 </table>
 

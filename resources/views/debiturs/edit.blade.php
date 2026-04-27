@@ -701,8 +701,8 @@
                                                              <div class="input-group input-group-sm">
                                                                 <span class="input-group-text col-4">Alamat <span
                                                                         style="color:red">*</span></span>
-                                                                <textarea name="alamat" id="alamat" class="form-control form-control-sm" required>{{ old('alamat',$simulation->alamat) }}</textarea>
-                                                                @error('alamat')
+                                                                <textarea name="alamat_saudara" id="alamat_saudara" class="form-control form-control-sm" required>{{ old('alamat_saudara',$simulation->alamat_saudara) }}</textarea>
+                                                                @error('alamat saudara')
                                                                     <div class="alert alert-danger mt-1 mb-1">
                                                                         {{ $message }}
                                                                     </div>

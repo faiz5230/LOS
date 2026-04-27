@@ -423,7 +423,7 @@
         </tr>
         <tr>
             <td style="border: none;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal"
-                colspan="9">PT. BPR DUTA&nbsp;&nbsp;&nbsp;PASUNDAN</td>
+                colspan="9">PT. BPR HALDEN&nbsp;&nbsp;&nbsp;PRIME</td>
         </tr>
         <tr>
             <td style="border:1px solid #000;border-style:solid;border-width:1px;font-family:Calibri;font-size:11px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal"

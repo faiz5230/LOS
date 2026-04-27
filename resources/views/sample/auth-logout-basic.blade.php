@@ -43,7 +43,7 @@
 
                             <div class="mt-4 pt-2">
                                 <h5>You are Logged Out</h5>
-                                <p class="text-muted">Thank you for using <span class="fw-semibold">velzon</span>
+                                <p class="text-muted">Thank you for using <span class="fw-semibold">faiz</span>
                                     admin template</p>
                                 <div class="mt-4">
                                     <a href="auth-signin-basic" class="btn btn-success w-100">Sign In</a>
@@ -72,7 +72,7 @@
                         <script>
                             document.write(new Date().getFullYear())
                         </script> SISTEM APLIKASI KREDIT <i
-                                class="mdi mdi-heart text-danger"></i> by BANK DUTA PASUNDAN</p>
+                                class="mdi mdi-heart text-danger"></i> by BANK HALDEN PRIME</p>
                     </div>
                 </div>
             </div>

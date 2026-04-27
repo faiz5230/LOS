@@ -110,7 +110,7 @@
                                             <i class="ri-mail-send-line"></i>
                                         </div>
                                     </div>
-                                    <h5 class="fs-15 lh-base mb-0">Work Inquiry from velzon</h5>
+                                    <h5 class="fs-15 lh-base mb-0">Work Inquiry from faiz</h5>
                                 </div>
                             </div>
 
@@ -218,7 +218,7 @@
                                 </h1>
 
                                 <h6 class="fs-17 mb-2">Find Job</h6>
-                                <p class="text-muted mb-0 fs-15">Search for your dream jobs from velzon.</p>
+                                <p class="text-muted mb-0 fs-15">Search for your dream jobs from faiz.</p>
                             </div>
                         </div>
                     </div>
@@ -643,7 +643,7 @@
                                         </a>
                                         <ul class="list-inline text-muted mb-3">
                                             <li class="list-inline-item">
-                                                <i class="ri-building-line align-bottom me-1"></i> BANK DUTA PASUNDAN
+                                                <i class="ri-building-line align-bottom me-1"></i> BANK HALDEN PRIME
                                             </li>
                                             <li class="list-inline-item">
                                                 <i class="ri-map-pin-2-line align-bottom me-1"></i> USA
@@ -866,7 +866,7 @@
                                     <a href="#!">
                                         <h5>New Web designer</h5>
                                     </a>
-                                    <p class="text-muted">BANK DUTA PASUNDAN</p>
+                                    <p class="text-muted">BANK HALDEN PRIME</p>
 
                                     <div class="d-flex gap-4 mb-3">
                                         <div>
@@ -1176,7 +1176,7 @@
                             </div>
                             <div class="mt-4 fs-15">
                                 <p>SISTEM APLIKASI KREDIT</p>
-                                <p>You can build any type of web application like eCommerce, CRM, CMS, Project management apps, Admin Panels, etc using Velzon.</p>
+                                <p>You can build any type of web application like eCommerce, CRM, CMS, Project management apps, Admin Panels, etc using Faiz.</p>
                                 <ul class="list-inline mb-0 footer-social-link">
                                     <li class="list-inline-item">
                                         <a href="javascript: void(0);" class="avatar-xs d-block">
@@ -1264,7 +1264,7 @@
                                 <script>
                                     document.write(new Date().getFullYear())
 
-                                </script> © Velzon - BANK DUTA PASUNDAN
+                                </script> © Faiz - BANK HALDEN PRIME
                             </p>
                         </div>
                     </div>
